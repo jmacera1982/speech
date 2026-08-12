@@ -4,144 +4,118 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Speech Analytics — Auteco Mobility</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 40'%3E%3Cpath d='M2 31 L32 5 L62 31 Z' fill='%230D3B70'/%3E%3Cellipse cx='42' cy='20' rx='12' ry='7.4' fill='%23fff'/%3E%3Cellipse cx='42' cy='20' rx='8.4' ry='4.8' fill='%23E10600'/%3E%3C/svg%3E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 40'%3E%3Cpath d='M2 31 L32 5 L62 31 Z' fill='%237B2FE8'/%3E%3Cellipse cx='42' cy='20' rx='12' ry='7.4' fill='%23fff'/%3E%3Cellipse cx='42' cy='20' rx='8.4' ry='4.8' fill='%235E18C7'/%3E%3C/svg%3E">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Oswald:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap">
 <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/regular/style.css">
 <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/bold/style.css">
 <link rel="stylesheet" href="https://unpkg.com/@phosphor-icons/web@2.1.1/src/fill/style.css">
 
 <style>
-/* ══════════════════════════════════════════════════════════════
-   Speech Analytics — tema Auteco Mobility
-   Paleta tomada de la identidad de auteco.com.co:
-   azul institucional #0D3B70, rojo de marca #E10600, verde #66CC34,
-   titulares en Oswald condensado, texto en Inter.
-   ══════════════════════════════════════════════════════════════ */
+/* ══════════════════════════════════════════════════════════════════════
+   Sistema de diseño tomado tal cual de "Speech Analytics Promerica.html"
+   (speech-app/app.css): mismos tokens, mismas tipografías y mismas reglas
+   de componentes. Debajo se agregan solo los componentes nuevos de este
+   tablero, escritos con esos mismos tokens.
+   ══════════════════════════════════════════════════════════════════════ */
 :root{
-  --brand:#0D3B70;
-  --brand-600:#0B2A51;
-  --brand-800:#071D3A;
-  --brand-soft:#E6EEF7;
-  --brand-tint:#F4F8FC;
-  --accent:#E10600;
-  --accent-600:#B80500;
-  --accent-soft:#FFE6E6;
-  --green:#1F7A33;
-  --green-bg:#EAFCE3;
-  --lime:#66CC34;
+  --purple:#7B2FE8;
+  --purple-600:#5E18C7;
+  --purple-soft:#EFE4FE;
+  --purple-tint:#F8F2FF;
+  --green:#1A7F5A;
+  --green-bg:#E8F5EF;
   --amber:#B45309;
-  --amber-bg:#FFF6E0;
-  --red:#C1121F;
-  --red-bg:#FFE6E6;
-  --blue:#0077C8;
-  --blue-bg:#E6F2FB;
-  --bg:#F4F6F8;
+  --amber-bg:#FDF3E7;
+  --red:#991B1B;
+  --red-bg:#FBEAEA;
+  --blue:#1D4ED8;
+  --blue-bg:#EAF0FD;
+  --bg:#FAFAFA;
   --card:#FFFFFF;
-  --border:#E3E4E6;
-  --ink:#111318;
-  --ink-2:#434343;
-  --ink-3:#6B7280;
-  --neutral:#979899;
-  --display:'Oswald','Inter',-apple-system,sans-serif;
-  --shadow-card:0 1px 2px rgba(13,59,112,0.06);
-  --shadow-pop:0 10px 30px rgba(13,59,112,0.16);
+  --border:#E5E5E5;
+  --ink:#1A1A2E;
+  --ink-2:#4A4A5A;
+  --ink-3:#8A8A99;
+  --neutral:#9CA3AF;
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html,body{height:100%;}
 body{
-  font-family:'Inter',-apple-system,BlinkMacSystemFont,sans-serif;
+  font-family:'Inter',-apple-system,sans-serif;
   background:var(--bg);color:var(--ink);font-size:14px;
   -webkit-font-smoothing:antialiased;
 }
-a{color:var(--brand);text-decoration:none;}
-a:hover{color:var(--accent);text-decoration:underline;}
+a{color:var(--purple);text-decoration:none;}
+a:hover{color:var(--purple-600);text-decoration:underline;}
 button{font-family:inherit;}
-:where(button,a,input,select,[tabindex]):focus-visible{
-  outline:2px solid var(--accent);outline-offset:2px;border-radius:6px;
-}
-.skip-link{
-  position:fixed;top:-48px;left:16px;z-index:100;background:var(--brand);color:#fff;
-  padding:10px 16px;border-radius:8px;font-size:13px;font-weight:600;transition:top .15s;
-}
-.skip-link:focus{top:12px;color:#fff;text-decoration:none;}
 
-/* ── Sidebar: azul institucional Auteco ── */
+/* ── Sidebar ── */
 .sidebar{
-  position:fixed;left:0;top:0;bottom:0;width:60px;
-  background:var(--brand);border-right:1px solid var(--brand-600);
+  position:fixed;left:0;top:0;bottom:0;width:56px;
+  background:#fff;border-right:1px solid var(--border);
   display:flex;flex-direction:column;align-items:center;
   padding:12px 0;gap:4px;z-index:40;
 }
 .sidebar .logo{
-  width:38px;height:38px;border-radius:9px;background:#fff;
-  display:flex;align-items:center;justify-content:center;margin-bottom:14px;flex-shrink:0;
-  box-shadow:0 2px 6px rgba(0,0,0,0.18);
+  width:32px;height:32px;border-radius:8px;background:var(--purple);
+  display:flex;align-items:center;justify-content:center;
+  color:#fff;font-weight:700;font-size:15px;margin-bottom:12px;
 }
-.sidebar .logo svg{width:26px;height:26px;display:block;}
 .nav-item{
-  width:44px;height:44px;border-radius:9px;border:none;background:transparent;
+  width:40px;height:40px;border-radius:8px;border:none;background:transparent;
   display:flex;align-items:center;justify-content:center;cursor:pointer;
-  color:rgba(255,255,255,0.62);font-size:20px;transition:background .12s,color .12s;
+  color:var(--ink-3);font-size:20px;transition:background .12s,color .12s;
 }
-.nav-item:hover{background:rgba(255,255,255,0.12);color:#fff;}
-.nav-item.active{background:#fff;color:var(--brand);box-shadow:inset 3px 0 0 var(--accent);}
+.nav-item:hover{background:#F3F1F8;color:var(--ink-2);}
+.nav-item.active{background:var(--purple-soft);color:var(--purple);}
 .sidebar .spacer{flex:1;}
-.sidebar .avatar{background:rgba(255,255,255,0.16);color:#fff;}
 .avatar{
-  width:32px;height:32px;border-radius:50%;background:var(--brand-soft);
-  color:var(--brand);font-size:12px;font-weight:600;
+  width:32px;height:32px;border-radius:50%;background:var(--purple-soft);
+  color:var(--purple);font-size:12px;font-weight:600;
   display:flex;align-items:center;justify-content:center;flex-shrink:0;
 }
 .avatar.sm{width:26px;height:26px;font-size:10px;}
-.avatar.gray{background:#F0F1F3;color:var(--ink-2);}
-.avatar.red{background:var(--accent-soft);color:var(--accent-600);}
+.avatar.lg{width:52px;height:52px;font-size:17px;}
+.avatar.gray{background:#F0F0F3;color:var(--ink-2);}
 
 /* ── Layout ── */
-.main{margin:0 0 0 60px;padding:0 28px 90px;max-width:none;}
-.topbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:22px 0 4px;}
-.page-title{
-  font-family:var(--display);font-size:26px;font-weight:600;letter-spacing:0.4px;
-  text-transform:uppercase;line-height:1.1;
-}
-.page-sub{font-size:12.5px;color:var(--ink-3);padding-top:3px;}
-.tenant-chip{
-  display:inline-flex;align-items:center;gap:8px;background:var(--brand);color:#fff;
-  border-radius:999px;padding:5px 12px 5px 6px;font-size:12px;font-weight:600;
-}
-.tenant-chip .tc-dot{width:20px;height:20px;border-radius:50%;background:#fff;display:flex;align-items:center;justify-content:center;}
-.tenant-chip .tc-dot svg{width:14px;height:14px;}
+.main{margin:0 auto;padding:0 28px 90px;max-width:none;}
+.topbar{display:flex;align-items:center;gap:12px;flex-wrap:wrap;padding:20px 0 4px;}
+.page-title{font-size:20px;font-weight:600;letter-spacing:-0.3px;}
+.page-sub{font-size:12px;color:var(--ink-3);padding-top:3px;}
 
 /* tabs */
-.tabs{display:flex;gap:2px;border-bottom:1px solid var(--border);margin:12px 0 18px;}
+.tabs{display:flex;gap:2px;border-bottom:1px solid var(--border);margin:10px 0 18px;}
 .tab{
-  font-family:var(--display);padding:11px 16px;min-height:46px;font-size:15px;font-weight:500;
-  letter-spacing:0.5px;text-transform:uppercase;color:var(--ink-3);
-  background:none;border:none;border-bottom:3px solid transparent;cursor:pointer;
+  padding:10px 16px;font-size:14px;font-weight:500;color:var(--ink-3);
+  background:none;border:none;border-bottom:2px solid transparent;cursor:pointer;
   transition:color .12s;margin-bottom:-1px;
 }
-.tab:hover{color:var(--brand);}
-.tab.active{color:var(--brand);border-bottom-color:var(--accent);font-weight:600;}
+.tab:hover{color:var(--ink-2);}
+.tab.active{color:var(--purple);border-bottom-color:var(--purple);font-weight:600;}
 
-/* chips y filtros */
+/* chips */
 .chip{
-  display:inline-flex;align-items:center;gap:6px;min-height:36px;
+  display:inline-flex;align-items:center;gap:6px;
   padding:7px 12px;border-radius:999px;
   background:#fff;border:1px solid var(--border);
   font-size:13px;font-weight:500;color:var(--ink-2);
   cursor:pointer;transition:border-color .12s,background .12s;position:relative;
 }
-.chip:hover{border-color:#C8CBD0;background:#FCFCFD;}
+.chip:hover{border-color:#C9C9D4;background:#FCFCFD;}
 .chip i{font-size:14px;color:var(--ink-3);}
-.chip.open,.chip.active-filter{border-color:var(--brand);color:var(--brand);background:var(--brand-soft);}
-.chip.open i,.chip.active-filter i{color:var(--brand);}
+.chip.open,.chip.active-filter{border-color:var(--purple);color:var(--purple);background:var(--purple-soft);}
+.chip.open i,.chip.active-filter i{color:var(--purple);}
 .filter-row{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:12px 0 18px;position:relative;}
+
+/* dropdown */
 .dropdown{
   position:absolute;top:calc(100% + 6px);left:0;z-index:50;
-  width:270px;background:#fff;border:1px solid var(--border);border-radius:10px;
-  box-shadow:var(--shadow-pop);padding:10px;
+  width:260px;background:#fff;border:1px solid var(--border);border-radius:10px;
+  box-shadow:0 8px 24px rgba(26,26,46,0.12);padding:10px;
 }
 .dropdown .dd-search{
   display:flex;align-items:center;gap:6px;border:1px solid var(--border);
@@ -149,42 +123,28 @@ button{font-family:inherit;}
 }
 .dropdown .dd-search input{border:none;outline:none;font-family:inherit;font-size:13px;width:100%;}
 .dd-opt{
-  display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:6px;min-height:36px;
-  font-size:13px;color:var(--ink);cursor:pointer;text-align:left;
+  display:flex;align-items:center;gap:8px;padding:7px 8px;border-radius:6px;
+  font-size:13px;color:var(--ink);cursor:pointer;
 }
-.dd-opt:hover{background:var(--brand-tint);}
-.dd-opt input{accent-color:var(--brand);}
+.dd-opt:hover{background:var(--purple-tint);}
+.dd-opt input{accent-color:var(--purple);}
 .dd-apply{
-  width:100%;margin-top:8px;padding:9px;border-radius:8px;border:none;
-  background:var(--brand);color:#fff;font-size:13px;font-weight:600;cursor:pointer;
+  width:100%;margin-top:8px;padding:8px;border-radius:8px;border:none;
+  background:var(--purple);color:#fff;font-size:13px;font-weight:600;cursor:pointer;
 }
-.dd-apply:hover{background:var(--brand-600);}
-.active-filters{display:flex;align-items:center;gap:8px;flex-wrap:wrap;padding:0 0 14px;}
-.af-label{font-size:12px;color:var(--ink-3);font-weight:600;}
-.af-chip{
-  display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;
-  color:var(--brand);background:var(--brand-soft);border-radius:999px;padding:4px 6px 4px 12px;
-}
-.af-x{
-  width:18px;height:18px;border-radius:50%;border:none;background:transparent;
-  color:var(--brand);cursor:pointer;font-size:11px;display:flex;align-items:center;justify-content:center;
-}
-.af-x:hover{background:rgba(13,59,112,0.15);}
-.af-clear{background:none;border:none;color:var(--ink-2);font-size:12px;font-weight:600;cursor:pointer;padding:4px 8px;border-radius:6px;}
-.af-clear:hover{background:#EDEFF2;}
+.dd-apply:hover{background:var(--purple-600);}
 
 /* ── Cards / grid ── */
-.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:14px;}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:16px;}
 .card{
   background:var(--card);border:1px solid var(--border);border-radius:12px;
   padding:20px 24px;position:relative;display:flex;flex-direction:column;
-  box-shadow:var(--shadow-card);transition:box-shadow .15s,transform .15s;
+  transition:box-shadow .15s,transform .15s;
 }
-.grid > .span-3 > .card,.grid > .span-4 > .card,.grid > .span-6 > .card,.grid > .span-8 > .card,.grid > .span-12 > .card{flex:1 1 auto;width:100%;}
 .card.hoverable{cursor:pointer;}
-.card.hoverable:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(13,59,112,0.10);}
+.card.hoverable:hover{transform:translateY(-2px);box-shadow:0 6px 18px rgba(26,26,46,0.08);}
 .card .ver-detalle{
-  position:absolute;top:18px;right:20px;font-size:12px;font-weight:600;color:var(--accent);
+  position:absolute;top:18px;right:20px;font-size:12px;font-weight:500;color:var(--purple);
   opacity:0;transition:opacity .15s;pointer-events:none;
 }
 .card.hoverable:hover .ver-detalle{opacity:1;}
@@ -193,172 +153,185 @@ button{font-family:inherit;}
 .span-6{grid-column:span 6;}
 .span-8{grid-column:span 8;}
 .span-12{grid-column:span 12;}
+
 .card-label{
-  font-size:12px;text-transform:uppercase;letter-spacing:0.06em;line-height:1.4;
-  color:var(--ink-3);font-weight:600;display:flex;align-items:center;gap:7px;
+  font-size:12px;text-transform:uppercase;letter-spacing:0.06em;
+  color:var(--ink-3);font-weight:600;display:flex;align-items:center;gap:6px;
 }
-.card-title{font-family:var(--display);font-size:16px;font-weight:600;letter-spacing:0.3px;color:var(--ink);text-transform:uppercase;}
-.card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;gap:12px;}
+.card-title{font-size:14px;font-weight:600;color:var(--ink);}
+.card-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;gap:8px;}
 .card-sub{font-size:12px;color:var(--ink-3);margin-top:6px;line-height:1.45;}
-.card.primary-card{border-top:3px solid var(--brand);padding:22px 26px;}
-.card.alert-card{border-left:3px solid var(--accent);padding:22px 26px;}
-.sec-head{display:flex;align-items:center;gap:12px;padding:8px 0 0;}
-.sec-ic{
-  width:38px;height:38px;border-radius:10px;background:var(--brand);color:#fff;
-  display:flex;align-items:center;justify-content:center;font-size:19px;flex-shrink:0;
-}
-.sec-ic.red{background:var(--accent);}
-.sec-ic.dark{background:var(--ink);}
+
+.card.primary-card{}
+.card.alert-card{border-left:3px solid var(--red);}
 
 /* metric */
-.metric-value-row{display:flex;align-items:center;gap:12px;margin-top:12px;flex-wrap:wrap;}
-.metric-value{font-family:var(--display);font-size:40px;font-weight:600;letter-spacing:0;line-height:1;}
-.metric-unit{font-family:'Inter',sans-serif;font-size:17px;font-weight:500;color:var(--ink-3);}
+.metric-value-row{display:flex;align-items:baseline;gap:10px;margin-top:10px;flex-wrap:wrap;}
+.metric-value{font-size:36px;font-weight:600;letter-spacing:-0.8px;line-height:1;}
+.metric-unit{font-size:18px;font-weight:500;color:var(--ink-3);}
 .trend{
-  display:inline-flex;align-items:center;gap:3px;font-variant-numeric:tabular-nums;
+  display:inline-flex;align-items:center;gap:3px;
   font-size:12px;font-weight:600;padding:3px 8px;border-radius:999px;
 }
 .trend.up{color:var(--green);background:var(--green-bg);}
 .trend.down{color:var(--red);background:var(--red-bg);}
 .trend.warn{color:var(--amber);background:var(--amber-bg);}
-.trend.flat{color:var(--ink-2);background:#EDEFF2;}
-.trend i{font-size:11px;}
-.metric-spark{margin-top:auto;padding-top:14px;}
+.trend.flat{color:var(--ink-2);background:#F0F0F3;}
+.metric-spark{margin-top:auto;padding-top:14px;height:auto;}
+.card:has(.metric-spark){display:flex;flex-direction:column;width:100%;}
 .metric-spark svg{display:block;width:100%;height:32px;}
 .tag-estimado{
   font-size:10px;font-weight:600;text-transform:uppercase;letter-spacing:0.05em;
-  color:var(--ink-3);background:#EDEFF2;border-radius:4px;padding:2px 6px;
+  color:var(--ink-3);background:#F0F0F3;border-radius:4px;padding:2px 6px;
 }
-.alert-icon{color:var(--accent);font-size:15px;}
+.alert-icon{color:var(--red);font-size:15px;}
 
 /* pills */
 .pill{
   display:inline-flex;align-items:center;gap:6px;
   font-size:12px;font-weight:500;padding:4px 10px;border-radius:999px;white-space:nowrap;
 }
-.pill .dot{width:7px;height:7px;flex-shrink:0;}
+.pill .dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;}
 .pill.pos{background:var(--green-bg);color:var(--green);}
-.pill.pos .dot{background:var(--green);border-radius:50%;}
-.pill.neu{background:#EDEFF2;color:var(--ink-2);}
-.pill.neu .dot{background:var(--neutral);border-radius:2px;}
+.pill.pos .dot{background:var(--green);}
+.pill.neu{background:#F0F0F3;color:var(--ink-2);}
+.pill.neu .dot{background:var(--neutral);}
 .pill.neg{background:var(--red-bg);color:var(--red);}
-.pill.neg .dot{background:var(--red);transform:rotate(45deg);}
+.pill.neg .dot{background:var(--red);}
 .pill.crit{background:var(--red-bg);color:var(--red);font-weight:600;}
 .pill.warn{background:var(--amber-bg);color:var(--amber);font-weight:600;}
-.pill.brand{background:var(--brand-soft);color:var(--brand);}
-.pill.red{background:var(--accent-soft);color:var(--accent-600);}
+.pill.purple{background:var(--purple-soft);color:var(--purple);}
 .pill.blue{background:var(--blue-bg);color:var(--blue);}
 .pill.sm{font-size:11px;padding:2px 8px;}
 
-/* charts */
+/* live */
+.live-badge{
+  display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;
+  color:var(--green);text-transform:uppercase;letter-spacing:0.05em;
+}
+.live-badge .pulse-dot{width:8px;height:8px;border-radius:50%;background:var(--green);position:relative;}
+.live-badge .pulse-dot::after{
+  content:"";position:absolute;inset:-4px;border-radius:50%;
+  border:2px solid var(--green);opacity:0;
+  animation:pulse-ring 2s cubic-bezier(0.4,0,0.2,1) infinite;
+}
+@keyframes pulse-ring{0%{transform:scale(0.5);opacity:0.8;}100%{transform:scale(1.4);opacity:0;}}
+.chart-pulse{transform-origin:center;transform-box:fill-box;animation:pulse-svg 2s cubic-bezier(0.4,0,0.2,1) infinite;}
+@keyframes pulse-svg{0%{opacity:0.6;transform:scale(0.6);}100%{opacity:0;transform:scale(2.4);}}
+@media (prefers-reduced-motion: reduce){
+  .live-badge .pulse-dot::after,.chart-pulse{animation:none !important;}
+}
 .axis-label{font-size:11px;fill:var(--ink-3);font-family:'Inter',sans-serif;}
-.grid-line{stroke:#EDEFF2;stroke-width:1;}
-.hm-cell{border:1px solid rgba(13,59,112,0.06);}
-.hm-cell:focus-visible{outline:2px solid var(--accent);outline-offset:1px;z-index:2;position:relative;}
+@keyframes ins-pulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.18);opacity:.7;}}
+@keyframes ins-step{to{opacity:1;}}
+@keyframes ins-bar{from{width:0;}to{width:100%;}}
+.grid-line{stroke:#F0F0F3;stroke-width:1;}
+
+/* chart tooltip */
+.chart-tooltip{
+  position:absolute;background:#1A1A2E;color:#fff;border-radius:8px;padding:10px 12px;
+  font-size:12px;pointer-events:none;z-index:30;min-width:130px;
+  box-shadow:0 6px 18px rgba(0,0,0,0.2);
+}
+.chart-tooltip .tt-date{font-weight:600;margin-bottom:6px;}
+.chart-tooltip .tt-row{display:flex;align-items:center;gap:6px;margin-top:3px;}
+.chart-tooltip .tt-row .dot{width:7px;height:7px;border-radius:50%;}
+.chart-tooltip .tt-row .v{margin-left:auto;font-weight:600;}
 
 /* ratio bar */
 .ratio-bar{display:flex;height:34px;border-radius:8px;overflow:hidden;margin-top:18px;position:relative;}
 .ratio-seg{display:flex;align-items:center;padding:0 12px;font-size:13px;font-weight:600;color:#fff;}
+.ratio-seg.exec{background:var(--purple);}
+.ratio-seg.cli{background:#C7BBE3;color:var(--purple);justify-content:flex-end;}
+.ratio-marker{position:absolute;top:-6px;bottom:-6px;width:0;border-left:2px dashed var(--ink-2);}
+.ratio-marker-label{font-size:11px;color:var(--ink-2);font-weight:500;padding-top:12px;white-space:nowrap;}
 
-/* listas */
+/* compliance / moments list */
 .comp-list{display:flex;flex-direction:column;flex:1;margin:0 -12px;}
 .comp-row{
   display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:8px;cursor:pointer;
-  border:none;background:transparent;text-align:left;transition:background .12s;width:100%;min-height:44px;
+  border:none;background:transparent;text-align:left;transition:background .12s;width:100%;
 }
-.comp-row:hover{background:var(--brand-tint);}
-.comp-row + .comp-row{border-top:1px solid #F0F1F3;}
+.comp-row:hover{background:var(--purple-tint);}
+.comp-row + .comp-row{border-top:1px solid #F0F0F3;}
 .comp-name{font-size:13px;font-weight:500;color:var(--ink);line-height:1.35;flex:1;min-width:0;}
-.comp-count{font-size:12px;font-weight:600;color:var(--ink-2);white-space:nowrap;font-variant-numeric:tabular-nums;}
+.comp-count{font-size:12px;font-weight:600;color:var(--ink-2);white-space:nowrap;}
 .comp-trend{font-size:13px;width:16px;text-align:center;}
 .comp-trend.up{color:var(--red);}
 .comp-trend.down{color:var(--green);}
 .comp-trend.flat{color:var(--ink-3);}
+
+/* leaderboard */
 .lb-row{display:flex;align-items:center;gap:10px;padding:9px 0;}
-.lb-row + .lb-row{border-top:1px solid #F0F1F3;}
-.lb-rank{font-family:var(--display);font-size:14px;font-weight:600;color:var(--ink-3);width:26px;}
+.lb-row + .lb-row{border-top:1px solid #F0F0F3;}
+.lb-rank{font-size:12px;font-weight:600;color:var(--ink-3);width:18px;}
 .lb-name{font-size:13px;font-weight:500;flex:1;min-width:0;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
-.lb-bar-track{width:90px;height:6px;border-radius:3px;background:#EDEFF2;flex-shrink:0;}
-.lb-bar{height:6px;border-radius:3px;background:var(--brand);}
-.lb-score{font-size:13px;font-weight:600;width:32px;text-align:right;font-variant-numeric:tabular-nums;}
-.lb-row.top .lb-rank{color:var(--accent);}
+.lb-bar-track{width:90px;height:6px;border-radius:3px;background:#F0F0F3;flex-shrink:0;}
+.lb-bar{height:6px;border-radius:3px;background:var(--purple);}
+.lb-score{font-size:13px;font-weight:600;width:28px;text-align:right;}
+.lb-row.top .lb-rank{color:var(--green);}
+.lb-row.low .lb-rank{color:var(--amber);}
+
+/* mini h-bars */
 .hbar-row{display:flex;align-items:center;gap:10px;margin-top:10px;}
-.hbar-label{font-size:12.5px;color:var(--ink-2);width:150px;flex-shrink:0;}
-.hbar-track{flex:1;height:10px;border-radius:5px;background:#EDEFF2;}
-.hbar{height:10px;border-radius:5px;background:var(--brand);}
-.hbar-val{font-size:13px;font-weight:600;width:44px;text-align:right;font-variant-numeric:tabular-nums;}
-.hbar-row.drill,.comp-row.drill,.lb-row.drill{cursor:pointer;border-radius:6px;transition:background .12s;}
-.hbar-row.drill:hover,.comp-row.drill:hover,.lb-row.drill:hover{background:var(--brand-tint);}
+.hbar-label{font-size:12px;color:var(--ink-2);width:110px;flex-shrink:0;}
+.hbar-track{flex:1;height:10px;border-radius:5px;background:#F0F0F3;}
+.hbar{height:10px;border-radius:5px;background:var(--purple);}
+.hbar-val{font-size:13px;font-weight:600;width:20px;text-align:right;}
 
-/* botones */
-.btn-secondary{
-  padding:8px 14px;border-radius:8px;border:1px solid var(--border);background:#fff;
-  font-size:13px;font-weight:600;color:var(--ink);cursor:pointer;transition:border-color .12s;
-}
-.btn-secondary:hover{border-color:var(--brand);color:var(--brand);}
-.btn-primary{
-  padding:9px 16px;border-radius:8px;border:none;background:var(--accent);
-  font-size:13px;font-weight:600;color:#fff;cursor:pointer;transition:background .12s;
-}
-.btn-primary:hover{background:var(--accent-600);}
-.btn-brand{
-  padding:9px 16px;border-radius:8px;border:none;background:var(--brand);
-  font-size:13px;font-weight:600;color:#fff;cursor:pointer;transition:background .12s;
-}
-.btn-brand:hover{background:var(--brand-600);}
-.btn-primary:active,.btn-secondary:active,.btn-brand:active{transform:translateY(1px);}
-.link-btn{background:none;border:none;color:var(--brand);font-size:13px;font-weight:600;cursor:pointer;padding:4px 8px;border-radius:6px;}
-.link-btn:hover{background:var(--brand-soft);}
-
-/* estados bloqueado / banners */
+/* locked state */
 .card.locked .locked-blur{opacity:0.25;filter:grayscale(1);pointer-events:none;user-select:none;}
 .locked-overlay{
   position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;
   gap:10px;padding:20px;text-align:center;z-index:5;
 }
 .locked-overlay .lock-circle{
-  width:38px;height:38px;border-radius:50%;background:#EDEFF2;color:var(--ink-2);
+  width:38px;height:38px;border-radius:50%;background:#F0F0F3;color:var(--ink-2);
   display:flex;align-items:center;justify-content:center;font-size:17px;
 }
-.locked-overlay p{font-size:13px;color:var(--ink-2);font-weight:500;max-width:230px;line-height:1.45;}
-.banner-info{
-  display:flex;align-items:center;gap:10px;background:var(--brand-tint);
-  border:1px solid #D6E2F0;border-radius:10px;padding:12px 16px;margin-bottom:16px;
-  font-size:13px;color:var(--brand);font-weight:500;
+.locked-overlay p{font-size:13px;color:var(--ink-2);font-weight:500;max-width:220px;line-height:1.45;}
+.btn-secondary{
+  padding:7px 14px;border-radius:8px;border:1px solid var(--border);background:#fff;
+  font-size:13px;font-weight:600;color:var(--ink);cursor:pointer;transition:border-color .12s;
 }
-.banner-info i{font-size:17px;color:var(--accent);}
-.setup-banner{background:#fff;border:1px solid #D6E2F0;border-radius:12px;padding:16px 20px;margin-bottom:16px;box-shadow:var(--shadow-card);}
-.setup-banner .sb-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
-.setup-banner .sb-title{display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--ink);}
-.setup-banner .sb-title i{color:var(--accent);font-size:16px;}
-.setup-banner .sb-sub{font-size:12px;color:var(--ink-3);margin-top:4px;}
-.sb-progress-label{font-size:12px;font-weight:600;color:var(--brand);white-space:nowrap;}
-.sb-progress{height:6px;border-radius:3px;background:#EDEFF2;margin:12px 0;}
-.sb-progress-fill{height:6px;border-radius:3px;background:var(--accent);}
-.sb-steps{display:flex;gap:20px;flex-wrap:wrap;}
-.sb-step{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--ink-2);}
-.check-ic{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;}
-.check-ic.ok{background:var(--green-bg);color:var(--green);}
+.btn-secondary:hover{border-color:#C9C9D4;}
+.btn-primary{
+  padding:9px 16px;border-radius:8px;border:none;background:var(--purple);
+  font-size:13px;font-weight:600;color:#fff;cursor:pointer;transition:background .12s;
+}
+.btn-primary:hover{background:var(--purple-600);}
+.btn-primary:active,.btn-secondary:active{transform:translateY(1px);}
 
-/* FAB IA */
+/* day-1 banner */
+.banner-info{
+  display:flex;align-items:center;gap:10px;background:var(--purple-tint);
+  border:1px solid #DDD2F0;border-radius:10px;padding:12px 16px;margin-bottom:16px;
+  font-size:13px;color:var(--purple-600);font-weight:500;
+}
+.banner-info i{font-size:17px;color:var(--purple);}
+
+/* AI pill + popover próximamente */
 .ai-fab-wrap{position:fixed;right:24px;bottom:24px;z-index:60;display:flex;flex-direction:column;align-items:flex-end;gap:10px;}
 .ai-fab{
-  display:flex;align-items:center;gap:8px;padding:13px 20px;border-radius:999px;border:none;cursor:pointer;
-  background:var(--brand);color:#fff;font-size:14px;font-weight:600;
-  box-shadow:0 8px 24px rgba(13,59,112,0.35);transition:background .12s,transform .15s;
+  display:flex;align-items:center;gap:8px;
+  padding:12px 18px;border-radius:999px;border:none;cursor:pointer;
+  background:var(--purple);color:#fff;font-size:14px;font-weight:600;
+  box-shadow:0 8px 24px rgba(75,45,143,0.35);transition:background .12s,transform .15s;
 }
-.ai-fab:hover{background:var(--brand-600);transform:translateY(-2px);}
-.ai-fab i{font-size:17px;color:var(--lime);}
-.ai-pop{width:300px;background:#fff;border:1px solid var(--border);border-radius:12px;padding:16px;box-shadow:var(--shadow-pop);}
-.ai-pop-head{display:flex;align-items:center;gap:7px;font-size:14px;font-weight:600;margin-bottom:8px;flex-wrap:wrap;}
-.ai-pop-head i{color:var(--accent);font-size:16px;}
+.ai-fab:hover{background:var(--purple-600);transform:translateY(-2px);}
+.ai-fab i{font-size:17px;}
+.ai-pop{
+  width:290px;background:#fff;border:1px solid var(--border);border-radius:12px;
+  padding:16px;box-shadow:0 14px 40px rgba(26,26,46,0.18);
+}
+.ai-pop-head{display:flex;align-items:center;gap:7px;font-size:14px;font-weight:600;margin-bottom:8px;}
+.ai-pop-head i{color:var(--purple);font-size:16px;}
 .ai-pop p{font-size:13px;line-height:1.55;color:var(--ink-2);margin-bottom:14px;}
-.notified{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--green);}
 
-/* tablas */
+/* ══ Screen 2: table ══ */
 .search-bar{
-  display:flex;align-items:center;gap:8px;flex:1;min-width:260px;max-width:440px;
-  background:#fff;border:1px solid var(--border);border-radius:999px;padding:8px 14px;
+  display:flex;align-items:center;gap:8px;flex:1;min-width:260px;max-width:420px;
+  background:#fff;border:1px solid var(--border);border-radius:999px;padding:7px 14px;
 }
 .search-bar input{border:none;outline:none;font-family:inherit;font-size:13px;width:100%;background:transparent;}
 .search-bar i{color:var(--ink-3);}
@@ -372,162 +345,377 @@ button{font-family:inherit;}
   background:#fff;border:1px solid var(--border);border-radius:10px;padding:12px 14px;
   display:flex;flex-direction:column;gap:6px;cursor:pointer;transition:box-shadow .15s;
 }
-.review-card:hover{box-shadow:0 4px 14px rgba(13,59,112,0.10);}
-.review-card.crit{border-left:3px solid var(--accent);}
+.review-card:hover{box-shadow:0 4px 14px rgba(26,26,46,0.08);}
+.review-card.crit{border-left:3px solid var(--red);}
 .review-card.warn{border-left:3px solid var(--amber);}
 .review-card .rc-top{display:flex;align-items:center;justify-content:space-between;gap:8px;}
 .review-card .rc-reason{font-size:13px;font-weight:600;}
-.review-card .rc-meta{font-size:12px;color:var(--ink-3);display:flex;gap:8px;align-items:center;flex-wrap:wrap;}
+.review-card .rc-meta{font-size:12px;color:var(--ink-3);display:flex;gap:8px;align-items:center;}
+
 table.data{width:100%;border-collapse:collapse;}
 table.data th{
   font-size:11px;text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-3);
   font-weight:600;text-align:left;padding:10px 12px;border-bottom:1px solid var(--border);
   cursor:pointer;user-select:none;white-space:nowrap;
 }
-table.data th:hover{color:var(--brand);}
+table.data th:hover{color:var(--ink-2);}
 table.data th .sort{font-size:10px;margin-left:3px;}
-table.data td{padding:11px 12px;font-size:13px;border-bottom:1px solid #F0F1F3;vertical-align:middle;white-space:nowrap;}
+table.data td{
+  padding:11px 12px;font-size:13px;border-bottom:1px solid #F0F0F3;vertical-align:middle;white-space:nowrap;
+}
 table.data tbody tr{cursor:pointer;transition:background .1s;}
-table.data tbody tr:hover{background:var(--brand-tint);}
-.chip-gray{display:inline-block;font-size:12px;color:var(--ink-2);background:#EDEFF2;border-radius:6px;padding:3px 8px;font-weight:500;}
-.chip-canal{display:inline-block;font-size:10px;letter-spacing:0.04em;text-transform:uppercase;font-weight:600;border-radius:5px;padding:2px 7px;}
-.chip-canal.vitrina{background:var(--brand-soft);color:var(--brand);}
-.chip-canal.taller{background:var(--amber-bg);color:var(--amber);}
-.chip-canal.whatsapp{background:var(--green-bg);color:var(--green);}
-.chip-canal.call{background:var(--accent-soft);color:var(--accent-600);}
-.pagination{display:flex;align-items:center;justify-content:space-between;padding:14px 4px 0;font-size:13px;color:var(--ink-3);gap:12px;flex-wrap:wrap;}
-.pag-btns{display:flex;gap:4px;flex-wrap:wrap;}
-.pag-btn{min-width:30px;height:30px;border-radius:8px;border:1px solid var(--border);background:#fff;font-size:13px;color:var(--ink-2);cursor:pointer;padding:0 8px;}
-.pag-btn:hover{border-color:var(--brand);}
-.pag-btn.active{background:var(--brand);border-color:var(--brand);color:#fff;font-weight:600;}
+table.data tbody tr:hover{background:var(--purple-tint);}
+.chip-gray{
+  display:inline-block;font-size:12px;color:var(--ink-2);background:#F0F0F3;
+  border-radius:6px;padding:3px 8px;font-weight:500;
+}
+.alert-badges{display:flex;gap:4px;}
+.alert-badge{
+  width:22px;height:22px;border-radius:6px;display:flex;align-items:center;justify-content:center;font-size:12px;
+}
+.alert-badge.crit{background:var(--red-bg);color:var(--red);}
+.alert-badge.warn{background:var(--amber-bg);color:var(--amber);}
+.link-btn{
+  background:none;border:none;color:var(--purple);font-size:13px;font-weight:600;cursor:pointer;padding:4px 8px;border-radius:6px;
+}
+.link-btn:hover{background:var(--purple-soft);}
+.pagination{display:flex;align-items:center;justify-content:space-between;padding:14px 4px 0;font-size:13px;color:var(--ink-3);}
+.pag-btns{display:flex;gap:4px;}
+.pag-btn{
+  min-width:30px;height:30px;border-radius:8px;border:1px solid var(--border);background:#fff;
+  font-size:13px;color:var(--ink-2);cursor:pointer;padding:0 8px;
+}
+.pag-btn:hover{border-color:#C9C9D4;}
+.pag-btn.active{background:var(--purple);border-color:var(--purple);color:#fff;font-weight:600;}
 .pag-btn:disabled{opacity:0.4;cursor:default;}
-.empty-state{display:flex;flex-direction:column;align-items:center;justify-content:center;padding:60px 20px;gap:12px;text-align:center;}
+
+.empty-state{
+  display:flex;flex-direction:column;align-items:center;justify-content:center;
+  padding:60px 20px;gap:12px;text-align:center;
+}
 .empty-state .es-circle{
-  width:64px;height:64px;border-radius:50%;background:var(--brand-tint);color:var(--brand);
+  width:64px;height:64px;border-radius:50%;background:var(--purple-tint);color:var(--purple);
   display:flex;align-items:center;justify-content:center;font-size:28px;
 }
 .empty-state p{font-size:14px;color:var(--ink-2);font-weight:500;}
 
-/* detalle de interacción */
+/* ══ Screen 3: detail ══ */
 .breadcrumb{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--ink-3);padding:18px 0 8px;}
+.breadcrumb a{font-weight:500;}
 .detail-header{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding-bottom:16px;}
-.detail-header h1{font-family:var(--display);font-size:24px;font-weight:600;letter-spacing:0.3px;text-transform:uppercase;margin-right:4px;}
+.detail-header h1{font-size:19px;font-weight:600;letter-spacing:-0.3px;margin-right:4px;}
 .meta-chip{
   display:inline-flex;align-items:center;gap:6px;font-size:12px;font-weight:500;
   color:var(--ink-2);background:#fff;border:1px solid var(--border);border-radius:999px;padding:4px 10px;
 }
 .detail-layout{display:grid;grid-template-columns:3fr 2fr;gap:16px;align-items:start;}
+
+/* transcript */
 .transcript-card{padding:0;overflow:hidden;}
 .player{padding:16px 20px;border-bottom:1px solid var(--border);}
 .player-top{display:flex;align-items:center;gap:12px;}
 .play-btn{
-  width:42px;height:42px;border-radius:50%;border:none;background:var(--accent);color:#fff;
+  width:40px;height:40px;border-radius:50%;border:none;background:var(--purple);color:#fff;
   font-size:16px;display:flex;align-items:center;justify-content:center;cursor:pointer;flex-shrink:0;
 }
-.play-btn:hover{background:var(--accent-600);}
+.play-btn:hover{background:var(--purple-600);}
 .waveform{flex:1;height:40px;position:relative;cursor:pointer;}
 .player-time{font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums;flex-shrink:0;}
-.tx-search{display:flex;align-items:center;gap:8px;padding:10px 20px;border-bottom:1px solid var(--border);background:#FBFCFD;}
+.sent-strip{display:flex;height:8px;border-radius:4px;overflow:hidden;margin-top:10px;}
+.sent-seg{cursor:pointer;transition:opacity .12s;}
+.sent-seg:hover{opacity:0.75;}
+.sent-strip-label{font-size:11px;color:var(--ink-3);margin-top:6px;}
+
+.tx-search{display:flex;align-items:center;gap:8px;padding:10px 20px;border-bottom:1px solid var(--border);background:#FCFCFD;}
 .tx-search .search-bar{max-width:none;border-radius:8px;padding:6px 10px;}
 .tx-search .match-count{font-size:12px;color:var(--ink-3);white-space:nowrap;}
-.tx-nav-btn{width:26px;height:26px;border-radius:6px;border:1px solid var(--border);background:#fff;color:var(--ink-2);cursor:pointer;font-size:12px;}
+.tx-nav-btn{
+  width:26px;height:26px;border-radius:6px;border:1px solid var(--border);background:#fff;
+  color:var(--ink-2);cursor:pointer;font-size:12px;
+}
+.tx-nav-btn:hover{border-color:#C9C9D4;}
 .tx-body{padding:18px 20px;display:flex;flex-direction:column;gap:14px;max-height:560px;overflow-y:auto;}
 .bubble-row{display:flex;gap:10px;align-items:flex-end;}
 .bubble-row.client{flex-direction:row-reverse;}
-.bubble{max-width:80%;padding:10px 14px;border-radius:12px;font-size:13px;line-height:1.6;color:var(--ink);}
-.bubble-row.exec .bubble{background:var(--brand-tint);border:1px solid #D9E4F1;border-bottom-left-radius:4px;}
-.bubble-row.client .bubble{background:#F5F6F7;border:1px solid #EAEBED;border-bottom-right-radius:4px;}
+.bubble{
+  max-width:78%;padding:10px 14px;border-radius:12px;font-size:13px;line-height:1.55;color:var(--ink);
+}
+.bubble-row.exec .bubble{background:var(--purple-tint);border:1px solid #E4DBF4;border-bottom-left-radius:4px;}
+.bubble-row.client .bubble{background:#F5F5F7;border:1px solid #ECECEF;border-bottom-right-radius:4px;}
 .bubble .b-meta{font-size:11px;color:var(--ink-3);margin-bottom:3px;font-weight:600;display:flex;gap:6px;align-items:center;}
-.hl-search{background:#FFE9A6;border-radius:2px;}
-.hl-search.current{background:var(--amber);color:#fff;}
+.hl-search{background:#FDE68A;border-radius:2px;}
+.hl-search.current{background:#F59E0B;color:#fff;}
+
+/* highlights accesibles: color + ícono + subrayado propio + borde izq */
 .hl{
   position:relative;border-radius:3px;padding:1px 4px 1px 3px;cursor:pointer;
   border-left:3px solid;text-decoration-line:underline;text-underline-offset:3px;
 }
+.hl:focus-visible{outline:2px solid currentColor;outline-offset:2px;}
 .hl .hl-ic{font-size:11px;margin-right:3px;}
 .hl .hl-label{
   display:none;position:absolute;bottom:calc(100% + 4px);left:0;z-index:25;
-  background:var(--ink);color:#fff;font-size:10px;font-weight:600;letter-spacing:0.03em;
+  background:#1A1A2E;color:#fff;font-size:10px;font-weight:600;letter-spacing:0.03em;
   text-transform:uppercase;border-radius:4px;padding:2px 7px;white-space:nowrap;text-decoration:none;
 }
 .hl:hover .hl-label,.hl:focus .hl-label{display:inline-block;}
-.hl-kw{background:var(--brand-soft);color:var(--brand);border-left-color:var(--brand);text-decoration-thickness:1.5px;}
+.hl-kw{background:var(--purple-soft);color:var(--purple);border-left-color:var(--purple);text-decoration-style:solid;text-decoration-thickness:1.5px;}
 .hl-obj{background:var(--amber-bg);color:#92400E;border-left-color:#92400E;text-decoration-style:dotted;text-decoration-thickness:2px;}
-.hl-commit{background:var(--green-bg);color:var(--green);border-left-color:var(--green);text-decoration-style:double;}
-.hl-esc{background:var(--red-bg);color:var(--red);border-left-color:var(--red);text-decoration-thickness:3px;}
-.hl-comp{background:#F1E9FE;color:#5B21B6;border-left-color:#5B21B6;text-decoration-style:wavy;}
+.hl-commit{background:var(--blue-bg);color:var(--blue);border-left-color:var(--blue);text-decoration-style:double;}
+.hl-esc{background:var(--red-bg);color:var(--red);border-left-color:var(--red);text-decoration-style:solid;text-decoration-thickness:3px;}
+
+/* right analysis panel */
 .analysis-panel{display:flex;flex-direction:column;gap:16px;position:relative;}
 .analysis-scroll{display:flex;flex-direction:column;gap:16px;max-height:640px;overflow-y:auto;padding-bottom:4px;}
-.card.ai-card{background:var(--brand-tint);border-color:#D6E2F0;}
-.ai-card .card-label{color:var(--brand);}
+.card.ai-card{background:var(--purple-tint);border-color:#DDD2F0;}
+.ai-card .card-label{color:var(--purple);}
 .ai-card p{font-size:13px;line-height:1.6;color:var(--ink);margin-top:8px;}
-.ai-card ul{margin:8px 0 0 16px;font-size:13px;color:var(--ink-2);line-height:1.65;}
+.ai-card ul{margin:8px 0 0 16px;font-size:13px;color:var(--ink-2);line-height:1.6;}
 .metric-row{display:flex;align-items:center;gap:10px;padding:9px 0;}
-.metric-row + .metric-row{border-top:1px solid #F0F1F3;}
+.metric-row + .metric-row{border-top:1px solid #F0F0F3;}
 .metric-row .mr-label{font-size:13px;color:var(--ink-2);flex:1;display:flex;align-items:center;gap:5px;}
-.metric-row .mr-bar-track{width:80px;height:6px;border-radius:3px;background:#EDEFF2;flex-shrink:0;}
+.metric-row .mr-bar-track{width:80px;height:6px;border-radius:3px;background:#F0F0F3;flex-shrink:0;}
 .metric-row .mr-bar{height:6px;border-radius:3px;}
-.metric-row .mr-val{font-size:13px;font-weight:600;width:74px;text-align:right;white-space:nowrap;}
+.metric-row .mr-val{font-size:13px;font-weight:600;width:70px;text-align:right;white-space:nowrap;}
 .info-icon{color:var(--ink-3);font-size:14px;cursor:help;position:relative;}
 .tooltip-box{
   position:absolute;bottom:calc(100% + 8px);left:50%;transform:translateX(-50%);
-  background:var(--ink);color:#fff;font-size:12px;line-height:1.5;border-radius:8px;
+  background:#1A1A2E;color:#fff;font-size:12px;line-height:1.5;border-radius:8px;
   padding:8px 10px;width:210px;z-index:40;box-shadow:0 6px 18px rgba(0,0,0,0.2);font-weight:400;
 }
-.check-row{display:flex;align-items:center;gap:9px;padding:8px;border-radius:8px;cursor:pointer;border:none;background:transparent;width:100%;text-align:left;transition:background .1s;}
-.check-row:hover{background:var(--brand-tint);}
+
+/* checklist */
+.check-row{
+  display:flex;align-items:center;gap:9px;padding:8px 8px;border-radius:8px;cursor:pointer;
+  border:none;background:transparent;width:100%;text-align:left;transition:background .1s;
+}
+.check-row:hover{background:var(--purple-tint);}
 .check-row.fail{background:var(--red-bg);}
-.check-ic.no{background:var(--accent);color:#fff;}
+.check-row.fail:hover{background:#F7DBDB;}
+.check-ic{width:18px;height:18px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:11px;flex-shrink:0;}
+.check-ic.ok{background:var(--green-bg);color:var(--green);}
+.check-ic.no{background:var(--red);color:#fff;}
 .check-label{font-size:13px;flex:1;color:var(--ink);}
 .check-row.fail .check-label{color:var(--red);font-weight:500;}
 .check-ts{font-size:12px;color:var(--ink-3);font-variant-numeric:tabular-nums;}
+
+/* detection chips */
 .det-chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px;}
 .det-chip{
   display:inline-flex;align-items:center;gap:6px;padding:6px 12px;border-radius:999px;
   font-size:12px;font-weight:600;border:1px solid transparent;cursor:pointer;transition:box-shadow .12s;
 }
-.det-chip:hover{box-shadow:0 2px 8px rgba(13,59,112,0.12);}
-.det-chip.brand{background:var(--brand-soft);color:var(--brand);}
-.det-chip.green{background:var(--green-bg);color:var(--green);}
+.det-chip:hover{box-shadow:0 2px 8px rgba(26,26,46,0.10);}
+.det-chip.blue{background:var(--blue-bg);color:var(--blue);}
 .det-chip.amber{background:var(--amber-bg);color:var(--amber);}
-.det-chip.gray{background:#EDEFF2;color:var(--ink-3);}
-.det-chip.purple{background:#F1E9FE;color:#5B21B6;}
+.det-chip.gray{background:#F0F0F3;color:var(--ink-3);}
+.det-chip.purple{background:var(--purple-soft);color:var(--purple);}
 .det-chip.selected{border-color:currentColor;}
+
+/* sticky footer */
 .panel-footer{
   position:sticky;bottom:0;background:#fff;border:1px solid var(--border);border-radius:12px;
-  padding:12px 16px;display:flex;align-items:center;gap:10px;box-shadow:0 -4px 16px rgba(13,59,112,0.06);
+  padding:12px 16px;display:flex;align-items:center;gap:10px;box-shadow:0 -4px 16px rgba(26,26,46,0.05);
   flex-wrap:wrap;z-index:10;
 }
-.panel-footer .flink{margin-left:auto;font-size:13px;font-weight:600;}
+.panel-footer .flink{margin-left:auto;font-size:13px;font-weight:500;}
 
-/* modal / toast / drawer */
-.modal-backdrop{position:fixed;inset:0;background:rgba(7,29,58,0.5);z-index:80;display:flex;align-items:center;justify-content:center;}
-.modal{width:420px;max-width:calc(100vw - 40px);background:#fff;border-radius:14px;padding:22px;box-shadow:0 24px 60px rgba(0,0,0,0.25);}
-.modal h3{font-family:var(--display);font-size:19px;font-weight:600;text-transform:uppercase;letter-spacing:0.3px;margin-bottom:4px;}
+/* popover / modal / toast */
+.popover{
+  position:absolute;bottom:calc(100% + 8px);right:0;width:250px;background:#fff;
+  border:1px solid var(--border);border-radius:10px;padding:14px;z-index:45;
+  box-shadow:0 10px 30px rgba(26,26,46,0.15);
+}
+.popover p{font-size:13px;color:var(--ink);line-height:1.5;margin-bottom:12px;}
+.popover .pop-actions{display:flex;gap:8px;justify-content:flex-end;}
+.notified{display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;color:var(--green);}
+
+.modal-backdrop{
+  position:fixed;inset:0;background:rgba(26,26,46,0.45);z-index:80;
+  display:flex;align-items:center;justify-content:center;
+}
+.modal{
+  width:400px;max-width:calc(100vw - 40px);background:#fff;border-radius:14px;padding:22px;
+  box-shadow:0 24px 60px rgba(0,0,0,0.25);
+}
+.modal h3{font-size:16px;font-weight:600;margin-bottom:4px;}
 .modal .m-sub{font-size:13px;color:var(--ink-3);margin-bottom:16px;}
 .modal label{font-size:12px;font-weight:600;color:var(--ink-2);display:block;margin:12px 0 5px;}
 .modal select,.modal textarea{
   width:100%;border:1px solid var(--border);border-radius:8px;padding:9px 10px;
   font-family:inherit;font-size:13px;color:var(--ink);outline:none;background:#fff;
 }
+.modal select:focus,.modal textarea:focus{border-color:var(--purple);box-shadow:0 0 0 3px rgba(75,45,143,0.12);}
 .modal textarea{resize:vertical;min-height:70px;}
 .modal .m-actions{display:flex;gap:8px;justify-content:flex-end;margin-top:18px;}
+
 .toast{
   position:fixed;bottom:24px;left:50%;transform:translateX(-50%);z-index:90;
-  background:var(--ink);color:#fff;border-radius:10px;padding:12px 18px;font-size:13px;font-weight:500;
+  background:#1A1A2E;color:#fff;border-radius:10px;padding:11px 18px;font-size:13px;font-weight:500;
   display:flex;align-items:center;gap:8px;box-shadow:0 10px 30px rgba(0,0,0,0.25);
   animation:toast-in .25s cubic-bezier(0.4,0,0.2,1);
 }
-.toast i{color:var(--lime);font-size:16px;}
+.toast i{color:#4ADE80;font-size:16px;}
 @keyframes toast-in{from{opacity:0;transform:translate(-50%,10px);}to{opacity:1;transform:translate(-50%,0);}}
-.drawer-backdrop{position:fixed;inset:0;background:rgba(7,29,58,0.5);z-index:70;display:flex;justify-content:flex-end;animation:fade-in .18s ease;}
+
+/* ══ Screen 4: profile ══ */
+.profile-header{display:flex;align-items:center;gap:14px;padding:18px 0 4px;flex-wrap:wrap;}
+.profile-header .ph-info h1{font-size:19px;font-weight:600;letter-spacing:-0.3px;}
+.profile-header .ph-info p{font-size:13px;color:var(--ink-3);margin-top:2px;}
+.profile-header .chip{margin-left:auto;}
+.emp-bar-track{height:8px;border-radius:4px;background:#F0F0F3;margin-top:16px;}
+.emp-bar{height:8px;border-radius:4px;background:var(--amber);}
+.mini-row{display:flex;align-items:center;gap:10px;padding:10px 0;}
+.mini-row + .mini-row{border-top:1px solid #F0F0F3;}
+.mini-row .mr-date{font-size:12px;color:var(--ink-3);width:56px;flex-shrink:0;}
+.mini-row .mr-motivo{flex:1;min-width:0;}
+.mini-row .mr-score{font-size:13px;font-weight:600;width:34px;text-align:right;}
+.coaching-note{
+  font-size:12px;color:var(--ink-3);display:flex;align-items:center;gap:6px;margin-top:14px;
+}
+
+/* segmented toggle (dentro de card) */
+.seg{display:inline-flex;background:#F0F0F3;border-radius:8px;padding:2px;gap:2px;}
+.seg-btn{
+  border:none;background:transparent;font-size:12px;font-weight:600;color:var(--ink-3);
+  padding:4px 10px;border-radius:6px;cursor:pointer;transition:background .12s,color .12s;
+}
+.seg-btn:hover{color:var(--ink-2);}
+.seg-btn.on{background:#fff;color:var(--purple);box-shadow:0 1px 2px rgba(26,26,46,0.1);}
+
+/* sentimiento fusionado */
+.sent-merged{display:flex;gap:24px;flex:1;min-height:0;}
+.sent-aggregate{
+  width:190px;flex-shrink:0;border-left:1px solid #F0F0F3;padding-left:20px;
+  display:flex;flex-direction:column;
+}
+
+/* nube de palabras */
+.nube{
+  display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;justify-content:center;
+  padding:14px 4px;flex:1;align-content:center;
+}
+.nube-word{color:var(--purple);font-weight:600;cursor:default;line-height:1.3;white-space:nowrap;}
+.nube-word:hover{text-decoration:underline;}
+
+/* insights por temas (cards narrativas) */
+.insights-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px;}
+.insights-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
+.insight-card{
+  background:#FCFCFD;border:1px solid var(--border);border-radius:12px;
+  padding:20px 22px;display:flex;flex-direction:column;
+}
+.ic-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
+.ic-title{font-size:14px;font-weight:600;color:var(--ink);}
+.ic-meta{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--ink-3);margin-top:5px;}
+.ic-headline{font-size:14px;font-weight:700;color:var(--ink);margin-top:12px;line-height:1.4;}
+.ic-prosa{
+  font-size:13px;color:var(--ink-2);line-height:1.55;margin-top:6px;
+  display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;
+}
+.ic-prosa.open{-webkit-line-clamp:unset;display:block;}
+.ic-more{
+  align-self:flex-start;background:none;border:none;color:var(--purple);font-size:12px;
+  font-weight:600;cursor:pointer;padding:3px 0;margin-top:2px;
+}
+.ic-more:hover{text-decoration:underline;}
+.ic-recos{
+  margin-top:12px;padding-top:12px;border-top:1px solid #F0F0F3;
+}
+.ic-recos-title{
+  display:flex;align-items:center;gap:6px;font-size:11px;font-weight:600;
+  text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-3);margin-bottom:7px;
+}
+.ic-recos-title i{color:var(--amber);font-size:13px;}
+.ic-reco{font-size:12.5px;color:var(--ink);line-height:1.5;padding:3px 0;}
+.ic-ev{color:var(--ink-3);}
+.ic-drill{
+  margin-top:auto;padding-top:14px;align-self:flex-start;
+  background:none;border:none;color:var(--purple);font-size:13px;font-weight:600;cursor:pointer;
+}
+.ic-drill:hover{text-decoration:underline;}
+.topic-quote{
+  font-size:13px;color:var(--ink-2);line-height:1.55;font-style:italic;
+  border-left:3px solid var(--purple-soft);padding-left:12px;margin:0;
+}
+
+/* active filters bar */
+.active-filters{
+  display:flex;align-items:center;gap:8px;flex-wrap:wrap;
+  padding:0 0 14px;
+}
+.af-label{font-size:12px;color:var(--ink-3);font-weight:600;}
+.af-chip{
+  display:inline-flex;align-items:center;gap:6px;
+  font-size:12px;font-weight:500;color:var(--purple);
+  background:var(--purple-soft);border-radius:999px;padding:4px 6px 4px 12px;
+}
+.af-x{
+  width:18px;height:18px;border-radius:50%;border:none;background:transparent;
+  color:var(--purple);cursor:pointer;font-size:11px;display:flex;align-items:center;justify-content:center;
+}
+.af-x:hover{background:rgba(75,45,143,0.15);}
+.af-clear{
+  background:none;border:none;color:var(--ink-2);font-size:12px;font-weight:600;
+  cursor:pointer;padding:4px 8px;border-radius:6px;
+}
+.af-clear:hover{background:#F0F0F3;}
+
+/* setup banner */
+.setup-banner{
+  background:#fff;border:1px solid #DDD2F0;border-radius:12px;
+  padding:16px 20px;margin-bottom:16px;
+}
+.setup-banner .sb-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px;}
+.setup-banner .sb-title{
+  display:flex;align-items:center;gap:8px;font-size:14px;font-weight:600;color:var(--ink);
+}
+.setup-banner .sb-title i{color:var(--purple);font-size:16px;}
+.setup-banner .sb-sub{font-size:12px;color:var(--ink-3);margin-top:4px;}
+.sb-progress-label{font-size:12px;font-weight:600;color:var(--purple);white-space:nowrap;}
+.sb-progress{height:6px;border-radius:3px;background:#F0F0F3;margin:12px 0;}
+.sb-progress-fill{height:6px;border-radius:3px;background:var(--purple);}
+.sb-steps{display:flex;gap:20px;flex-wrap:wrap;}
+.sb-step{display:flex;align-items:center;gap:7px;font-size:13px;color:var(--ink-2);}
+.sb-step.done{color:var(--ink);}
+.sb-step a{font-size:12px;font-weight:600;}
+
+/* histogram (leaderboard apagado) */
+.histo{display:flex;align-items:flex-end;gap:8px;height:120px;flex:1;padding-top:8px;}
+.histo-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;height:100%;}
+.histo-n{font-size:11px;font-weight:600;color:var(--ink-2);}
+.histo-bar{width:100%;max-width:34px;border-radius:4px 4px 0 0;}
+.histo-range{font-size:10px;color:var(--ink-3);white-space:nowrap;}
+
+/* insufficient data + phrases */
+.insuf-state{display:flex;gap:12px;align-items:flex-start;margin-top:12px;}
+.insuf-state .es-circle{background:var(--purple-tint);color:var(--purple);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;}
+.phrases-toggle{
+  margin-top:12px;background:none;border:none;color:var(--purple);font-size:13px;font-weight:600;
+  cursor:pointer;padding:4px 0;display:inline-flex;align-items:center;gap:5px;text-align:left;
+}
+.phrases-toggle:hover{text-decoration:underline;}
+.phrases-list{margin-top:6px;display:flex;flex-direction:column;}
+.phrase-row{display:flex;align-items:center;gap:8px;padding:7px 0;font-size:13px;}
+.phrase-row + .phrase-row{border-top:1px solid #F0F0F3;}
+.phrase-text{flex:1;min-width:0;}
+.phrase-ts{font-size:12px;font-weight:600;white-space:nowrap;}
+
+/* ── Drawer (detalle de interacción) ── */
+.drawer-backdrop{
+  position:fixed;inset:0;background:rgba(26,26,46,0.45);z-index:70;
+  display:flex;justify-content:flex-end;
+  animation:fade-in .18s ease;
+}
 @keyframes fade-in{from{opacity:0;}to{opacity:1;}}
 .drawer{
-  width:min(94vw,920px);height:100%;background:var(--bg);
-  box-shadow:-16px 0 48px rgba(7,29,58,0.28);overflow-y:auto;padding:0 24px 24px;
+  width:min(94vw,880px);height:100%;background:var(--bg);
+  box-shadow:-16px 0 48px rgba(26,26,46,0.25);
+  overflow-y:auto;padding:0 24px 24px;
   animation:drawer-in .28s cubic-bezier(0.4,0,0.2,1);
 }
 @keyframes drawer-in{from{transform:translateX(40px);opacity:0.4;}to{transform:translateX(0);opacity:1;}}
+@media (prefers-reduced-motion: reduce){.drawer,.drawer-backdrop{animation:none !important;}}
 .drawer-head{
   position:sticky;top:0;z-index:20;background:var(--bg);
   display:flex;align-items:center;justify-content:space-between;
@@ -537,115 +725,10 @@ table.data tbody tr:hover{background:var(--brand-tint);}
   width:32px;height:32px;border-radius:8px;border:1px solid var(--border);background:#fff;
   color:var(--ink-2);font-size:15px;cursor:pointer;display:flex;align-items:center;justify-content:center;
 }
-.drawer-close:hover{border-color:var(--accent);color:var(--accent);}
+.drawer-close:hover{border-color:#C9C9D4;background:#FCFCFD;}
 .detail-layout.in-drawer{grid-template-columns:1fr;}
 .detail-layout.in-drawer .tx-body{max-height:420px;}
 .detail-layout.in-drawer .analysis-scroll{max-height:none;overflow:visible;}
-
-/* segmentado, nube, insights */
-.seg{display:inline-flex;background:#EDEFF2;border-radius:8px;padding:2px;gap:2px;}
-.seg-btn{border:none;background:transparent;font-size:12px;font-weight:600;color:var(--ink-3);padding:5px 11px;border-radius:6px;cursor:pointer;transition:background .12s,color .12s;}
-.seg-btn:hover{color:var(--ink-2);}
-.seg-btn.on{background:#fff;color:var(--brand);box-shadow:0 1px 2px rgba(13,59,112,0.12);}
-.nube{display:flex;flex-wrap:wrap;gap:6px 14px;align-items:baseline;justify-content:center;padding:14px 4px;flex:1;align-content:center;}
-.nube-word{color:var(--brand);font-weight:600;cursor:default;line-height:1.3;white-space:nowrap;}
-.insights-head{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap;margin-bottom:12px;}
-.insights-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px;}
-.insight-card{background:#FCFCFD;border:1px solid var(--border);border-radius:12px;padding:20px 22px;display:flex;flex-direction:column;}
-.insight-card.hot{border-top:3px solid var(--accent);}
-.ic-top{display:flex;align-items:flex-start;justify-content:space-between;gap:10px;}
-.ic-title{font-family:var(--display);font-size:16px;font-weight:600;letter-spacing:0.2px;color:var(--ink);text-transform:uppercase;line-height:1.15;}
-.ic-meta{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--ink-3);margin-top:6px;}
-.ic-headline{font-size:14px;font-weight:700;color:var(--ink);margin-top:12px;line-height:1.4;}
-.ic-prosa{font-size:13px;color:var(--ink-2);line-height:1.6;margin-top:6px;display:-webkit-box;-webkit-line-clamp:3;-webkit-box-orient:vertical;overflow:hidden;}
-.ic-prosa.open{-webkit-line-clamp:unset;display:block;}
-.ic-more{align-self:flex-start;background:none;border:none;color:var(--brand);font-size:12px;font-weight:600;cursor:pointer;padding:3px 0;margin-top:2px;}
-.ic-recos{margin-top:12px;padding-top:12px;border-top:1px solid #F0F1F3;}
-.ic-recos-title{display:flex;align-items:center;gap:6px;font-size:11px;font-weight:600;text-transform:uppercase;letter-spacing:0.06em;color:var(--ink-3);margin-bottom:7px;}
-.ic-recos-title i{color:var(--amber);font-size:13px;}
-.ic-reco{font-size:12.5px;color:var(--ink);line-height:1.5;padding:3px 0;}
-.ic-ev{color:var(--ink-3);}
-.ic-drill{margin-top:auto;padding-top:14px;align-self:flex-start;background:none;border:none;color:var(--accent);font-size:13px;font-weight:600;cursor:pointer;}
-.ic-drill:hover{text-decoration:underline;}
-.topic-quote{font-size:13px;color:var(--ink-2);line-height:1.6;font-style:italic;border-left:3px solid var(--brand-soft);padding-left:12px;margin:0;}
-.histo{display:flex;align-items:flex-end;gap:8px;height:120px;flex:1;padding-top:8px;}
-.histo-col{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:4px;height:100%;}
-.histo-n{font-size:11px;font-weight:600;color:var(--ink-2);}
-.histo-bar{width:100%;max-width:34px;border-radius:4px 4px 0 0;}
-.histo-range{font-size:10px;color:var(--ink-3);white-space:nowrap;}
-.coaching-note{font-size:12px;color:var(--ink-3);display:flex;align-items:center;gap:6px;margin-top:14px;}
-
-/* embudo de vitrina */
-.funnel{display:flex;flex-direction:column;gap:8px;margin-top:6px;}
-.funnel-step{
-  display:flex;align-items:center;gap:12px;background:#FCFCFD;border:1px solid var(--border);
-  border-radius:10px;padding:10px 14px;cursor:pointer;transition:border-color .12s,background .12s;
-}
-.funnel-step:hover{border-color:var(--brand);background:var(--brand-tint);}
-.funnel-step .fs-name{font-size:13px;font-weight:600;width:210px;flex-shrink:0;display:flex;align-items:center;gap:8px;}
-.funnel-step .fs-name i{color:var(--brand);font-size:16px;}
-.funnel-bar-track{flex:1;height:26px;border-radius:6px;background:#EDEFF2;overflow:hidden;min-width:80px;}
-.funnel-bar{height:26px;border-radius:6px;display:flex;align-items:center;padding:0 10px;color:#fff;font-size:12px;font-weight:600;}
-.funnel-step .fs-drop{font-size:12px;font-weight:600;color:var(--red);width:96px;text-align:right;flex-shrink:0;font-variant-numeric:tabular-nums;}
-.funnel-step .fs-pct{font-size:13px;font-weight:600;width:52px;text-align:right;flex-shrink:0;font-variant-numeric:tabular-nums;}
-
-/* tarjetas de modelo (productos más mencionados) */
-.model-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin-top:4px;}
-.model-card{
-  border:1px solid var(--border);border-radius:11px;padding:14px 16px;background:#FCFCFD;
-  display:flex;flex-direction:column;gap:8px;cursor:pointer;text-align:left;transition:border-color .12s,box-shadow .12s,transform .12s;
-}
-.model-card:hover{border-color:var(--brand);box-shadow:0 4px 14px rgba(13,59,112,0.10);transform:translateY(-1px);}
-.model-card .mc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;}
-.model-card .mc-brand{font-size:10.5px;font-weight:700;letter-spacing:0.08em;text-transform:uppercase;color:var(--accent);}
-.model-card .mc-name{font-family:var(--display);font-size:17px;font-weight:600;letter-spacing:0.2px;text-transform:uppercase;line-height:1.1;color:var(--ink);}
-.model-card .mc-row{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--ink-3);}
-.model-card .mc-bar-track{height:7px;border-radius:4px;background:#EDEFF2;}
-.model-card .mc-bar{height:7px;border-radius:4px;background:var(--brand);}
-.model-card .mc-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px;}
-.kv-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0;font-size:13px;}
-.kv-row + .kv-row{border-top:1px solid #F0F1F3;}
-.kv-row .kv-k{color:var(--ink-2);}
-.kv-row .kv-v{font-weight:600;font-variant-numeric:tabular-nums;}
-
-/* panel de demo */
-.demo-panel{
-  position:fixed;right:24px;bottom:88px;z-index:65;width:290px;background:#fff;
-  border:1px solid var(--border);border-radius:12px;padding:16px;box-shadow:var(--shadow-pop);
-}
-.demo-panel h4{font-family:var(--display);font-size:15px;text-transform:uppercase;letter-spacing:0.4px;margin-bottom:2px;}
-.demo-panel .dp-sub{font-size:11.5px;color:var(--ink-3);margin-bottom:12px;}
-.dp-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:7px 0;font-size:12.5px;color:var(--ink-2);}
-.dp-row + .dp-row{border-top:1px solid #F0F1F3;}
-.dp-row select{border:1px solid var(--border);border-radius:7px;padding:5px 8px;font-family:inherit;font-size:12px;background:#fff;color:var(--ink);}
-.switch{width:38px;height:22px;border-radius:999px;border:none;background:#D8DBDF;position:relative;cursor:pointer;flex-shrink:0;transition:background .15s;}
-.switch.on{background:var(--lime);}
-.switch::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .15s;}
-.switch.on::after{transform:translateX(16px);}
-
-/* informe del período (modal) */
-.report-sheet{background:#fff;padding:0 0 40px;}
-.report-hero{background:var(--brand);color:#fff;padding:30px 36px;}
-.report-hero .rh-kicker{font-size:11.5px;letter-spacing:0.14em;text-transform:uppercase;opacity:0.75;font-weight:600;}
-.report-hero h2{font-family:var(--display);font-size:30px;font-weight:600;text-transform:uppercase;letter-spacing:0.5px;margin-top:6px;line-height:1.1;}
-.report-hero p{font-size:13.5px;line-height:1.65;margin-top:10px;max-width:760px;opacity:0.92;}
-.report-body{padding:26px 36px 0;display:flex;flex-direction:column;gap:24px;}
-.report-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;}
-.report-kpi{border:1px solid var(--border);border-left:3px solid var(--accent);border-radius:10px;padding:14px 16px;}
-.report-kpi .rk-v{font-family:var(--display);font-size:28px;font-weight:600;line-height:1;}
-.report-kpi .rk-l{font-size:11.5px;color:var(--ink-3);text-transform:uppercase;letter-spacing:0.06em;font-weight:600;margin-top:6px;}
-.report-h3{font-family:var(--display);font-size:18px;text-transform:uppercase;letter-spacing:0.4px;display:flex;align-items:center;gap:9px;}
-.report-h3 i{color:var(--accent);}
-.report-list{display:flex;flex-direction:column;gap:10px;}
-.report-item{border:1px solid var(--border);border-radius:10px;padding:14px 16px;}
-.report-item .ri-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px;}
-.report-item .ri-name{font-size:14px;font-weight:700;}
-.report-item p{font-size:13px;color:var(--ink-2);line-height:1.6;}
-.report-action{display:flex;gap:10px;align-items:flex-start;border:1px solid var(--border);border-left:3px solid var(--brand);border-radius:10px;padding:12px 14px;}
-.report-action .ra-n{font-family:var(--display);font-size:20px;color:var(--brand);width:26px;flex-shrink:0;}
-
-/* export preview */
-table.export-preview th{background:#EDEFF2;font-weight:600;color:var(--ink-2);}
 
 /* ── Responsive ── */
 @media (max-width:1150px){
@@ -657,46 +740,280 @@ table.export-preview th{background:#EDEFF2;font-weight:600;color:var(--ink-2);}
   .review-cards{grid-template-columns:1fr;}
 }
 @media (max-width:760px){
-  .main{margin-left:0;padding:0 14px 150px;}
+  .main{margin-left:0;padding:0 14px 90px;}
   .sidebar{
-    top:auto;bottom:0;left:0;right:0;width:auto;height:58px;
+    top:auto;bottom:0;left:0;right:0;width:auto;height:56px;
     flex-direction:row;justify-content:center;padding:0 8px;gap:2px;
-    border-right:none;border-top:1px solid var(--brand-600);
+    border-right:none;border-top:1px solid var(--border);
   }
-  .sidebar .logo,.sidebar .spacer,.sidebar .avatar{display:none;}
-  .nav-item.active{box-shadow:inset 0 3px 0 var(--accent);}
+  .sidebar .logo{display:none;}
+  .sidebar .spacer{display:none;}
+  .sidebar .avatar{display:none;}
+  .main{padding-bottom:150px;}
   .span-3,.span-4,.span-6,.span-8{grid-column:span 12;}
-  .page-title{font-size:22px;}
+  .page-title{font-size:18px;}
   .tabs{overflow-x:auto;-webkit-overflow-scrolling:touch;}
-  .tab{white-space:nowrap;padding:10px 12px;font-size:14px;}
-  .filter-row{overflow-x:auto;flex-wrap:nowrap;padding-bottom:12px;}
+  .tab{white-space:nowrap;padding:10px 12px;}
+  .filter-row{overflow-x:auto;flex-wrap:nowrap;padding-bottom:12px;-webkit-overflow-scrolling:touch;}
   .filter-row .chip{white-space:nowrap;flex-shrink:0;}
-  .metric-value{font-size:32px;}
+  .search-bar{min-width:200px;}
+  .metric-value{font-size:30px;}
   .drawer{width:100vw;padding:0 14px 14px;}
-  .ai-fab-wrap{right:14px;bottom:72px;}
-  .demo-panel{right:14px;bottom:136px;width:calc(100vw - 28px);}
+  .ai-fab-wrap{right:14px;bottom:70px;}
+  .ai-fab{padding:10px 14px;font-size:13px;}
+  .sent-merged{flex-direction:column;gap:16px;}
+  .sent-aggregate{width:auto;border-left:none;padding-left:0;border-top:1px solid #F0F0F3;padding-top:14px;}
   .insights-grid{grid-template-columns:1fr;}
   .bubble{max-width:88%;}
-  .funnel-step{flex-wrap:wrap;}
-  .funnel-step .fs-name{width:100%;}
-  .report-hero,.report-body{padding-left:18px;padding-right:18px;}
+  .detail-header h1{font-size:17px;}
+  .panel-footer{flex-wrap:wrap;}
+  .panel-footer .flink{margin-left:0;width:100%;}
+  .modal{width:100%;}
+  .chart-wrap{min-height:180px;}
 }
-@keyframes ins-pulse{0%,100%{transform:scale(1);opacity:1;}50%{transform:scale(1.18);opacity:.7;}}
-@keyframes ins-step{to{opacity:1;}}
-@keyframes ins-bar{from{width:0;}to{width:100%;}}
+
+
+/* Promerica — refinamiento UI + accesibilidad (se carga después de styles.css) */
+:root{
+  --ink-3:#6B6B7C; /* antes #8A8A99 — contraste 4.6:1 sobre blanco */
+  --shadow-card:0 1px 2px rgba(18,18,23,0.05);
+  --shadow-pop:0 10px 30px rgba(26,26,46,0.14);
+}
+
+/* foco visible consistente en todo elemento interactivo */
+:where(button,a,input,select,[tabindex]):focus-visible{
+  outline:2px solid var(--purple);outline-offset:2px;border-radius:6px;
+}
+.chip:focus-visible,.btn-primary:focus-visible,.btn-secondary:focus-visible{outline-offset:3px;}
+
+/* skip link */
+.skip-link{
+  position:fixed;top:-48px;left:16px;z-index:100;background:var(--purple);color:#fff;
+  padding:10px 16px;border-radius:8px;font-size:13px;font-weight:600;transition:top .15s;
+}
+.skip-link:focus{top:12px;color:#fff;text-decoration:none;}
+
+/* cards: elevación sutil y consistente */
+.card{box-shadow:var(--shadow-card);}
+.card .card-head{gap:12px;}
+.card-label{color:var(--ink-3);}
+
+/* KPIs: respiro entre cards y dentro de la card */
+.grid{gap:14px;}.grid > .span-3 > .card, .grid > .span-4 > .card, .grid > .span-6 > .card, .grid > .span-8 > .card, .grid > .span-12 > .card{flex:1 1 auto;width:100%;}
+.span-3 .card,.card.primary-card,.card.alert-card{padding:22px 26px;}
+.metric-value{font-size:38px;letter-spacing:-1px;}
+.metric-value-row{margin-top:12px;align-items:center;gap:12px;}
+.trend{font-variant-numeric:tabular-nums;}
+.card-label{gap:7px;line-height:1.4;}
+
+/* tabs: hit area y estado activo más claro */
+.tab{padding:11px 16px;min-height:44px;}
+.tab:focus-visible{outline-offset:-2px;}
+
+/* chips y dropdowns */
+.chip{min-height:36px;}
+.dropdown{box-shadow:var(--shadow-pop);}
+.dd-opt{min-height:36px;}
+
+/* filas clickeables: affordance */
+.comp-row{min-height:44px;border-radius:8px;}
+.comp-row:focus-visible{outline-offset:-2px;}
+.comp-row .comp-name{font-weight:500;}
+
+/* leaderboard: números tabulares */
+.lb-score,.comp-count,.hbar-val{font-variant-numeric:tabular-nums;}
+
+/* sidebar: área táctil y separación del activo */
+.nav-item{width:44px;height:44px;}
+.nav-item.active{box-shadow:inset 3px 0 0 var(--purple);}
+
+/* heatmap: celdas con borde hairline para no depender solo del color */
+.hm-cell{border:1px solid rgba(26,26,46,0.06);}
+.hm-cell:focus-visible{outline:2px solid var(--purple);outline-offset:1px;z-index:2;position:relative;}
+
+/* jerarquía de página */
+.page-title{font-size:21px;}
+.topbar{padding-top:24px;}
+
+/* estados hover más silenciosos y consistentes */
+.card.hoverable:hover{transform:translateY(-1px);box-shadow:0 4px 14px rgba(26,26,46,0.08);}
+.hbar-row.drill,.comp-row.drill,.lb-row.drill{cursor:pointer;border-radius:6px;transition:background .12s;}
+.hbar-row.drill:hover,.comp-row.drill:hover,.lb-row.drill:hover{background:var(--purple-tint);}
+
+/* ── Apto daltonismo: los estados nunca dependen solo del color ── */
+/* pills de sentimiento: forma del dot distinta por estado */
+.pill.pos .dot{border-radius:50%;}
+.pill.neu .dot{border-radius:2px;}
+.pill.neg .dot{border-radius:0;transform:rotate(45deg);}
+/* trends: siempre ícono + texto (ya presente); refuerzo de peso */
+.trend i{font-size:11px;}
+/* alerta de KPI: borde + ícono, no solo color */
+.card.alert-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:3px;}
 
 @media (prefers-reduced-motion: reduce){
   *{transition-duration:0.01ms !important;animation-duration:0.01ms !important;}
 }
+
+
+/* ══════════════════════════════════════════════════════════════════════
+   Componentes propios de este tablero (embudo de vitrina, tarjetas de
+   modelo, informe del período, panel de demo). Se escriben con los
+   tokens del sistema original: no se introduce ningún color nuevo.
+   ══════════════════════════════════════════════════════════════════════ */
+
+/* el sidebar es fijo: el contenido arranca después de sus 56px */
+.main{margin-left:56px;}
+.sidebar .logo{padding:0;}
+.sidebar .logo svg{display:block;width:20px;height:20px;}
+
+/* identificación del cliente en la barra superior */
+.tenant-chip{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--purple-tint);border:1px solid #E4DBF4;color:var(--purple);
+  border-radius:999px;padding:5px 12px 5px 6px;font-size:12px;font-weight:600;white-space:nowrap;
+}
+.tenant-chip .tc-dot{
+  width:22px;height:22px;border-radius:50%;background:#fff;border:1px solid #E4DBF4;
+  display:flex;align-items:center;justify-content:center;
+}
+.tenant-chip .tc-dot svg{display:block;}
+
+/* encabezados de sección dentro de un tab */
+.sec-head{display:flex;align-items:center;gap:12px;padding:6px 0 0;}
+.sec-ic{
+  width:34px;height:34px;border-radius:9px;background:var(--purple-soft);color:var(--purple);
+  display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;
+}
+.sec-ic.red{background:var(--red-bg);color:var(--red);}
+.sec-ic.dark{background:#F0F0F3;color:var(--ink-2);}
+
+/* pills y chips adicionales */
+.pill.brand{background:var(--purple-soft);color:var(--purple);}
+.pill.red{background:var(--red-bg);color:var(--red);}
+.chip-canal{
+  display:inline-block;font-size:10px;letter-spacing:0.04em;text-transform:uppercase;
+  font-weight:600;border-radius:5px;padding:2px 7px;
+}
+.chip-canal.vitrina{background:var(--purple-soft);color:var(--purple);}
+.chip-canal.taller{background:var(--amber-bg);color:var(--amber);}
+.chip-canal.whatsapp{background:var(--green-bg);color:var(--green);}
+.chip-canal.call{background:var(--blue-bg);color:var(--blue);}
+.det-chip.brand{background:var(--purple-soft);color:var(--purple);}
+.det-chip.green{background:var(--green-bg);color:var(--green);}
+.btn-brand{
+  padding:9px 16px;border-radius:8px;border:none;background:var(--purple);
+  font-size:13px;font-weight:600;color:#fff;cursor:pointer;transition:background .12s;
+}
+.btn-brand:hover{background:var(--purple-600);}
+
+/* resaltado extra en la transcripción: competencia mencionada */
+.hl-comp{
+  background:#F1E9FE;color:#5E18C7;border-left-color:#5E18C7;
+  text-decoration-style:wavy;text-decoration-thickness:1.5px;
+}
+
+/* listas horizontales con etiquetas largas (modelos, servicios, sedes) */
+.hbar-label{width:150px;}
+.hbar-val{width:44px;}
+
+/* embudo de la conversación en vitrina */
+.funnel{display:flex;flex-direction:column;gap:8px;margin-top:6px;}
+.funnel-step{
+  display:flex;align-items:center;gap:12px;background:#FCFCFD;border:1px solid var(--border);
+  border-radius:10px;padding:10px 14px;cursor:pointer;transition:border-color .12s,background .12s;
+}
+.funnel-step:hover{border-color:#DDD2F0;background:var(--purple-tint);}
+.funnel-step .fs-name{font-size:13px;font-weight:500;width:210px;flex-shrink:0;display:flex;align-items:center;gap:8px;}
+.funnel-step .fs-name i{color:var(--purple);font-size:16px;}
+.funnel-bar-track{flex:1;height:26px;border-radius:6px;background:#F0F0F3;overflow:hidden;min-width:80px;}
+.funnel-bar{height:26px;border-radius:6px;display:flex;align-items:center;padding:0 10px;color:#fff;font-size:12px;font-weight:600;}
+.funnel-step .fs-pct{font-size:13px;font-weight:600;width:52px;text-align:right;flex-shrink:0;font-variant-numeric:tabular-nums;}
+.funnel-step .fs-drop{font-size:12px;font-weight:600;color:var(--red);width:96px;text-align:right;flex-shrink:0;font-variant-numeric:tabular-nums;}
+
+/* tarjetas de modelo (productos más mencionados) */
+.model-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:12px;margin-top:4px;}
+.model-card{
+  border:1px solid var(--border);border-radius:12px;padding:14px 16px;background:#FCFCFD;
+  display:flex;flex-direction:column;gap:8px;cursor:pointer;text-align:left;
+  transition:border-color .12s,box-shadow .15s,transform .15s;
+}
+.model-card:hover{border-color:#DDD2F0;box-shadow:0 4px 14px rgba(26,26,46,0.08);transform:translateY(-1px);}
+.model-card .mc-top{display:flex;align-items:flex-start;justify-content:space-between;gap:8px;}
+.model-card .mc-brand{font-size:10.5px;font-weight:700;letter-spacing:0.07em;text-transform:uppercase;color:var(--purple);}
+.model-card .mc-name{font-size:14px;font-weight:600;line-height:1.25;color:var(--ink);}
+.model-card .mc-row{display:flex;align-items:center;gap:6px;font-size:12px;color:var(--ink-3);}
+.model-card .mc-bar-track{height:7px;border-radius:4px;background:#F0F0F3;}
+.model-card .mc-bar{height:7px;border-radius:4px;background:var(--purple);}
+.model-card .mc-foot{display:flex;align-items:center;justify-content:space-between;gap:8px;font-size:12px;font-variant-numeric:tabular-nums;}
+
+/* filas clave–valor (garantía, campañas, compromisos) */
+.kv-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:9px 0;font-size:13px;}
+.kv-row + .kv-row{border-top:1px solid #F0F0F3;}
+.kv-row .kv-k{color:var(--ink-2);}
+.kv-row .kv-v{font-weight:600;font-variant-numeric:tabular-nums;}
+
+/* tarjeta narrativa destacada */
+.insight-card.hot{border-top:3px solid var(--purple);}
+
+/* informe del período */
+.report-sheet{background:#fff;padding:0 0 40px;}
+.report-hero{background:var(--purple);color:#fff;padding:28px 36px;}
+.report-hero .rh-kicker{font-size:11.5px;letter-spacing:0.12em;text-transform:uppercase;opacity:0.8;font-weight:600;}
+.report-hero h2{font-size:27px;font-weight:600;letter-spacing:-0.4px;margin-top:6px;line-height:1.2;}
+.report-hero p{font-size:13.5px;line-height:1.65;margin-top:10px;max-width:760px;opacity:0.94;}
+.report-body{padding:26px 36px 0;display:flex;flex-direction:column;gap:24px;}
+.report-kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(160px,1fr));gap:12px;}
+.report-kpi{border:1px solid var(--border);border-left:3px solid var(--purple);border-radius:10px;padding:14px 16px;}
+.report-kpi .rk-v{font-size:27px;font-weight:600;letter-spacing:-0.6px;line-height:1;}
+.report-kpi .rk-l{font-size:11.5px;color:var(--ink-3);text-transform:uppercase;letter-spacing:0.06em;font-weight:600;margin-top:6px;}
+.report-h3{font-size:15px;font-weight:600;display:flex;align-items:center;gap:9px;}
+.report-h3 i{color:var(--purple);font-size:17px;}
+.report-list{display:flex;flex-direction:column;gap:10px;}
+.report-item{border:1px solid var(--border);border-radius:10px;padding:14px 16px;}
+.report-item .ri-top{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-bottom:6px;}
+.report-item .ri-name{font-size:14px;font-weight:600;}
+.report-item p{font-size:13px;color:var(--ink-2);line-height:1.6;}
+.report-action{display:flex;gap:12px;align-items:flex-start;border:1px solid var(--border);border-left:3px solid var(--purple);border-radius:10px;padding:12px 14px;}
+.report-action .ra-n{font-size:16px;font-weight:600;color:var(--purple);width:22px;flex-shrink:0;}
+table.export-preview th{background:#F0F0F3;font-weight:600;color:var(--ink-2);}
+
+/* panel de estados para la demostración */
+.demo-panel{
+  position:fixed;right:24px;bottom:88px;z-index:65;width:290px;background:#fff;
+  border:1px solid var(--border);border-radius:12px;padding:16px;box-shadow:var(--shadow-pop);
+}
+.demo-panel h4{font-size:14px;font-weight:600;margin-bottom:2px;}
+.demo-panel .dp-sub{font-size:11.5px;color:var(--ink-3);margin-bottom:12px;line-height:1.45;}
+.dp-row{display:flex;align-items:center;justify-content:space-between;gap:10px;padding:8px 0;font-size:12.5px;color:var(--ink-2);}
+.dp-row + .dp-row{border-top:1px solid #F0F0F3;}
+.dp-row select{border:1px solid var(--border);border-radius:7px;padding:5px 8px;font-family:inherit;font-size:12px;background:#fff;color:var(--ink);}
+.switch{width:38px;height:22px;border-radius:999px;border:none;background:#DCDCE3;position:relative;cursor:pointer;flex-shrink:0;transition:background .15s;}
+.switch.on{background:var(--purple);}
+.switch::after{content:"";position:absolute;top:3px;left:3px;width:16px;height:16px;border-radius:50%;background:#fff;transition:transform .15s;}
+.switch.on::after{transform:translateX(16px);}
+
+@media (max-width:1150px){
+  .funnel-step .fs-drop{display:none;}
+}
+@media (max-width:760px){
+  .main{margin-left:0;}
+  .demo-panel{right:14px;bottom:136px;width:calc(100vw - 28px);}
+  .funnel-step{flex-wrap:wrap;}
+  .funnel-step .fs-name{width:100%;}
+  .report-hero,.report-body{padding-left:18px;padding-right:18px;}
+  .report-hero h2{font-size:22px;}
+}
+
 /* El informe del período se imprime solo: el resto del tablero se oculta */
 @media print{
   .sidebar,.main,.ai-fab-wrap,.demo-panel,.drawer-backdrop,.report-toolbar{display:none !important;}
   .modal-backdrop{position:static !important;background:#fff !important;display:block !important;backdrop-filter:none !important;}
   .report-modal{width:100% !important;height:auto !important;max-width:none !important;border-radius:0 !important;box-shadow:none !important;overflow:visible !important;}
   .report-scroll{overflow:visible !important;max-height:none !important;}
-  .report-hero{background:var(--brand) !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .report-hero{background:var(--purple) !important;-webkit-print-color-adjust:exact;print-color-adjust:exact;}
   .report-item,.report-action,.report-kpi{break-inside:avoid;}
 }
+
 </style>
 </head>
 <body>
@@ -922,18 +1239,19 @@ function Ph({ name, fill, bold, style, className }) {
   return <i className={base + name + (className ? " " + className : "")} style={style}></i>;
 }
 
-/* Marca Auteco: triángulo institucional + óvalo rojo */
-function AutecoMark({ size = 26 }) {
+/* Marca Auteco en versión monocromática, dentro de la paleta del sistema:
+   se conserva el trazo del logo (triángulo + óvalo) sin sumar colores. */
+function AutecoMark({ size = 26, mono }) {
   return (
     <svg width={size} height={size * 0.625} viewBox="0 0 64 40" aria-hidden="true">
-      <path d="M2 31 L32 5 L62 31 Z" fill="var(--brand)"></path>
-      <ellipse cx="42" cy="20" rx="12" ry="7.4" fill="#fff"></ellipse>
-      <ellipse cx="42" cy="20" rx="8.4" ry="4.8" fill="var(--accent)"></ellipse>
+      <path d="M2 31 L32 5 L62 31 Z" fill={mono ? "#fff" : "var(--purple)"}></path>
+      <ellipse cx="42" cy="20" rx="12" ry="7.4" fill={mono ? "var(--purple)" : "#fff"}></ellipse>
+      <ellipse cx="42" cy="20" rx="8.4" ry="4.8" fill={mono ? "#fff" : "var(--purple-600)"}></ellipse>
     </svg>
   );
 }
 
-function Sparkline({ points, color = "var(--brand)" }) {
+function Sparkline({ points, color = "var(--purple)" }) {
   const w = 220, h = 32, pad = 4;
   const step = w / (points.length - 1);
   const coords = points.map((p, i) => [i * step, pad + (1 - p) * (h - pad * 2)]);
@@ -1134,7 +1452,7 @@ const EMPTY_FILTERS = { periodo: null, sedes: [], canales: [], asesores: [], mod
 function Sidebar() {
   return (
     <nav className="sidebar" aria-label="Navegación principal">
-      <div className="logo" title="Auteco Mobility"><AutecoMark size={26} /></div>
+      <div className="logo" title="Auteco Mobility"><AutecoMark size={20} mono /></div>
       <button className="nav-item" title="Inicio" aria-label="Inicio"><Ph name="house" /></button>
       <button className="nav-item" title="Vitrinas y talleres" aria-label="Vitrinas y talleres"><Ph name="storefront" /></button>
       <button className="nav-item active" title="Speech Analytics" aria-label="Speech Analytics" aria-current="page"><Ph name="waveform" fill /></button>
@@ -1265,7 +1583,7 @@ function HBarList({ title, sub, span, items, max, unit, hideVal, onDrill, info, 
             onClick={onDrill ? () => onDrill(it.q != null ? it.q : it.name) : null}
             title={onDrill ? "Ver interacciones: " + it.name : it.name}>
             <span className="hbar-label">{it.name}</span>
-            <div className="hbar-track"><div className="hbar" style={{ width: (it.n / m) * 100 + "%", background: it.color || color || "var(--brand)" }}></div></div>
+            <div className="hbar-track"><div className="hbar" style={{ width: (it.n / m) * 100 + "%", background: it.color || color || "var(--purple)" }}></div></div>
             {hideVal ? null : <span className="hbar-val">{it.n}{unit || ""}</span>}
           </div>
         ))}
@@ -1296,7 +1614,7 @@ function RankList({ title, sub, span, items, onDrill, info }) {
   );
 }
 
-const PALETA = ["var(--brand)", "var(--accent)", "#0077C8", "#F7A21E", "#66CC34", "#5B21B6", "#979899", "#C1121F"];
+const PALETA = ["var(--purple)", "#0072B2", "#56B4E9", "#E69F00", "#CC79A7", "#1A7F5A", "#9CA3AF", "#991B1B"];
 
 function StatDonut({ title, sub, span, centerNum, centerLabel, segs, onDrill }) {
   const C = 2 * Math.PI * 62;
@@ -1321,7 +1639,7 @@ function StatDonut({ title, sub, span, centerNum, centerLabel, segs, onDrill }) 
               </circle>
             );
           })}
-          <text x="85" y="81" textAnchor="middle" style={{ fontSize: 27, fontWeight: 600, fill: "var(--ink)", fontFamily: "Oswald, Inter" }}>{centerNum}</text>
+          <text x="85" y="81" textAnchor="middle" style={{ fontSize: 27, fontWeight: 600, fill: "var(--ink)", fontFamily: "Inter" }}>{centerNum}</text>
           <text x="85" y="100" textAnchor="middle" style={{ fontSize: 11, fill: "var(--ink-3)", fontFamily: "Inter" }}>{centerLabel}</text>
         </svg>
         <div style={{ flex: 1, minWidth: 230 }}>
@@ -1376,7 +1694,7 @@ function HeatmapAtenciones() {
         {HM_HORAS.map(h => <span key={h} style={{ fontSize: 11, color: "var(--ink-3)", textAlign: "center" }}>{h}h</span>)}
         {HM_DIAS.map((d, di) => (
           <React.Fragment key={d}>
-            <span style={{ fontSize: 11.5, color: di > 4 ? "var(--accent)" : "var(--ink-2)", fontWeight: 600 }}>{d}</span>
+            <span style={{ fontSize: 11.5, color: di > 4 ? "var(--purple)" : "var(--ink-2)", fontWeight: 600 }}>{d}</span>
             {HM_HORAS.map(h => {
               const val = valor(di, h);
               const n = Math.round(val * max);
@@ -1388,11 +1706,11 @@ function HeatmapAtenciones() {
                   onFocus={() => setHover(d + h)} onBlur={() => setHover(null)}
                   style={{
                     height: 28, borderRadius: 5,
-                    background: "rgba(13,59,112," + (0.05 + val * 0.9).toFixed(2) + ")",
+                    background: "rgba(75,45,143," + (0.05 + val * 0.85).toFixed(2) + ")",
                     display: "flex", alignItems: "center", justifyContent: "center",
                     fontSize: 10.5, fontWeight: 600, fontVariantNumeric: "tabular-nums",
                     color: val > 0.5 ? "#fff" : "var(--ink-2)",
-                    outline: hover === d + h ? "2px solid var(--accent)" : "none",
+                    outline: hover === d + h ? "2px solid var(--purple)" : "none",
                   }}>{n}</div>
               );
             })}
@@ -1402,7 +1720,7 @@ function HeatmapAtenciones() {
       <div style={{ display: "flex", alignItems: "center", gap: 8, marginTop: 14, fontSize: 11.5, color: "var(--ink-3)", flexWrap: "wrap" }}>
         <span>Menos</span>
         {[0.08, 0.25, 0.45, 0.65, 0.9].map(o => (
-          <span key={o} style={{ width: 18, height: 12, borderRadius: 3, background: "rgba(13,59,112," + o + ")" }}></span>
+          <span key={o} style={{ width: 18, height: 12, borderRadius: 3, background: "rgba(75,45,143," + o + ")" }}></span>
         ))}
         <span>Más</span>
         <span style={{ marginLeft: "auto" }}>atenciones por hora · promedio de {activos.length} sedes</span>
@@ -1423,26 +1741,26 @@ function RatioEscucha() {
       <div className="card-label">Ratio de escucha <InfoDot text="Porcentaje del tiempo de conversación en que habla el asesor frente al cliente. Referencia saludable: 45–55%." /></div>
       <div style={{ display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", flex: 1, gap: 14, paddingTop: 8 }}>
         <svg width="150" height="150" viewBox="0 0 150 150" role="img" aria-label="Ratio de escucha: asesor 61 por ciento, cliente 39 por ciento">
-          <circle cx="75" cy="75" r={R} fill="none" stroke="var(--brand-soft)" strokeWidth="16"><title>Cliente 39%</title></circle>
-          <circle cx="75" cy="75" r={R} fill="none" stroke="var(--brand)" strokeWidth="16"
+          <circle cx="75" cy="75" r={R} fill="none" stroke="#D5BBFF" strokeWidth="16"><title>Cliente 39%</title></circle>
+          <circle cx="75" cy="75" r={R} fill="none" stroke="var(--purple)" strokeWidth="16"
             strokeDasharray={(pct * C) + " " + C} transform="rotate(-90 75 75)"><title>Asesor 61%</title></circle>
           {(() => {
             const a = (0.55 * 360 - 90) * Math.PI / 180;
             return <line x1={75 + 48 * Math.cos(a)} y1={75 + 48 * Math.sin(a)} x2={75 + 68 * Math.cos(a)} y2={75 + 68 * Math.sin(a)}
-              stroke="var(--accent)" strokeWidth="2.5" strokeLinecap="round"><title>Referencia saludable: 55%</title></line>;
+              stroke="var(--ink)" strokeWidth="2.5" strokeLinecap="round"><title>Referencia saludable: 55%</title></line>;
           })()}
-          <text x="75" y="71" textAnchor="middle" style={{ fontSize: 26, fontWeight: 600, fill: "var(--ink)", fontFamily: "Oswald, Inter" }}>61%</text>
+          <text x="75" y="71" textAnchor="middle" style={{ fontSize: 26, fontWeight: 600, fill: "var(--ink)", fontFamily: "Inter" }}>61%</text>
           <text x="75" y="90" textAnchor="middle" style={{ fontSize: 11, fill: "var(--ink-3)", fontFamily: "Inter" }}>habla el asesor</text>
         </svg>
         <div style={{ display: "flex", gap: 16, fontSize: 12, color: "var(--ink-2)", flexWrap: "wrap", justifyContent: "center" }}>
           <span style={{ display: "flex", alignItems: "center", gap: 6 }}>
-            <span style={{ width: 10, height: 10, borderRadius: 3, background: "var(--brand)" }}></span>Asesor 61%
+            <span style={{ width: 10, height: 10, borderRadius: 3, background: "var(--purple)" }}></span>Asesor 61%
           </span>
           <span style={{ display: "flex", alignItems: "center", gap: 6 }}>
-            <span style={{ width: 10, height: 10, borderRadius: 3, background: "var(--brand-soft)" }}></span>Cliente 39%
+            <span style={{ width: 10, height: 10, borderRadius: 3, background: "#D5BBFF" }}></span>Cliente 39%
           </span>
           <span style={{ display: "flex", alignItems: "center", gap: 6 }}>
-            <span style={{ width: 3, height: 12, borderRadius: 2, background: "var(--accent)" }}></span>referencia 55%
+            <span style={{ width: 3, height: 12, borderRadius: 2, background: "var(--ink)" }}></span>referencia 55%
           </span>
         </div>
         <div className="card-sub" style={{ textAlign: "center" }}>El asesor habla de más justo en el sondeo de uso: se recomienda antes de preguntar para qué va a usar la moto.</div>
@@ -1457,7 +1775,7 @@ function SentimentChart() {
   const series = [
     { key: "pos", name: "Positivo", color: "var(--green)", bg: "var(--green-bg)", vals: [22, 26, 24, 31, 28, 34, 30, 38, 33, 29, 32, 36, 41, 38, 44, 46] },
     { key: "neu", name: "Neutro", color: "var(--neutral)", bg: "#EDEFF2", vals: [16, 14, 18, 15, 17, 14, 19, 16, 18, 20, 17, 15, 16, 18, 14, 15] },
-    { key: "neg", name: "Negativo", color: "var(--accent)", bg: "var(--accent-soft)", vals: [12, 15, 13, 16, 19, 17, 21, 18, 24, 26, 23, 21, 19, 22, 18, 17] },
+    { key: "neg", name: "Negativo", color: "var(--red)", bg: "var(--red-bg)", vals: [12, 15, 13, 16, 19, 17, 21, 18, 24, 26, 23, 21, 19, 22, 18, 17] },
   ];
   const MAX = 60;
   const W = 760, H = 300, x0 = 46, x1 = 738, yTop = 18, y0 = 250;
@@ -1523,14 +1841,14 @@ function TopAsesores({ rankingPublico, onOpenProfile }) {
       </div>
       {rankingPublico ? (
         <React.Fragment>
-          <div style={{ display: "flex", alignItems: "center", gap: 12, background: "var(--brand-tint)", border: "1px solid #D6E2F0", borderRadius: 10, padding: "12px 14px", marginBottom: 10 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 12, background: "var(--purple-tint)", border: "1px solid #D6E2F0", borderRadius: 10, padding: "12px 14px", marginBottom: 10 }}>
             <span className="avatar" style={{ width: 42, height: 42, fontSize: 14 }}>{LIDERES[0].ini}</span>
             <div style={{ flex: 1, minWidth: 0 }}>
               <div style={{ fontSize: 14, fontWeight: 600 }}>{LIDERES[0].name}</div>
               <div style={{ fontSize: 11.5, color: "var(--ink-3)" }}>{LIDERES[0].sede}</div>
             </div>
             <div style={{ textAlign: "right" }}>
-              <div style={{ fontFamily: "var(--display)", fontSize: 24, fontWeight: 600, color: "var(--accent)" }}>{LIDERES[0].score}</div>
+              <div style={{ fontSize: 24, fontWeight: 600, letterSpacing: "-0.5px", color: "var(--purple)" }}>{LIDERES[0].score}</div>
               <div style={{ fontSize: 11, color: "var(--ink-3)" }}>índice</div>
             </div>
           </div>
@@ -1557,7 +1875,7 @@ function TopAsesores({ rankingPublico, onOpenProfile }) {
             {[["40–49", 2], ["50–59", 4], ["60–69", 7], ["70–79", 5], ["80–89", 3], ["90–100", 1]].map(([range, n]) => (
               <div className="histo-col" key={range}>
                 <span className="histo-n">{n}</span>
-                <div className="histo-bar" style={{ height: (n / 7) * 100 + "%", minHeight: n ? 6 : 2, background: n ? "var(--brand)" : "var(--border)" }}></div>
+                <div className="histo-bar" style={{ height: (n / 7) * 100 + "%", minHeight: n ? 6 : 2, background: n ? "var(--purple)" : "var(--border)" }}></div>
                 <span className="histo-range">{range}</span>
               </div>
             ))}
@@ -1600,7 +1918,7 @@ function TemasTeaser({ onGoTemas }) {
               </circle>
             );
           })}
-          <text x="85" y="81" textAnchor="middle" style={{ fontSize: 25, fontWeight: 600, fill: "var(--ink)", fontFamily: "Oswald, Inter" }}>
+          <text x="85" y="81" textAnchor="middle" style={{ fontSize: 25, fontWeight: 600, fill: "var(--ink)", fontFamily: "Inter" }}>
             {hov != null ? Math.round((data[hov].vol / TOTAL_INTERACCIONES) * 100) + "%" : "2.418"}
           </text>
           <text x="85" y="100" textAnchor="middle" style={{ fontSize: 10.5, fill: "var(--ink-3)", fontFamily: "Inter" }}>
@@ -1609,7 +1927,7 @@ function TemasTeaser({ onGoTemas }) {
         </svg>
         <div style={{ flex: 1, minWidth: 300 }}>
           {data.map((d, i) => (
-            <button key={d.name} className="comp-row" style={{ margin: 0, background: hov === i ? "var(--brand-tint)" : undefined }}
+            <button key={d.name} className="comp-row" style={{ margin: 0, background: hov === i ? "var(--purple-tint)" : undefined }}
               onMouseEnter={() => setHov(i)} onMouseLeave={() => setHov(null)}
               onClick={i < 5 ? onGoTemas : undefined} disabled={i === 5}>
               <span style={{ width: 11, height: 11, borderRadius: 3, background: d.color, flexShrink: 0 }} aria-hidden="true"></span>
@@ -1671,7 +1989,7 @@ function InsightsTemas({ nubeHabilitada, onDrillTopic }) {
     <section className="card span-12">
       <div className="insights-head">
         <span className="card-title" style={{ display: "inline-flex", alignItems: "center", gap: 8, flexWrap: "wrap" }}>
-          <Ph name="sparkle" fill style={{ color: "var(--accent)" }} />Qué se habló en el período
+          <Ph name="sparkle" fill style={{ color: "var(--red)" }} />Qué se habló en el período
           <span style={{ fontFamily: "Inter", fontSize: 12, fontWeight: 400, color: "var(--ink-3)", textTransform: "none", letterSpacing: 0 }}>
             · {TEMAS.length} temas detectados en {PERIODO.rango}
           </span>
@@ -1802,7 +2120,7 @@ function ModelosMencionados({ onOpenModel, span }) {
                 {m.nuevo ? <span className="pill sm red">nuevo</span> : <DeltaBadge t={m} />}
               </div>
               <div className="mc-row"><Ph name="tag" />{m.cat}</div>
-              <div className="mc-bar-track"><div className="mc-bar" style={{ width: (m.menciones / max) * 100 + "%", background: m.sent === "pos" ? "var(--green)" : m.sent === "neg" ? "var(--accent)" : "var(--brand)" }}></div></div>
+              <div className="mc-bar-track"><div className="mc-bar" style={{ width: (m.menciones / max) * 100 + "%", background: m.sent === "pos" ? "var(--green)" : m.sent === "neg" ? "var(--red)" : "var(--purple)" }}></div></div>
               <div className="mc-foot">
                 <span style={{ fontWeight: 600 }}>{m.menciones} menciones</span>
                 <span style={{ color: "var(--ink-3)" }}>{m.pruebas} pruebas · {efect}% cierre</span>
@@ -1843,7 +2161,7 @@ function ModelDetail({ model, onClose, onGoInteractions }) {
       </div>
       <div className="grid" style={{ marginBottom: 16 }}>
         <Stat span={3} label="Cotizaciones" value={model.cotizaciones} />
-        <Stat span={3} label="Pruebas de ruta" value={model.pruebas} tone="var(--brand)" />
+        <Stat span={3} label="Pruebas de ruta" value={model.pruebas} tone="var(--purple)" />
         <Stat span={3} label="Separaciones" value={model.cierres} tone="var(--green)" />
         <Stat span={3} label="Efectividad" value={efect} unit="%" sub="separaciones sobre cotizaciones" />
       </div>
@@ -1885,7 +2203,7 @@ function CompetenciaCard({ onDrill, span }) {
         {COMPETENCIA.map(c => (
           <div className="hbar-row drill" key={c.name} onClick={() => onDrill(c.name)} title={c.ctx}>
             <span className="hbar-label" style={{ width: 78, fontWeight: 600 }}>{c.name}</span>
-            <div className="hbar-track"><div className="hbar" style={{ width: (c.n / max) * 100 + "%", background: "var(--accent)" }}></div></div>
+            <div className="hbar-track"><div className="hbar" style={{ width: (c.n / max) * 100 + "%", background: "var(--red)" }}></div></div>
             <span className="hbar-val">{c.n}</span>
           </div>
         ))}
@@ -1993,8 +2311,8 @@ function KeywordBubbles({ span, onSelect }) {
   const max = Math.max.apply(null, data.map(d => d.n));
   const size = n => Math.round(62 + (n / max) * 92);
   const tier = n => { const r = n / max; return r > 0.8 ? 1 : r > 0.62 ? 2 : r > 0.45 ? 3 : r > 0.3 ? 4 : 5; };
-  const RAMP = { 1: "var(--brand-800)", 2: "var(--brand)", 3: "#2A5E9E", 4: "#7FA3C9", 5: "#CFDDEC" };
-  const font = (s, t) => Math.max(10, Math.min(Math.round(s * 0.17), Math.round((s * 1.5) / t.length)));
+  const RAMP = { 1: "#5E18C7", 2: "var(--purple)", 3: "#6D45C9", 4: "#9B6BE8", 5: "#C9B7F0" };
+  const font = (s, t) => Math.max(10, Math.min(Math.round(s * 0.17), Math.round((s * 1.25) / t.length)));
   return (
     <section className={"card span-" + (span || 12)}>
       <div className="card-head" style={{ marginBottom: 8 }}>
@@ -2012,7 +2330,7 @@ function KeywordBubbles({ span, onSelect }) {
               style={{
                 position: "relative", width: s, height: s, borderRadius: "50%", flexShrink: 0, border: "none",
                 display: "flex", alignItems: "center", justifyContent: "center", textAlign: "center",
-                background: bg, color: dark ? "var(--brand)" : "#fff", fontFamily: "var(--display)",
+                background: bg, color: dark ? "#5E18C7" : "#fff", fontFamily: "inherit",
                 fontWeight: 600, letterSpacing: "0.03em", textTransform: "uppercase",
                 fontSize: font(s, d.t), lineHeight: 1.1, padding: 8, cursor: "pointer",
                 transition: "transform .12s", transform: hover === i ? "scale(1.05)" : "none",
@@ -2081,7 +2399,7 @@ function GlobalKpis({ total, res, resPct, noRes, score, labelRes, labelNoRes, on
     <React.Fragment>
       <Stat className="primary-card" label="Total interacciones" value={total} sub="Conversaciones analizadas en el período" onDrill={onDrill} drillQ="" />
       <Stat label={labelRes || "Resueltas en la visita"} value={res} tone="var(--green)" sub={resPct + "% de resolución"} onDrill={onDrill} drillQ="Resuelto" />
-      <Stat className="alert-card" label={labelNoRes || "Sin resolver"} value={noRes} tone="var(--accent)"
+      <Stat className="alert-card" label={labelNoRes || "Sin resolver"} value={noRes} tone="var(--red)"
         sub={(100 - parseFloat(resPct)).toFixed(1).replace(".", ",") + "% requiere seguimiento"} onDrill={onDrill} drillQ="No resuelto" />
       <Stat label="Índice de asesoría" value={score} unit="/10" sub="Promedio de las conversaciones" onDrill={onDrill} drillQ="" />
     </React.Fragment>
@@ -2111,7 +2429,7 @@ function EmbudoVitrina({ onDrill }) {
         {EMBUDO.map((s, i) => {
           const pct = Math.round((s.n / top) * 100);
           const drop = i > 0 ? EMBUDO[i - 1].n - s.n : 0;
-          const color = pct >= 60 ? "var(--brand)" : pct >= 35 ? "#2A5E9E" : "var(--accent)";
+          const color = pct >= 60 ? "var(--purple)" : pct >= 35 ? "#9B6BE8" : "var(--red)";
           return (
             <div className="funnel-step" key={s.name} onClick={() => onDrill(s.q != null ? s.q : s.name)} title={"Ver interacciones: " + s.name}>
               <span className="fs-name"><Ph name={s.icon} fill />{s.name}</span>
@@ -2125,7 +2443,7 @@ function EmbudoVitrina({ onDrill }) {
         })}
       </div>
       <div className="card-sub" style={{ display: "flex", gap: 7, alignItems: "flex-start", marginTop: 14 }}>
-        <Ph name="warning" fill style={{ color: "var(--accent)", fontSize: 14, marginTop: 1 }} />
+        <Ph name="warning" fill style={{ color: "var(--red)", fontSize: 14, marginTop: 1 }} />
         <span>La caída más costosa está entre la cotización y la prueba de ruta: 187 clientes reciben precio y se van sin agendar la prueba, el paso que más correlaciona con la separación.</span>
       </div>
     </section>
@@ -2144,7 +2462,7 @@ function SentimientoCard({ total, neu, pos, neg, onDrill }) {
       <div className="ratio-bar">
         <div className="ratio-seg" style={{ background: "var(--green)", width: (pos / total * 100) + "%" }}>{pos}</div>
         <div className="ratio-seg" style={{ background: "var(--neutral)", width: (neu / total * 100) + "%" }}>{neu}</div>
-        <div className="ratio-seg" style={{ background: "var(--accent)", width: (neg / total * 100) + "%" }}>{neg}</div>
+        <div className="ratio-seg" style={{ background: "var(--red)", width: (neg / total * 100) + "%" }}>{neg}</div>
       </div>
       <div style={{ display: "flex", gap: 10, marginTop: 16, flexWrap: "wrap" }}>
         {pill("pos", "Positivo ", pos, "Positivo")}
@@ -2188,7 +2506,7 @@ function Vitrina({ onDrill, onOpenModel }) {
       <Stat label="Modelos mostrados por interacción" value="1,8" info="Promedio de modelos del portafolio presentados en la misma conversación." onDrill={onDrill} drillQ="" />
       <Stat label="Ofreció dos o más alternativas" value="34" unit="%" sub="sobre 1.204 interacciones" onDrill={onDrill} drillQ="" />
       <Stat label="Ofreció accesorios (casco, baúl)" value="21" unit="%" tone="var(--amber)" sub="oportunidad de venta cruzada" onDrill={onDrill} drillQ="Repuestos y accesorios" />
-      <Stat label="Mencionó plan de mantenimiento" value="18" unit="%" tone="var(--accent)" sub="clave para el costo total de propiedad" onDrill={onDrill} drillQ="" />
+      <Stat label="Mencionó plan de mantenimiento" value="18" unit="%" tone="var(--red)" sub="clave para el costo total de propiedad" onDrill={onDrill} drillQ="" />
 
       <ModelosMencionados onOpenModel={onOpenModel} span={12} />
 
@@ -2199,8 +2517,8 @@ function Vitrina({ onDrill, onOpenModel }) {
       <SecHead icon="hand-heart" title="Experiencia del cliente" sub="Cumplimiento de protocolo y percepción en el piso de venta" tone="red" />
       <Stat label="Cumplimiento de protocolo" value="58" unit="%" tone="var(--amber)" sub="sobre 1.204 interacciones" onDrill={onDrill} drillQ="" />
       <Stat label="Escucha activa" value="41" unit="%" tone="var(--amber)" sub="el asesor habla 61% del tiempo" onDrill={onDrill} drillQ="" />
-      <Stat label="Cierre con próximos pasos" value="36" unit="%" tone="var(--accent)" sub="quién hace qué y cuándo" onDrill={onDrill} drillQ="" />
-      <Stat label="Invitación a la encuesta" value="4" unit="%" tone="var(--accent)" sub="sobre 1.204 interacciones" onDrill={onDrill} drillQ="" />
+      <Stat label="Cierre con próximos pasos" value="36" unit="%" tone="var(--red)" sub="quién hace qué y cuándo" onDrill={onDrill} drillQ="" />
+      <Stat label="Invitación a la encuesta" value="4" unit="%" tone="var(--red)" sub="sobre 1.204 interacciones" onDrill={onDrill} drillQ="" />
 
       <SentimientoCard total={1204} pos={604} neu={438} neg={162} onDrill={onDrill} />
       <StatDonut title="Motivos de queja en vitrina" centerNum="162" centerLabel="quejas" onDrill={onDrill} segs={[
@@ -2228,7 +2546,7 @@ function Vitrina({ onDrill, onOpenModel }) {
 }
 
 /* ══════════════════════ TAB POSVENTA (TALLER) ══════════════════════ */
-function slaTone(v) { return v >= 60 ? "var(--green)" : v >= 50 ? "var(--amber)" : "var(--accent)"; }
+function slaTone(v) { return v >= 60 ? "var(--green)" : v >= 50 ? "var(--amber)" : "var(--red)"; }
 
 function Posventa({ onDrill }) {
   const servicios = [
@@ -2262,13 +2580,13 @@ function Posventa({ onDrill }) {
       <SecHead icon="timer" title="Recepción y cumplimiento" sub="Tiempo de atención en la recepción del taller y promesa de entrega" />
       <Stat label="Recepción en menos de 10 min" value="63,4" unit="%" tone={slaTone(63.4)} sub="534 de 842 atenciones" onDrill={onDrill} drillQ="" />
       <Stat label="Entrega el mismo día" value="71,2" unit="%" tone={slaTone(71.2)} sub="prometida y cumplida" onDrill={onDrill} drillQ="" />
-      <Stat label="Reingresos por la misma falla" value="27" tone="var(--accent)" sub="3,2% de las órdenes del período" onDrill={onDrill} drillQ="" />
+      <Stat label="Reingresos por la misma falla" value="27" tone="var(--red)" sub="3,2% de las órdenes del período" onDrill={onDrill} drillQ="" />
       <Stat label="Explicó el diagnóstico al cliente" value="54" unit="%" tone="var(--amber)" sub="antes de autorizar el costo" onDrill={onDrill} drillQ="" />
 
       <HBarList span={12} title="Tipo de servicio solicitado" sub="volumen por motivo de ingreso al taller" items={servicios} max={268} onDrill={onDrill} />
 
       <SecHead icon="package" title="Repuestos y disponibilidad" sub="El cuello de botella que más se repite en las conversaciones de taller" tone="red" />
-      <Stat label="Repuesto no disponible en sede" value="84" tone="var(--accent)" sub="10% de las atenciones de taller" onDrill={onDrill} drillQ="Repuestos y accesorios" />
+      <Stat label="Repuesto no disponible en sede" value="84" tone="var(--red)" sub="10% de las atenciones de taller" onDrill={onDrill} drillQ="Repuestos y accesorios" />
       <Stat label="Pedidos a bodega central" value="46" sub="sin tiempo informado al cliente en 31 casos" onDrill={onDrill} drillQ="" />
       <Stat label="Citas reprogramadas por el cliente" value="63" tone="var(--amber)" sub="la mitad, por falta de repuesto" onDrill={onDrill} drillQ="Cita de mantenimiento" />
       <Stat label="Cotización de repuesto sin cierre" value="51" sub="oportunidad de seguimiento" onDrill={onDrill} drillQ="" />
@@ -2297,7 +2615,7 @@ function Posventa({ onDrill }) {
           <span className="pill sm brand">llamado a revisión</span>
         </div>
         <div className="kv-row"><span className="kv-k">Clientes citados que llegaron al taller</span><span className="kv-v">48</span></div>
-        <div className="kv-row"><span className="kv-k">Se les explicó que la revisión no tiene costo</span><span className="kv-v" style={{ color: "var(--accent)" }}>29 de 48</span></div>
+        <div className="kv-row"><span className="kv-k">Se les explicó que la revisión no tiene costo</span><span className="kv-v" style={{ color: "var(--red)" }}>29 de 48</span></div>
         <div className="kv-row"><span className="kv-k">Pensaron que era una llamada de venta</span><span className="kv-v" style={{ color: "var(--amber)" }}>11</span></div>
         <div className="kv-row"><span className="kv-k">Salieron con la revisión completa</span><span className="kv-v" style={{ color: "var(--green)" }}>41</span></div>
         <div className="card-sub" style={{ marginTop: 12 }}>
@@ -2309,10 +2627,10 @@ function Posventa({ onDrill }) {
           <span className="card-title">Reclamos de garantía</span>
           <span className="pill sm crit">62 casos</span>
         </div>
-        <div className="kv-row"><span className="kv-k">Se explicó la cobertura antes del diagnóstico</span><span className="kv-v" style={{ color: "var(--accent)" }}>24 de 62</span></div>
+        <div className="kv-row"><span className="kv-k">Se explicó la cobertura antes del diagnóstico</span><span className="kv-v" style={{ color: "var(--red)" }}>24 de 62</span></div>
         <div className="kv-row"><span className="kv-k">Escalados a garantía de fábrica</span><span className="kv-v">18</span></div>
         <div className="kv-row"><span className="kv-k">Cliente menciona mantenimientos fuera de la red</span><span className="kv-v">14</span></div>
-        <div className="kv-row"><span className="kv-k">Terminan con sentimiento negativo</span><span className="kv-v" style={{ color: "var(--accent)" }}>39</span></div>
+        <div className="kv-row"><span className="kv-k">Terminan con sentimiento negativo</span><span className="kv-v" style={{ color: "var(--red)" }}>39</span></div>
         <div className="card-sub" style={{ marginTop: 12 }}>
           En los reclamos el desacuerdo casi nunca es técnico: es de expectativa. Donde se explicó la cobertura antes del diagnóstico, el sentimiento negativo baja a la mitad.
         </div>
@@ -2329,7 +2647,7 @@ function Posventa({ onDrill }) {
           { name: "“Eso no lo cubre la garantía”", n: 38 },
           { name: "“El técnico no está”", n: 21 },
           { name: "“Vuelva mañana”", n: 17 },
-        ]} max={84} color="var(--accent)" onDrill={onDrill} />
+        ]} max={84} color="var(--red)" onDrill={onDrill} />
     </div>
   );
 }
@@ -2504,7 +2822,7 @@ function Interactions({ onOpenDetail, forceEmpty, initialQuery, onExport }) {
 
       {!empty ? (
         <div className="review-strip">
-          <div className="strip-title"><Ph name="flag" fill style={{ color: "var(--accent)" }} />Requieren revisión</div>
+          <div className="strip-title"><Ph name="flag" fill style={{ color: "var(--red)" }} />Requieren revisión</div>
           <div className="review-cards">
             {reviews.map(r => (
               <div className={"review-card " + r.reviewSev} key={r.id} onClick={() => onOpenDetail(r)}>
@@ -2577,8 +2895,8 @@ function Interactions({ onOpenDetail, forceEmpty, initialQuery, onExport }) {
                       <td>
                         <span style={{
                           fontSize: 12, fontWeight: 600, fontVariantNumeric: "tabular-nums", borderRadius: 6, padding: "3px 8px",
-                          color: r.punt >= 7 ? "var(--green)" : r.punt >= 5 ? "var(--amber)" : "var(--accent)",
-                          background: r.punt >= 7 ? "var(--green-bg)" : r.punt >= 5 ? "var(--amber-bg)" : "var(--accent-soft)",
+                          color: r.punt >= 7 ? "var(--green)" : r.punt >= 5 ? "var(--amber)" : "var(--red)",
+                          background: r.punt >= 7 ? "var(--green-bg)" : r.punt >= 5 ? "var(--amber-bg)" : "var(--red-bg)",
                         }}>{r.punt}/10</span>
                       </td>
                       <td>
@@ -2675,7 +2993,7 @@ const CASO_VITRINA = {
   metricas: [
     { label: "Satisfacción estimada", tag: true, pct: 72, color: "var(--amber)", val: "3,6/5" },
     { label: "Sondeo de uso", pct: 100, color: "var(--green)", val: "completo", info: "Preguntas sobre kilometraje, tipo de uso y necesidades detectadas antes de recomendar el modelo." },
-    { label: "Venta cruzada de accesorios", pct: 0, color: "var(--accent)", val: "0 de 3" },
+    { label: "Venta cruzada de accesorios", pct: 0, color: "var(--red)", val: "0 de 3" },
     { label: "Ratio de escucha", pct: 64, color: "var(--amber)", val: "64% asesora" },
   ],
   detecciones: [
@@ -2742,9 +3060,9 @@ const CASO_TALLER = {
     "Queda una duda abierta sobre el efecto en la garantía si el montaje se hace por fuera (6:44), sin ruta de solución.",
   ],
   metricas: [
-    { label: "Satisfacción estimada", tag: true, pct: 30, color: "var(--accent)", val: "2,1/5" },
-    { label: "Cobertura de garantía explicada", pct: 0, color: "var(--accent)", val: "no", info: "Se espera explicar qué cubre y qué no antes de iniciar el diagnóstico." },
-    { label: "Tiempo de repuesto informado", pct: 0, color: "var(--accent)", val: "no" },
+    { label: "Satisfacción estimada", tag: true, pct: 30, color: "var(--red)", val: "2,1/5" },
+    { label: "Cobertura de garantía explicada", pct: 0, color: "var(--red)", val: "no", info: "Se espera explicar qué cubre y qué no antes de iniciar el diagnóstico." },
+    { label: "Tiempo de repuesto informado", pct: 0, color: "var(--red)", val: "no" },
     { label: "Ratio de escucha", pct: 52, color: "var(--green)", val: "52% asesora" },
   ],
   detecciones: [
@@ -2805,9 +3123,9 @@ const CASO_SEGUIMIENTO = {
     "No se ofreció compensación ni gesto comercial en un caso con tres incumplimientos acumulados.",
   ],
   metricas: [
-    { label: "Satisfacción estimada", tag: true, pct: 40, color: "var(--accent)", val: "2,6/5" },
+    { label: "Satisfacción estimada", tag: true, pct: 40, color: "var(--red)", val: "2,6/5" },
     { label: "Alternativa ofrecida", pct: 100, color: "var(--green)", val: "sí" },
-    { label: "Fecha comprometida", pct: 0, color: "var(--accent)", val: "sin fecha", info: "El cliente cierra la conversación sin una fecha de entrega confirmada." },
+    { label: "Fecha comprometida", pct: 0, color: "var(--red)", val: "sin fecha", info: "El cliente cierra la conversación sin una fecha de entrega confirmada." },
     { label: "Ratio de escucha", pct: 46, color: "var(--green)", val: "46% asesora" },
   ],
   detecciones: [
@@ -2841,7 +3159,7 @@ function Waveform({ progress, onSeek }) {
       <svg viewBox="0 0 90 40" preserveAspectRatio="none" style={{ width: "100%", height: "100%", display: "block" }}>
         {bars.map((b, i) => (
           <rect key={i} x={i + 0.15} width="0.7" y={(1 - b) * 20} height={b * 40} rx="0.35"
-            fill={i / 90 <= progress ? "var(--brand)" : "#D6DDE6"}></rect>
+            fill={i / 90 <= progress ? "var(--purple)" : "#DDD6EC"}></rect>
         ))}
       </svg>
     </div>
@@ -3018,7 +3336,7 @@ function Detail({ onBack, row, drawer, onGoProfile }) {
                   <div className="b-meta">
                     {b.who === "exec" ? r.exec.split(" ")[0] + " (asesor)" : "Cliente"}
                     <button onClick={() => seekTo(b.t)} title="Reproducir desde aquí"
-                      style={{ border: "none", background: "none", color: "var(--brand)", fontWeight: 600, cursor: "pointer", padding: 0, fontSize: 11 }}>{b.t}</button>
+                      style={{ border: "none", background: "none", color: "var(--purple)", fontWeight: 600, cursor: "pointer", padding: 0, fontSize: 11 }}>{b.t}</button>
                   </div>
                   {b.parts.map((p, pi) => renderPart(p, bi, pi))}
                 </div>
@@ -3034,7 +3352,7 @@ function Detail({ onBack, row, drawer, onGoProfile }) {
                 <span className="card-label"><Ph name="sparkle" fill />Lectura de la conversación</span>
               </div>
               <p>{caso.feedback}</p>
-              <div style={{ fontSize: 12, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em", color: "var(--accent)", marginTop: 12 }}>Oportunidades</div>
+              <div style={{ fontSize: 12, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em", color: "var(--red)", marginTop: 12 }}>Oportunidades</div>
               <ul>
                 {caso.oportunidades.map(o => <li key={o}>{o}</li>)}
               </ul>
@@ -3045,7 +3363,7 @@ function Detail({ onBack, row, drawer, onGoProfile }) {
               <div style={{ marginTop: 8 }}>
                 <div className="metric-row">
                   <span className="mr-label">{caso.protocolLabel}</span>
-                  <div className="mr-bar-track"><div className="mr-bar" style={{ width: (cumplidos / caso.protocol.length) * 100 + "%", background: "var(--brand)" }}></div></div>
+                  <div className="mr-bar-track"><div className="mr-bar" style={{ width: (cumplidos / caso.protocol.length) * 100 + "%", background: "var(--purple)" }}></div></div>
                   <span className="mr-val">{cumplidos} de {caso.protocol.length}</span>
                 </div>
                 {caso.metricas.map(m => (
@@ -3226,9 +3544,9 @@ function SortTh({ label, k, sortKey, sortDir, onSort }) {
   );
 }
 const SORTS = { "Conversión": "conversion", "Interacciones": "interacciones", "Índice": "score", "Motos vendidas": "ventas" };
-function convColor(v) { return v >= 20 ? "var(--green)" : v >= 12 ? "var(--amber)" : "var(--accent)"; }
-function scoreColor(s) { return s >= 7 ? "var(--green)" : s >= 5 ? "var(--amber)" : "var(--accent)"; }
-function scoreBg(s) { return s >= 7 ? "var(--green-bg)" : s >= 5 ? "var(--amber-bg)" : "var(--accent-soft)"; }
+function convColor(v) { return v >= 20 ? "var(--green)" : v >= 12 ? "var(--amber)" : "var(--red)"; }
+function scoreColor(s) { return s >= 7 ? "var(--green)" : s >= 5 ? "var(--amber)" : "var(--red)"; }
+function scoreBg(s) { return s >= 7 ? "var(--green-bg)" : s >= 5 ? "var(--amber-bg)" : "var(--red-bg)"; }
 
 function TeamKpi({ label, value, icon, tint, iconColor }) {
   return (
@@ -3281,9 +3599,9 @@ function Asesores({ datosInsuficientes, onGoInteractions }) {
     <React.Fragment>
       <div className="grid">
         <KpiRow>
-          <TeamKpi label="Asesores con actividad" value={fmtNum(ASESORES_DATA.length)} icon="users-three" tint="var(--brand-soft)" iconColor="var(--brand)" />
+          <TeamKpi label="Asesores con actividad" value={fmtNum(ASESORES_DATA.length)} icon="users-three" tint="var(--purple-soft)" iconColor="var(--purple)" />
           <TeamKpi label="Conversión promedio" value="14,8%" icon="trend-up" tint="var(--green-bg)" iconColor="var(--green)" />
-          <TeamKpi label="Motos vendidas" value="428" icon="motorcycle" tint="var(--accent-soft)" iconColor="var(--accent)" />
+          <TeamKpi label="Motos vendidas" value="428" icon="motorcycle" tint="var(--red-bg)" iconColor="var(--red)" />
           <TeamKpi label="Índice de asesoría" value="6,4" icon="medal" tint="var(--amber-bg)" iconColor="var(--amber)" />
         </KpiRow>
 
@@ -3302,7 +3620,7 @@ function Asesores({ datosInsuficientes, onGoInteractions }) {
                 <SelectCtrl label="Rol" value={rol} onChange={v => { setRol(v); setPage(1); }} options={["Todos los roles", ...ROLES]} />
                 <SelectCtrl label="Ordenar por" value={orden} onChange={v => { setOrden(v); setSortKey(SORTS[v]); setSortDir(-1); setPage(1); }} options={Object.keys(SORTS)} />
                 <label style={{ display: "flex", alignItems: "center", gap: 8, fontSize: 13, color: "var(--ink-2)", cursor: "pointer", height: 38 }}>
-                  <input type="checkbox" checked={soloNoRes} onChange={e => { setSoloNoRes(e.target.checked); setPage(1); }} style={{ accentColor: "var(--brand)" }} />
+                  <input type="checkbox" checked={soloNoRes} onChange={e => { setSoloNoRes(e.target.checked); setPage(1); }} style={{ accentColor: "var(--purple)" }} />
                   Solo con casos sin resolver
                 </label>
                 <div style={{ display: "flex", gap: 8, justifyContent: "flex-end" }}>
@@ -3348,7 +3666,7 @@ function Asesores({ datosInsuficientes, onGoInteractions }) {
                             <td style={{ fontVariantNumeric: "tabular-nums", color: e.pruebas >= 50 ? "var(--green)" : "var(--ink-2)" }}>{e.pruebas}%</td>
                             <td><span style={{ fontSize: 12, fontWeight: 600, color: scoreColor(e.score), background: scoreBg(e.score), borderRadius: 6, padding: "3px 8px", fontVariantNumeric: "tabular-nums" }}>{fmtP(e.score)}/10</span></td>
                             <td style={{ color: "var(--green)", fontWeight: 600, fontVariantNumeric: "tabular-nums" }}>{e.resueltas}</td>
-                            <td style={{ color: e.noResueltas ? "var(--accent)" : "var(--ink-3)", fontWeight: 600, fontVariantNumeric: "tabular-nums" }}>{e.noResueltas}</td>
+                            <td style={{ color: e.noResueltas ? "var(--red)" : "var(--ink-3)", fontWeight: 600, fontVariantNumeric: "tabular-nums" }}>{e.noResueltas}</td>
                             <td><Ph name={"caret-" + (expanded === e.name ? "up" : "down")} style={{ color: "var(--ink-3)" }} /></td>
                           </tr>
                           {expanded === e.name ? (
@@ -3424,16 +3742,16 @@ function Sedes({ onGoInteractions }) {
   return (
     <div className="grid">
       <KpiRow>
-        <TeamKpi label="Sedes con actividad" value={fmtNum(SEDES_DATA.length)} icon="storefront" tint="var(--brand-soft)" iconColor="var(--brand)" />
+        <TeamKpi label="Sedes con actividad" value={fmtNum(SEDES_DATA.length)} icon="storefront" tint="var(--purple-soft)" iconColor="var(--purple)" />
         <TeamKpi label="Conversión promedio" value="16,1%" icon="trend-up" tint="var(--green-bg)" iconColor="var(--green)" />
-        <TeamKpi label="Motos vendidas" value="423" icon="motorcycle" tint="var(--accent-soft)" iconColor="var(--accent)" />
+        <TeamKpi label="Motos vendidas" value="423" icon="motorcycle" tint="var(--red-bg)" iconColor="var(--red)" />
         <TeamKpi label="Índice de la red" value="6,3" icon="medal" tint="var(--amber-bg)" iconColor="var(--amber)" />
       </KpiRow>
 
       <HBarList span={6} title="Volumen de conversaciones por sede" items={SEDES_DATA.map(s => ({ name: s.ciudad + " · " + s.corto, n: s.interacciones, q: s.name }))}
         max={maxInt} onDrill={onGoInteractions} />
       <HBarList span={6} title="Invitación a prueba de ruta por sede" sub="% de visitas con prueba agendada"
-        items={SEDES_DATA.map(s => ({ name: s.ciudad + " · " + s.corto, n: s.pruebas, q: s.name, color: s.pruebas >= 30 ? "var(--green)" : s.pruebas >= 20 ? "var(--amber)" : "var(--accent)" }))}
+        items={SEDES_DATA.map(s => ({ name: s.ciudad + " · " + s.corto, n: s.pruebas, q: s.name, color: s.pruebas >= 30 ? "var(--green)" : s.pruebas >= 20 ? "var(--amber)" : "var(--red)" }))}
         max={45} unit="%" onDrill={onGoInteractions} />
 
       <section className="card span-12">
@@ -3467,7 +3785,7 @@ function Sedes({ onGoInteractions }) {
                   <td style={{ fontVariantNumeric: "tabular-nums", color: a.pruebas >= 30 ? "var(--green)" : "var(--ink-2)" }}>{a.pruebas}%</td>
                   <td><span style={{ fontSize: 12, fontWeight: 600, color: scoreColor(a.score), background: scoreBg(a.score), borderRadius: 6, padding: "3px 8px", fontVariantNumeric: "tabular-nums" }}>{fmtP(a.score)}/10</span></td>
                   <td style={{ color: "var(--green)", fontWeight: 600, fontVariantNumeric: "tabular-nums" }}>{fmtNum(a.resueltas)}</td>
-                  <td style={{ color: a.noResueltas ? "var(--accent)" : "var(--ink-3)", fontWeight: 600, fontVariantNumeric: "tabular-nums" }}>{a.noResueltas}</td>
+                  <td style={{ color: a.noResueltas ? "var(--red)" : "var(--ink-3)", fontWeight: 600, fontVariantNumeric: "tabular-nums" }}>{a.noResueltas}</td>
                 </tr>
               ))}
             </tbody>
@@ -3687,8 +4005,8 @@ function InformeModal({ onClose }) {
         <div className="report-scroll" style={{ flex: 1, minHeight: 0, overflow: "auto", position: "relative" }}>
           {loading ? (
             <div style={{ position: "absolute", inset: 0, background: "#fff", display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: 18, zIndex: 5 }}>
-              <div style={{ width: 54, height: 54, borderRadius: "50%", background: "var(--brand-soft)", display: "flex", alignItems: "center", justifyContent: "center" }}>
-                <Ph name="sparkle" fill style={{ color: "var(--brand)", fontSize: 24, animation: "ins-pulse 1.2s cubic-bezier(0.4,0,0.2,1) infinite" }} />
+              <div style={{ width: 54, height: 54, borderRadius: "50%", background: "var(--purple-soft)", display: "flex", alignItems: "center", justifyContent: "center" }}>
+                <Ph name="sparkle" fill style={{ color: "var(--purple)", fontSize: 24, animation: "ins-pulse 1.2s cubic-bezier(0.4,0,0.2,1) infinite" }} />
               </div>
               <div style={{ fontSize: 15, fontWeight: 600 }}>Generando el informe del período</div>
               <div style={{ display: "flex", flexDirection: "column", gap: 8, alignItems: "flex-start" }}>
@@ -3699,7 +4017,7 @@ function InformeModal({ onClose }) {
                 ))}
               </div>
               <div style={{ width: 220, height: 4, borderRadius: 2, background: "#EDEFF2", overflow: "hidden" }}>
-                <div style={{ height: "100%", borderRadius: 2, background: "var(--accent)", animation: "ins-bar 1.7s cubic-bezier(0.4,0,0.2,1) forwards" }}></div>
+                <div style={{ height: "100%", borderRadius: 2, background: "var(--red)", animation: "ins-bar 1.7s cubic-bezier(0.4,0,0.2,1) forwards" }}></div>
               </div>
             </div>
           ) : null}
@@ -3711,7 +4029,7 @@ function InformeModal({ onClose }) {
                   <AutecoMark size={24} />
                 </span>
                 <div>
-                  <div style={{ fontFamily: "var(--display)", fontSize: 15, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase" }}>Auteco Mobility</div>
+                  <div style={{ fontSize: 15, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase" }}>Auteco Mobility</div>
                   <div className="rh-kicker">Speech Analytics · red de concesionarios y talleres</div>
                 </div>
                 <span style={{ marginLeft: "auto", fontSize: 12, opacity: 0.85 }}>{PERIODO.rango}</span>
@@ -3881,7 +4199,7 @@ function App() {
             <div className="page-sub">Red de concesionarios y talleres · {PERIODO.label} ({PERIODO.rango})</div>
           </div>
           <span className="tenant-chip" style={{ marginLeft: 8 }}>
-            <span className="tc-dot"><AutecoMark size={14} /></span>Auteco Mobility
+            <span className="tc-dot"><AutecoMark size={13} /></span>Auteco Mobility
           </span>
           <div style={{ display: "flex", gap: 8, marginLeft: "auto", alignItems: "center", flexWrap: "wrap" }}>
             <button className="chip" onClick={() => setDemoOpen(!demoOpen)} aria-pressed={demoOpen}>
