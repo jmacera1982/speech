@@ -3705,7 +3705,18 @@ function InformeModal({ onClose }) {
           ) : null}
           <div className="report-sheet">
             <div className="report-hero">
-              <div className="rh-kicker">Speech Analytics · informe del período</div>
+              {/* La cabecera va dentro de la hoja para que el PDF quede identificado */}
+              <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 18, flexWrap: "wrap" }}>
+                <span style={{ width: 36, height: 36, borderRadius: 8, background: "#fff", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
+                  <AutecoMark size={24} />
+                </span>
+                <div>
+                  <div style={{ fontFamily: "var(--display)", fontSize: 15, fontWeight: 600, letterSpacing: "0.1em", textTransform: "uppercase" }}>Auteco Mobility</div>
+                  <div className="rh-kicker">Speech Analytics · red de concesionarios y talleres</div>
+                </div>
+                <span style={{ marginLeft: "auto", fontSize: 12, opacity: 0.85 }}>{PERIODO.rango}</span>
+              </div>
+              <div className="rh-kicker">Informe del período</div>
               <h2>La cuota inicial abre la conversación, el inventario la cierra</h2>
               <p>
                 Se analizaron 2.418 conversaciones de vitrina, taller, WhatsApp y call center entre el {PERIODO.rango}.
