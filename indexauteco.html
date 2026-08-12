@@ -1262,7 +1262,7 @@ function HBarList({ title, sub, span, items, max, unit, hideVal, onDrill, info, 
       <div style={{ marginTop: 2 }}>
         {items.map(it => (
           <div className={"hbar-row" + (onDrill ? " drill" : "")} key={it.name}
-            onClick={onDrill ? () => onDrill(it.name) : null}
+            onClick={onDrill ? () => onDrill(it.q != null ? it.q : it.name) : null}
             title={onDrill ? "Ver interacciones: " + it.name : it.name}>
             <span className="hbar-label">{it.name}</span>
             <div className="hbar-track"><div className="hbar" style={{ width: (it.n / m) * 100 + "%", background: it.color || color || "var(--brand)" }}></div></div>
@@ -2369,7 +2369,7 @@ const INTERACCIONES = [
     exec: "Wilmar Alexis Betancur", ini: "WB", dur: "4:15", motivo: "Financiación y cuota inicial", modelo: "TVS Sport 110 FI",
     sent: "neu", resultado: "Resuelto", punt: 6, estado: "Analizado" },
   { id: "#A-7399", fecha: "10/08/2026, 17:36", sede: "Vitrina Bogotá — Kennedy", canal: "Call center", puesto: "Línea 01 8000",
-    exec: "Diana Marcela Ospina", ini: "DO", dur: "7:50", motivo: "Campaña de seguridad", modelo: "TVS Raider 125",
+    exec: "Diana Marcela Ospina", ini: "DO", dur: "7:50", motivo: "Seguimiento de entrega", modelo: "Zontes 200 U1",
     sent: "neu", resultado: "Resuelto", punt: 7, estado: "Analizado" },
   { id: "#A-7395", fecha: "10/08/2026, 17:10", sede: "Vitrina Bucaramanga — Cra. 27", canal: "Vitrina", puesto: "Piso de venta 1",
     exec: "Katherine Julieth Muñoz", ini: "KM", dur: "10:08", motivo: "Retoma de moto usada", modelo: "Kawasaki KLE 300",
@@ -2615,47 +2615,220 @@ function Interactions({ onOpenDetail, forceEmpty, initialQuery, onExport }) {
   );
 }
 
-/* ── Transcripción: asesoría de vitrina para uso en domicilios ── */
-const TRANSCRIPT = [
-  { who: "exec", t: "0:04", parts: [{ x: "Buenos días, bienvenido a Auteco Guayabal, mi nombre es Diana. ¿Está buscando moto nueva o viene por servicio?" }] },
-  { who: "client", t: "0:12", parts: [{ x: "Buenas, estoy mirando moto. Es que empecé a hacer " }, { x: "domicilios", hl: "kw" }, { x: " y la que tengo ya no me da." }] },
-  { who: "exec", t: "0:32", parts: [{ x: "Perfecto. Para recomendarle bien: ¿cuántos kilómetros hace al día y la usa solo para trabajar o también los fines de semana?" }] },
-  { who: "client", t: "0:44", parts: [{ x: "Unos 70 kilómetros diarios, y el domingo salgo con mi hija. Lo que más me importa es el consumo y que no se me vare." }] },
-  { who: "exec", t: "1:10", parts: [{ x: "Entonces le muestro la " }, { x: "TVS Raider 125", hl: "kw" }, { x: ": es la que mejor rinde para trabajo diario y tiene la mejor red de talleres. También tenemos la Sport 110 FI si busca algo más económico." }] },
-  { who: "client", t: "1:38", parts: [{ x: "Un amigo me dijo que la " }, { x: "Yamaha", hl: "comp" }, { x: " se defiende mejor de reventa. ¿Ustedes qué dicen?" }] },
-  { who: "exec", t: "1:52", parts: [{ x: "Le entiendo. En consumo la Raider está por encima y el mantenimiento es más económico; el repuesto lo tiene cualquier taller autorizado de la red." }] },
-  { who: "exec", t: "2:48", parts: [{ x: "Venga, se la enciendo para que escuche el motor y se siente: mire la altura del asiento y el espacio para el " }, { x: "baúl", hl: "kw" }, { x: " que necesita para los domicilios." }] },
-  { who: "client", t: "3:20", parts: [{ x: "Cómoda sí es. ¿Y en cuánto me sale?" }] },
-  { who: "exec", t: "4:05", parts: [{ x: "El precio con matrícula y SOAT queda en 9 millones 890. Con la campaña vigente puede llevarla con " }, { x: "cuota inicial", hl: "kw" }, { x: " desde un millón y el saldo a 36 meses con nuestro aliado financiero." }] },
-  { who: "client", t: "4:32", parts: [{ x: "Un millón de una es mucho, " }, { x: "yo tenía pensado 500 mil", hl: "obj" }, { x: ". ¿No hay algo más suave?" }] },
-  { who: "exec", t: "4:48", parts: [{ x: "Puedo simular a 48 meses para bajar la cuota mensual, pero la inicial mínima del plan es un millón. Si quiere, lo dejamos radicado y el aliado le responde." }] },
-  { who: "client", t: "5:20", parts: [{ x: "¿Y qué papeles necesito? Porque yo trabajo por mi cuenta." }] },
-  { who: "exec", t: "5:34", parts: [{ x: "Cédula, extractos de los últimos tres meses y el certificado de la plataforma donde hace los domicilios. " }, { x: "Se lo envío por WhatsApp hoy antes de las 6 con la cotización", hl: "commit" }, { x: "." }] },
-  { who: "client", t: "6:05", parts: [{ x: "Bueno. Igual me gustaría manejarla antes de decidir." }] },
-  { who: "exec", t: "6:20", parts: [{ x: "Claro que sí. " }, { x: "Le agendo la prueba de ruta el sábado a las 10 de la mañana", hl: "commit" }, { x: ", traiga cédula y licencia vigente." }] },
-  { who: "client", t: "6:52", parts: [{ x: "Perfecto. Una última cosa: el " }, { x: "mantenimiento", hl: "kw" }, { x: " cada cuánto es y cuánto vale más o menos?" }] },
-  { who: "exec", t: "7:10", parts: [{ x: "El primero es a los 1.000 kilómetros y luego cada 5.000. Le paso los valores junto con la cotización." }] },
-  { who: "client", t: "8:24", parts: [{ x: "Listo, quedo pendiente del WhatsApp entonces." }] },
-  { who: "exec", t: "9:18", parts: [{ x: "Le resumo: le envío hoy la cotización con los documentos y el plan de mantenimiento, y el sábado a las 10 la prueba de ruta. Que esté muy bien." }] },
-];
-
-const PROTOCOL = [
-  { ok: true, label: "Saludo y presentación", ts: "0:04" },
-  { ok: true, label: "Sondeo de uso de la moto", ts: "0:32" },
-  { ok: true, label: "Recomendación de modelo con alternativa", ts: "1:10" },
-  { ok: true, label: "Demostración en piso", ts: "2:48" },
-  { ok: true, label: "Explicación de financiación y cuota inicial", ts: "4:05" },
-  { ok: false, label: "Oferta de accesorios (casco, baúl, impermeable)", ts: null },
-  { ok: true, label: "Invitación a prueba de ruta", ts: "6:20" },
-  { ok: false, label: "Invitación a la encuesta de satisfacción", ts: null },
-];
+/* ══════════════════════════════════════════════════════════════════════
+   Casos de conversación: la muestra incluye dos escenarios reales del
+   negocio, ninguno bancario. Se elige según el punto de contacto.
+   1) Vitrina — cliente que busca moto para domicilios: sondeo de uso,
+      cuota inicial, comparación con la competencia y prueba de ruta.
+   2) Taller — reclamo de garantía por ruido en el motor que termina en
+      repuesto sin fecha de llegada.
+   ══════════════════════════════════════════════════════════════════════ */
 
 const HL_TYPES = {
   kw:     { icon: "tag",                 label: "Palabra clave comercial" },
   obj:    { icon: "warning",             label: "Objeción" },
   commit: { icon: "check-circle",        label: "Compromiso" },
   comp:   { icon: "flag-pennant",        label: "Competencia mencionada" },
-  esc:    { icon: "arrow-bend-up-right", label: "Escalación" },
+  esc:    { icon: "arrow-bend-up-right", label: "Riesgo de pérdida" },
+};
+
+const CASO_VITRINA = {
+  transcript: [
+    { who: "exec", t: "0:04", parts: [{ x: "Buenos días, bienvenido a Auteco Guayabal, mi nombre es Diana. ¿Está buscando moto nueva o viene por servicio?" }] },
+    { who: "client", t: "0:12", parts: [{ x: "Buenas, estoy mirando moto. Es que empecé a hacer " }, { x: "domicilios", hl: "kw" }, { x: " y la que tengo ya no me da." }] },
+    { who: "exec", t: "0:32", parts: [{ x: "Perfecto. Para recomendarle bien: ¿cuántos kilómetros hace al día y la usa solo para trabajar o también los fines de semana?" }] },
+    { who: "client", t: "0:44", parts: [{ x: "Unos 70 kilómetros diarios, y el domingo salgo con mi hija. Lo que más me importa es el consumo y que no se me vare." }] },
+    { who: "exec", t: "1:10", parts: [{ x: "Entonces le muestro la " }, { x: "TVS Raider 125", hl: "kw" }, { x: ": es la que mejor rinde para trabajo diario y tiene la mejor red de talleres. También tenemos la Sport 110 FI si busca algo más económico." }] },
+    { who: "client", t: "1:38", parts: [{ x: "Un amigo me dijo que la " }, { x: "Yamaha", hl: "comp" }, { x: " se defiende mejor de reventa. ¿Ustedes qué dicen?" }] },
+    { who: "exec", t: "1:52", parts: [{ x: "Le entiendo. En consumo la Raider está por encima y el mantenimiento es más económico; el repuesto lo tiene cualquier taller autorizado de la red." }] },
+    { who: "exec", t: "2:48", parts: [{ x: "Venga, se la enciendo para que escuche el motor y se siente: mire la altura del asiento y el espacio para el " }, { x: "baúl", hl: "kw" }, { x: " que necesita para los domicilios." }] },
+    { who: "client", t: "3:20", parts: [{ x: "Cómoda sí es. ¿Y en cuánto me sale?" }] },
+    { who: "exec", t: "4:05", parts: [{ x: "El precio con matrícula y SOAT queda en 9 millones 890. Con la campaña vigente puede llevarla con " }, { x: "cuota inicial", hl: "kw" }, { x: " desde un millón y el saldo a 36 meses con nuestro aliado financiero." }] },
+    { who: "client", t: "4:32", parts: [{ x: "Un millón de una es mucho, " }, { x: "yo tenía pensado 500 mil", hl: "obj" }, { x: ". ¿No hay algo más suave?" }] },
+    { who: "exec", t: "4:48", parts: [{ x: "Puedo simular a 48 meses para bajar la cuota mensual, pero la inicial mínima del plan es un millón. Si quiere, lo dejamos radicado y el aliado le responde." }] },
+    { who: "client", t: "5:20", parts: [{ x: "¿Y qué papeles necesito? Porque yo trabajo por mi cuenta." }] },
+    { who: "exec", t: "5:34", parts: [{ x: "Cédula, extractos de los últimos tres meses y el certificado de la plataforma donde hace los domicilios. " }, { x: "Se lo envío por WhatsApp hoy antes de las 6 con la cotización", hl: "commit" }, { x: "." }] },
+    { who: "client", t: "6:05", parts: [{ x: "Bueno. Igual me gustaría manejarla antes de decidir." }] },
+    { who: "exec", t: "6:20", parts: [{ x: "Claro que sí. " }, { x: "Le agendo la prueba de ruta el sábado a las 10 de la mañana", hl: "commit" }, { x: ", traiga cédula y licencia vigente." }] },
+    { who: "client", t: "6:52", parts: [{ x: "Perfecto. Una última cosa: el " }, { x: "mantenimiento", hl: "kw" }, { x: " cada cuánto es y cuánto vale más o menos?" }] },
+    { who: "exec", t: "7:10", parts: [{ x: "El primero es a los 1.000 kilómetros y luego cada 5.000. Le paso los valores junto con la cotización." }] },
+    { who: "client", t: "8:24", parts: [{ x: "Listo, quedo pendiente del WhatsApp entonces." }] },
+    { who: "exec", t: "9:18", parts: [{ x: "Le resumo: le envío hoy la cotización con los documentos y el plan de mantenimiento, y el sábado a las 10 la prueba de ruta. Que esté muy bien." }] },
+  ],
+  protocol: [
+    { ok: true, label: "Saludo y presentación", ts: "0:04" },
+    { ok: true, label: "Sondeo de uso de la moto", ts: "0:32" },
+    { ok: true, label: "Recomendación de modelo con alternativa", ts: "1:10" },
+    { ok: true, label: "Demostración en piso", ts: "2:48" },
+    { ok: true, label: "Explicación de financiación y cuota inicial", ts: "4:05" },
+    { ok: false, label: "Oferta de accesorios (casco, baúl, impermeable)", ts: null },
+    { ok: true, label: "Invitación a prueba de ruta", ts: "6:20" },
+    { ok: false, label: "Invitación a la encuesta de satisfacción", ts: null },
+  ],
+  protocolLabel: "Protocolo de vitrina",
+  feedback: "Buena asesoría de fondo: la asesora indagó el uso real de la moto (70 km diarios en domicilios), recomendó un modelo coherente con ese uso, presentó una alternativa más económica y sostuvo la comparación con la competencia con argumentos de consumo y red de talleres, no de precio.",
+  oportunidades: [
+    "El cliente necesita baúl para trabajar y se mencionó el espacio (2:48), pero no se ofreció ni baúl ni casco: venta cruzada perdida.",
+    "La objeción de cuota inicial (4:32) se resolvió con plazo, sin explorar retoma de la moto actual como parte de pago.",
+    "No se invitó a la encuesta de satisfacción al cierre.",
+  ],
+  metricas: [
+    { label: "Satisfacción estimada", tag: true, pct: 72, color: "var(--amber)", val: "3,6/5" },
+    { label: "Sondeo de uso", pct: 100, color: "var(--green)", val: "completo", info: "Preguntas sobre kilometraje, tipo de uso y necesidades detectadas antes de recomendar el modelo." },
+    { label: "Venta cruzada de accesorios", pct: 0, color: "var(--accent)", val: "0 de 3" },
+    { label: "Ratio de escucha", pct: 64, color: "var(--amber)", val: "64% asesora" },
+  ],
+  detecciones: [
+    ["kw", "brand", "Palabras clave (5)"],
+    ["commit", "green", "Compromisos (2)"],
+    ["obj", "amber", "Objeciones (1)"],
+    ["comp", "purple", "Competencia (1)"],
+    ["esc", "gray", "Riesgo de pérdida (0)"],
+  ],
+  chips: [
+    { cls: "brand", icon: "motorcycle", text: "TVS Raider 125" },
+    { cls: "neu", icon: "motorcycle", text: "TVS Sport 110 FI" },
+    { cls: "red", icon: "flag-pennant", text: "Yamaha" },
+  ],
+  chipsNota: "El cliente trajo la comparación con Yamaha por valor de reventa; la respuesta se centró en consumo y red de talleres.",
+  compromisos: [
+    { k: "Cotización y documentos por WhatsApp", v: "hoy 6:00 p. m.", cls: "warn" },
+    { k: "Prueba de ruta agendada", v: "sáb 10:00 a. m.", cls: "brand" },
+    { k: "Valores del plan de mantenimiento", v: "con la cotización", cls: "warn" },
+  ],
+  focos: ["Venta cruzada de accesorios", "Manejo de objeción de cuota inicial", "Argumentación frente a la competencia", "Cierre con próximos pasos"],
+};
+
+const CASO_TALLER = {
+  transcript: [
+    { who: "exec", t: "0:03", parts: [{ x: "Buenos días, bienvenido al taller autorizado. ¿Me regala su nombre y la placa de la moto?" }] },
+    { who: "client", t: "0:11", parts: [{ x: "Buenas. Es la Apache RTR 200, placa KMR 42E. Me está sonando el motor y quiero que la revisen por " }, { x: "garantía", hl: "kw" }, { x: "." }] },
+    { who: "exec", t: "0:26", parts: [{ x: "¿Hace cuánto le suena y en qué momento lo escucha, en frío o rodando?" }] },
+    { who: "client", t: "0:38", parts: [{ x: "Como dos semanas, sobre todo cuando acelero. Tiene 8.000 kilómetros y es de este año." }] },
+    { who: "exec", t: "1:02", parts: [{ x: "Listo, déjela y el técnico la revisa hoy. Le tomo los datos y le entrego la orden." }] },
+    { who: "client", t: "1:15", parts: [{ x: "¿Y eso lo cubre la garantía?" }] },
+    { who: "exec", t: "1:22", parts: [{ x: "Eso depende de lo que diga el diagnóstico." }] },
+    { who: "exec", t: "3:40", parts: [{ x: "Ya la revisó el técnico: es el " }, { x: "kit de arrastre", hl: "kw" }, { x: ", la cadena está estirada. Eso es desgaste, " }, { x: "no lo cubre la garantía", hl: "obj" }, { x: "." }] },
+    { who: "client", t: "3:58", parts: [{ x: "¿O sea que me toca pagarlo? " }, { x: "La moto tiene ocho mil kilómetros, se supone que es nueva", hl: "obj" }, { x: "." }] },
+    { who: "exec", t: "4:20", parts: [{ x: "El kit es un elemento de desgaste, como las llantas o las pastillas. La mano de obra son 85 mil y el kit 320 mil." }] },
+    { who: "client", t: "4:40", parts: [{ x: "Nadie me explicó eso cuando la compré, y ahorita tampoco me lo dijeron antes de revisarla." }] },
+    { who: "exec", t: "5:05", parts: [{ x: "Le puedo dejar el " }, { x: "pedido del repuesto", hl: "kw" }, { x: ", pero en la sede no lo tengo; hay que pedirlo a bodega central." }] },
+    { who: "client", t: "5:20", parts: [{ x: "¿Y cuánto se demora en llegar?" }] },
+    { who: "exec", t: "5:28", parts: [{ x: "No le puedo dar fecha todavía. " }, { x: "Le confirmo por WhatsApp cuando llegue", hl: "commit" }, { x: "." }] },
+    { who: "client", t: "5:40", parts: [{ x: "Es que yo trabajo con la moto, no la puedo tener parada esperando." }] },
+    { who: "exec", t: "5:52", parts: [{ x: "Le entiendo, pero de bodega no me confirman tiempos hasta que despachen." }] },
+    { who: "client", t: "6:10", parts: [{ x: "Entonces mejor la saco. " }, { x: "En un almacén de repuestos me consiguen el kit hoy mismo", hl: "esc" }, { x: " y allá me lo montan." }] },
+    { who: "exec", t: "6:25", parts: [{ x: "Como usted prefiera. Le dejo la orden abierta cinco días por si decide dejarla." }] },
+    { who: "client", t: "6:44", parts: [{ x: "¿Y si me lo monto por fuera pierdo la garantía del resto de la moto?" }] },
+    { who: "exec", t: "6:58", parts: [{ x: "Le sugiero que no, pero eso lo revisa el área de garantías." }] },
+    { who: "client", t: "10:30", parts: [{ x: "Bueno, gracias. Ahí veré qué hago." }] },
+  ],
+  protocol: [
+    { ok: true, label: "Saludo y toma de datos de la moto", ts: "0:03" },
+    { ok: true, label: "Escucha de la falla reportada", ts: "0:26" },
+    { ok: false, label: "Cobertura de garantía explicada antes del diagnóstico", ts: null },
+    { ok: true, label: "Explicación del diagnóstico técnico", ts: "3:40" },
+    { ok: true, label: "Costo desglosado antes de autorizar", ts: "4:20" },
+    { ok: false, label: "Tiempo de llegada del repuesto informado", ts: null },
+    { ok: false, label: "Fecha de entrega comprometida", ts: null },
+    { ok: false, label: "Cierre con próximos pasos y encuesta", ts: null },
+  ],
+  protocolLabel: "Protocolo de recepción en taller",
+  feedback: "El diagnóstico técnico fue correcto y el costo se desglosó antes de autorizar, pero la conversación se pierde por información, no por precio: la cobertura de la garantía se explicó después del diagnóstico y el repuesto quedó sin fecha de llegada. El cliente trabaja con la moto y termina resolviendo por fuera de la red.",
+  oportunidades: [
+    "En 1:15 el cliente pregunta explícitamente por la cobertura y la respuesta se aplaza al diagnóstico: es el punto donde nace la molestia.",
+    "El repuesto se pide a bodega sin ningún plazo estimado (5:28); es la causa número uno de reingreso y de fuga a talleres externos.",
+    "No se ofreció alternativa: repuesto en otra sede de la red, préstamo de la moto o cita priorizada al llegar el kit.",
+    "Queda una duda abierta sobre el efecto en la garantía si el montaje se hace por fuera (6:44), sin ruta de solución.",
+  ],
+  metricas: [
+    { label: "Satisfacción estimada", tag: true, pct: 30, color: "var(--accent)", val: "2,1/5" },
+    { label: "Cobertura de garantía explicada", pct: 0, color: "var(--accent)", val: "no", info: "Se espera explicar qué cubre y qué no antes de iniciar el diagnóstico." },
+    { label: "Tiempo de repuesto informado", pct: 0, color: "var(--accent)", val: "no" },
+    { label: "Ratio de escucha", pct: 52, color: "var(--green)", val: "52% asesora" },
+  ],
+  detecciones: [
+    ["kw", "brand", "Palabras clave (3)"],
+    ["obj", "amber", "Objeciones (3)"],
+    ["esc", "gray", "Riesgo de pérdida (1)"],
+    ["commit", "green", "Compromisos (1)"],
+    ["comp", "purple", "Competencia (0)"],
+  ],
+  chips: [
+    { cls: "brand", icon: "motorcycle", text: "TVS Apache RTR 200 4V" },
+    { cls: "neu", icon: "gear-six", text: "Kit de arrastre" },
+    { cls: "red", icon: "warning", text: "Fuga a taller externo" },
+  ],
+  chipsNota: "El cliente resuelve por fuera de la red por tiempo, no por precio: el repuesto existe en bodega pero nadie le dio una fecha.",
+  compromisos: [
+    { k: "Confirmar llegada del kit por WhatsApp", v: "sin plazo definido", cls: "crit" },
+    { k: "Orden de servicio abierta", v: "5 días", cls: "brand" },
+    { k: "Consulta al área de garantías", v: "sin responsable", cls: "crit" },
+  ],
+  focos: ["Explicación de cobertura de garantía", "Compromiso de tiempos de repuesto", "Retención cuando el cliente trabaja con la moto", "Cierre con próximos pasos"],
+};
+
+const CASO_SEGUIMIENTO = {
+  transcript: [
+    { who: "exec", t: "0:04", parts: [{ x: "Buenos días don Jorge, le habla Katherine de Auteco Av. 68. Le devuelvo la llamada por la entrega de su Zontes." }] },
+    { who: "client", t: "0:14", parts: [{ x: "Buenas. Mire, " }, { x: "ya van tres semanas y cuando separé me dijeron ocho días", hl: "obj" }, { x: " para el color negro." }] },
+    { who: "exec", t: "0:30", parts: [{ x: "Sí señor, déjeme verificar en el sistema… La orden está confirmada, pero el despacho de bodega todavía no tiene fecha asignada." }] },
+    { who: "client", t: "0:48", parts: [{ x: "¿Cómo así que no tiene fecha? " }, { x: "Yo ya pagué la cuota inicial y el SOAT", hl: "obj" }, { x: "." }] },
+    { who: "exec", t: "1:02", parts: [{ x: "Entiendo su molestia y le pido disculpas. " }, { x: "Le puedo ofrecer la blanca que está disponible en la sede de Kennedy y se la entregamos mañana", hl: "commit" }, { x: "." }] },
+    { who: "client", t: "1:20", parts: [{ x: "Es que yo la quería negra, por eso acepté esperar." }] },
+    { who: "exec", t: "1:34", parts: [{ x: "Le entiendo perfectamente. Cambio de color en la misma unidad no aplica, es directamente como viene de fábrica." }] },
+    { who: "client", t: "1:52", parts: [{ x: "¿Y si mejor me devuelven la plata? " }, { x: "En otro concesionario me dijeron que tienen la Zontes negra disponible", hl: "esc" }, { x: "." }] },
+    { who: "exec", t: "2:10", parts: [{ x: "Antes de eso permítame escalarlo con el jefe de vitrina hoy mismo. " }, { x: "Le confirmo por WhatsApp antes de las 5 de la tarde", hl: "commit" }, { x: "." }] },
+    { who: "client", t: "2:32", parts: [{ x: "Es que " }, { x: "es la tercera vez que me dicen que me confirman", hl: "obj" }, { x: " y nadie me escribe." }] },
+    { who: "exec", t: "2:48", parts: [{ x: "Tiene toda la razón. Esta vez le escribo así no tenga respuesta todavía, para que sepa en qué va el caso." }] },
+    { who: "client", t: "3:10", parts: [{ x: "Bueno. Y la " }, { x: "matrícula", hl: "kw" }, { x: " ¿en qué va?" }] },
+    { who: "exec", t: "3:22", parts: [{ x: "La matrícula se hace cuando se asigne la moto; el SOAT que ya pagó se traslada a la placa nueva, no lo pierde." }] },
+    { who: "client", t: "4:05", parts: [{ x: "Listo, espero su mensaje entonces." }] },
+    { who: "exec", t: "4:20", parts: [{ x: "Gracias por la paciencia, don Jorge. Hoy antes de las 5 le escribo con la fecha de despacho o con la alternativa de la sede de Kennedy." }] },
+    { who: "client", t: "5:40", parts: [{ x: "Ojalá esta vez sí. Hasta luego." }] },
+  ],
+  protocol: [
+    { ok: true, label: "Identificación y contexto del caso", ts: "0:04" },
+    { ok: true, label: "Verificación en sistema antes de responder", ts: "0:30" },
+    { ok: true, label: "Reconocimiento de la molestia", ts: "1:02" },
+    { ok: true, label: "Alternativa concreta ofrecida", ts: "1:02" },
+    { ok: false, label: "Fecha de entrega confirmada con bodega", ts: null },
+    { ok: true, label: "Escalamiento con responsable definido", ts: "2:10" },
+    { ok: false, label: "Argumento de retención frente a la competencia", ts: null },
+    { ok: true, label: "Cierre con próximos pasos claros", ts: "4:20" },
+  ],
+  protocolLabel: "Protocolo de seguimiento de entrega",
+  feedback: "La asesora hace bien lo que está a su alcance: verifica en sistema antes de responder, reconoce la molestia, ofrece una alternativa concreta y escala con responsable. El problema es anterior a esta llamada: la fecha de ocho días se prometió en vitrina sin respaldo de inventario, y este es el tercer contacto sin respuesta.",
+  oportunidades: [
+    "El caso nace de una promesa de entrega sin confirmar (uno de los 37 del período): la causa raíz está en vitrina, no en el seguimiento.",
+    "Cuando el cliente menciona otro concesionario (1:52) no aparece ningún argumento de retención: ni respaldo de red, ni garantía, ni beneficio por la espera.",
+    "No se ofreció compensación ni gesto comercial en un caso con tres incumplimientos acumulados.",
+  ],
+  metricas: [
+    { label: "Satisfacción estimada", tag: true, pct: 40, color: "var(--accent)", val: "2,6/5" },
+    { label: "Alternativa ofrecida", pct: 100, color: "var(--green)", val: "sí" },
+    { label: "Fecha comprometida", pct: 0, color: "var(--accent)", val: "sin fecha", info: "El cliente cierra la conversación sin una fecha de entrega confirmada." },
+    { label: "Ratio de escucha", pct: 46, color: "var(--green)", val: "46% asesora" },
+  ],
+  detecciones: [
+    ["obj", "amber", "Objeciones (4)"],
+    ["commit", "green", "Compromisos (2)"],
+    ["esc", "gray", "Riesgo de pérdida (1)"],
+    ["kw", "brand", "Palabras clave (1)"],
+    ["comp", "purple", "Competencia (0)"],
+  ],
+  chips: [
+    { cls: "brand", icon: "motorcycle", text: "Zontes 200 U1" },
+    { cls: "neu", icon: "paint-bucket", text: "Color negro agotado" },
+    { cls: "red", icon: "warning", text: "Tercer incumplimiento" },
+  ],
+  chipsNota: "El modelo está disponible en otro color y en otra sede: la alternativa existe, lo que falta es una fecha y un responsable.",
+  compromisos: [
+    { k: "Confirmar fecha o alternativa por WhatsApp", v: "hoy 5:00 p. m.", cls: "crit" },
+    { k: "Escalamiento al jefe de vitrina", v: "hoy", cls: "brand" },
+    { k: "Traslado del SOAT a la placa nueva", v: "al asignar la moto", cls: "warn" },
+  ],
+  focos: ["Manejo de promesas de entrega", "Retención frente a la competencia", "Registro y cierre de escalamientos", "Verificación de inventario antes de prometer"],
 };
 
 function Waveform({ progress, onSeek }) {
@@ -2687,6 +2860,9 @@ function InfoTip({ text }) {
 
 function Detail({ onBack, row, drawer, onGoProfile }) {
   const r = row || INTERACCIONES[0];
+  const caso = r.canal === "Taller" ? CASO_TALLER
+    : (r.canal === "WhatsApp" || r.canal === "Call center") ? CASO_SEGUIMIENTO
+    : CASO_VITRINA;
   const [playing, setPlaying] = useState(false);
   const [progress, setProgress] = useState(0.28);
   const [q, setQ] = useState("");
@@ -2698,9 +2874,11 @@ function Detail({ onBack, row, drawer, onGoProfile }) {
   const panelRef = useRef(null);
   const txRef = useRef(null);
 
-  const DUR = 582; // 9m42s
+  const [min, seg] = r.dur.split(":").map(Number);
+  const DUR = min * 60 + seg;
   const fmt = s => Math.floor(s / 60) + ":" + String(Math.round(s % 60)).padStart(2, "0");
 
+  useEffect(() => { setProgress(0.28); setPlaying(false); setQ(""); setSelDetection(null); }, [r.id]);
   useEffect(() => {
     if (!playing) return;
     const id = setInterval(() => setProgress(p => (p >= 1 ? (setPlaying(false), 1) : p + 0.002)), 100);
@@ -2715,7 +2893,7 @@ function Detail({ onBack, row, drawer, onGoProfile }) {
   const seekTo = ts => {
     if (!ts) return;
     const [m, s] = ts.split(":").map(Number);
-    setProgress((m * 60 + s) / DUR);
+    setProgress(Math.min(1, (m * 60 + s) / DUR));
     setPlaying(true);
   };
   const scrollPanelTo = id => {
@@ -2728,7 +2906,7 @@ function Detail({ onBack, row, drawer, onGoProfile }) {
 
   const matches = [];
   if (q.length >= 2) {
-    TRANSCRIPT.forEach((b, bi) => b.parts.forEach((p, pi) => {
+    caso.transcript.forEach((b, bi) => b.parts.forEach((p, pi) => {
       let idx = p.x.toLowerCase().indexOf(q.toLowerCase());
       while (idx !== -1) { matches.push({ bi, pi, idx }); idx = p.x.toLowerCase().indexOf(q.toLowerCase(), idx + 1); }
     }));
@@ -2774,7 +2952,7 @@ function Detail({ onBack, row, drawer, onGoProfile }) {
     return <span key={pi}>{content}</span>;
   };
 
-  const cumplidos = PROTOCOL.filter(p => p.ok).length;
+  const cumplidos = caso.protocol.filter(p => p.ok).length;
 
   return (
     <React.Fragment>
@@ -2796,11 +2974,12 @@ function Detail({ onBack, row, drawer, onGoProfile }) {
       <div className="detail-header">
         <h1>Interacción {r.id}</h1>
         <span className="meta-chip"><Ph name="calendar-blank" />{r.fecha}</span>
-        <span className="meta-chip"><Ph name="clock" />{r.dur} min</span>
+        <span className="meta-chip"><Ph name="clock" />{r.dur}</span>
         <span className="meta-chip"><Ph name="storefront" />{r.sede}</span>
         <span className="meta-chip"><Ph name="map-pin" />{r.puesto}</span>
         <span className={"chip-canal " + canalCls(r.canal)}>{r.canal}</span>
         <span className="meta-chip"><Ph name="motorcycle" />{r.modelo}</span>
+        <span className="meta-chip"><Ph name="wrench" />{r.motivo}</span>
         <span className="meta-chip"><span className="avatar sm">{r.ini}</span>{r.exec}</span>
         <SentPill kind={r.sent} />
       </div>
@@ -2813,7 +2992,7 @@ function Detail({ onBack, row, drawer, onGoProfile }) {
                 <Ph name={playing ? "pause" : "play"} fill />
               </button>
               <Waveform progress={progress} onSeek={p => setProgress(p)} />
-              <span className="player-time">{fmt(progress * DUR)} / 9:42</span>
+              <span className="player-time">{fmt(progress * DUR)} / {r.dur}</span>
             </div>
           </div>
           <div className="tx-search">
@@ -2832,12 +3011,12 @@ function Detail({ onBack, row, drawer, onGoProfile }) {
             ) : null}
           </div>
           <div className="tx-body" ref={txRef}>
-            {TRANSCRIPT.map((b, bi) => (
+            {caso.transcript.map((b, bi) => (
               <div key={bi} className={"bubble-row " + b.who}>
                 <span className={"avatar sm" + (b.who === "client" ? " gray" : "")}>{b.who === "exec" ? r.ini : "CL"}</span>
                 <div className="bubble">
                   <div className="b-meta">
-                    {b.who === "exec" ? r.exec.split(" ")[0] + " (asesora)" : "Cliente"}
+                    {b.who === "exec" ? r.exec.split(" ")[0] + " (asesor)" : "Cliente"}
                     <button onClick={() => seekTo(b.t)} title="Reproducir desde aquí"
                       style={{ border: "none", background: "none", color: "var(--brand)", fontWeight: 600, cursor: "pointer", padding: 0, fontSize: 11 }}>{b.t}</button>
                   </div>
@@ -2854,16 +3033,10 @@ function Detail({ onBack, row, drawer, onGoProfile }) {
               <div className="card-head" style={{ marginBottom: 0 }}>
                 <span className="card-label"><Ph name="sparkle" fill />Lectura de la conversación</span>
               </div>
-              <p>
-                Buena asesoría de fondo: la asesora indagó el uso real de la moto (70 km diarios en domicilios),
-                recomendó un modelo coherente con ese uso, presentó una alternativa más económica y sostuvo la
-                comparación con la competencia con argumentos de consumo y red de talleres, no de precio.
-              </p>
+              <p>{caso.feedback}</p>
               <div style={{ fontSize: 12, fontWeight: 600, textTransform: "uppercase", letterSpacing: "0.05em", color: "var(--accent)", marginTop: 12 }}>Oportunidades</div>
               <ul>
-                <li>El cliente necesita baúl para trabajar y se mencionó el espacio (2:48), pero no se ofreció ni baúl ni casco: venta cruzada perdida.</li>
-                <li>La objeción de cuota inicial (4:32) se resolvió con plazo, sin explorar retoma de la moto actual como parte de pago.</li>
-                <li>No se invitó a la encuesta de satisfacción al cierre.</li>
+                {caso.oportunidades.map(o => <li key={o}>{o}</li>)}
               </ul>
             </section>
 
@@ -2871,37 +3044,28 @@ function Detail({ onBack, row, drawer, onGoProfile }) {
               <div className="card-label">Métricas de la interacción</div>
               <div style={{ marginTop: 8 }}>
                 <div className="metric-row">
-                  <span className="mr-label">Satisfacción estimada <span className="tag-estimado">estimado</span></span>
-                  <div className="mr-bar-track"><div className="mr-bar" style={{ width: "72%", background: "var(--amber)" }}></div></div>
-                  <span className="mr-val">3,6/5</span>
+                  <span className="mr-label">{caso.protocolLabel}</span>
+                  <div className="mr-bar-track"><div className="mr-bar" style={{ width: (cumplidos / caso.protocol.length) * 100 + "%", background: "var(--brand)" }}></div></div>
+                  <span className="mr-val">{cumplidos} de {caso.protocol.length}</span>
                 </div>
-                <div className="metric-row">
-                  <span className="mr-label">Protocolo de asesoría</span>
-                  <div className="mr-bar-track"><div className="mr-bar" style={{ width: (cumplidos / PROTOCOL.length) * 100 + "%", background: "var(--brand)" }}></div></div>
-                  <span className="mr-val">{cumplidos} de {PROTOCOL.length}</span>
-                </div>
-                <div className="metric-row">
-                  <span className="mr-label">Sondeo de uso <InfoTip text="Preguntas sobre kilometraje, tipo de uso y necesidades detectadas antes de recomendar el modelo." /></span>
-                  <div className="mr-bar-track"><div className="mr-bar" style={{ width: "100%", background: "var(--green)" }}></div></div>
-                  <span className="mr-val">completo</span>
-                </div>
-                <div className="metric-row">
-                  <span className="mr-label">Venta cruzada de accesorios</span>
-                  <div className="mr-bar-track"><div className="mr-bar" style={{ width: "0%", background: "var(--accent)" }}></div></div>
-                  <span className="mr-val">0 de 3</span>
-                </div>
-                <div className="metric-row">
-                  <span className="mr-label">Ratio de escucha</span>
-                  <div className="mr-bar-track"><div className="mr-bar" style={{ width: "64%", background: "var(--amber)" }}></div></div>
-                  <span className="mr-val">64% asesora</span>
-                </div>
+                {caso.metricas.map(m => (
+                  <div className="metric-row" key={m.label}>
+                    <span className="mr-label">
+                      {m.label}
+                      {m.tag ? <span className="tag-estimado">estimado</span> : null}
+                      {m.info ? <InfoTip text={m.info} /> : null}
+                    </span>
+                    <div className="mr-bar-track"><div className="mr-bar" style={{ width: m.pct + "%", background: m.color }}></div></div>
+                    <span className="mr-val">{m.val}</span>
+                  </div>
+                ))}
               </div>
             </section>
 
             <section className="card" id="card-protocolo">
               <div className="card-label">Momentos del protocolo</div>
-              <div style={{ marginTop: 8, margin: "8px -8px 0" }}>
-                {PROTOCOL.map(p => (
+              <div style={{ margin: "8px -8px 0" }}>
+                {caso.protocol.map(p => (
                   <button className={"check-row" + (p.ok ? "" : " fail")} key={p.label} onClick={() => seekTo(p.ts)}>
                     <span className={"check-ic " + (p.ok ? "ok" : "no")}><Ph name={p.ok ? "check" : "x"} bold /></span>
                     <span className="check-label">{p.label}</span>
@@ -2914,13 +3078,7 @@ function Detail({ onBack, row, drawer, onGoProfile }) {
             <section className="card" id="card-detecciones">
               <div className="card-label">Detecciones</div>
               <div className="det-chips">
-                {[
-                  ["kw", "brand", "Palabras clave (5)"],
-                  ["commit", "green", "Compromisos (2)"],
-                  ["obj", "amber", "Objeciones (1)"],
-                  ["comp", "purple", "Competencia (1)"],
-                  ["esc", "gray", "Escalaciones (0)"],
-                ].map(([key, color, label]) => (
+                {caso.detecciones.map(([key, color, label]) => (
                   <button key={key} className={"det-chip " + color + (selDetection === key ? " selected" : "")}
                     onClick={() => setSelDetection(selDetection === key ? null : key)}>{label}</button>
                 ))}
@@ -2929,32 +3087,24 @@ function Detail({ onBack, row, drawer, onGoProfile }) {
             </section>
 
             <section className="card" id="card-modelos">
-              <div className="card-label">Modelos y marcas nombrados</div>
+              <div className="card-label">Modelos, repuestos y marcas nombrados</div>
               <div style={{ display: "flex", flexWrap: "wrap", gap: 8, marginTop: 12 }}>
-                <span className="pill brand"><Ph name="motorcycle" />TVS Raider 125</span>
-                <span className="pill neu"><Ph name="motorcycle" />TVS Sport 110 FI</span>
-                <span className="pill red"><Ph name="flag-pennant" />Yamaha</span>
+                {caso.chips.map(c => (
+                  <span className={"pill " + c.cls} key={c.text}><Ph name={c.icon} />{c.text}</span>
+                ))}
               </div>
-              <div className="card-sub" style={{ marginTop: 12 }}>
-                El cliente trajo la comparación con Yamaha por valor de reventa; la respuesta se centró en consumo y red de talleres.
-              </div>
+              <div className="card-sub" style={{ marginTop: 12 }}>{caso.chipsNota}</div>
             </section>
 
             <section className="card" id="card-compromisos">
               <div className="card-label">Compromisos por cumplir</div>
               <div style={{ marginTop: 8 }}>
-                <div className="kv-row">
-                  <span className="kv-k">Cotización y documentos por WhatsApp</span>
-                  <span className="pill sm warn">hoy 6:00 p. m.</span>
-                </div>
-                <div className="kv-row">
-                  <span className="kv-k">Prueba de ruta agendada</span>
-                  <span className="pill sm brand">sáb 10:00 a. m.</span>
-                </div>
-                <div className="kv-row">
-                  <span className="kv-k">Valores del plan de mantenimiento</span>
-                  <span className="pill sm warn">con la cotización</span>
-                </div>
+                {caso.compromisos.map(c => (
+                  <div className="kv-row" key={c.k}>
+                    <span className="kv-k">{c.k}</span>
+                    <span className={"pill sm " + c.cls}>{c.v}</span>
+                  </div>
+                ))}
               </div>
             </section>
           </div>
@@ -2977,14 +3127,12 @@ function Detail({ onBack, row, drawer, onGoProfile }) {
               <option value="" disabled>Seleccione un responsable</option>
               <option>Andrés Felipe Gómez — Jefe de vitrina Guayabal</option>
               <option>Paola Andrea Ríos — Gerente de zona Antioquia</option>
-              <option>Mauricio Alzate — Formación comercial red</option>
+              <option>Mauricio Alzate — Formación comercial de la red</option>
+              <option>Claudia Restrepo — Jefatura de posventa</option>
             </select>
             <label htmlFor="foco">Foco del coaching</label>
-            <select id="foco" defaultValue="Venta cruzada de accesorios">
-              <option>Venta cruzada de accesorios</option>
-              <option>Manejo de objeción de cuota inicial</option>
-              <option>Argumentación frente a la competencia</option>
-              <option>Cierre con próximos pasos</option>
+            <select id="foco" defaultValue={caso.focos[0]}>
+              {caso.focos.map(f => <option key={f}>{f}</option>)}
             </select>
             <label htmlFor="nota">Nota (opcional)</label>
             <textarea id="nota" placeholder="Contexto para el responsable…" value={note} onChange={e => setNote(e.target.value)}></textarea>
@@ -3000,6 +3148,7 @@ function Detail({ onBack, row, drawer, onGoProfile }) {
     </React.Fragment>
   );
 }
+
 </script>
 <script type="text/babel" data-presets="react">
 /* ══════════════════════════════════════════════════════════════════════
@@ -3253,16 +3402,16 @@ function Asesores({ datosInsuficientes, onGoInteractions }) {
 
 /* ══════════════════════ TAB SEDES ══════════════════════ */
 const SEDES_DATA = [
-  { name: "Vitrina Guayabal — Medellín", ciudad: "Medellín", asesores: 6, interacciones: 486, conversion: 21.4, ventas: 104, score: 7.8, resueltas: 341, noResueltas: 21, pruebas: 38 },
-  { name: "Vitrina Bello — Autopista Norte", ciudad: "Medellín", asesores: 4, interacciones: 312, conversion: 19.2, ventas: 60, score: 7.1, resueltas: 214, noResueltas: 18, pruebas: 41 },
-  { name: "Vitrina Envigado — Las Vegas", ciudad: "Medellín", asesores: 3, interacciones: 208, conversion: 17.8, ventas: 37, score: 6.8, resueltas: 142, noResueltas: 12, pruebas: 29 },
-  { name: "Vitrina Bogotá — Av. 68", ciudad: "Bogotá", asesores: 5, interacciones: 398, conversion: 16.4, ventas: 65, score: 6.2, resueltas: 251, noResueltas: 34, pruebas: 22 },
-  { name: "Vitrina Bogotá — Kennedy", ciudad: "Bogotá", asesores: 4, interacciones: 286, conversion: 14.1, ventas: 40, score: 5.9, resueltas: 176, noResueltas: 28, pruebas: 18 },
-  { name: "Vitrina Cali — Pasoancho", ciudad: "Cali", asesores: 4, interacciones: 264, conversion: 13.2, ventas: 35, score: 5.6, resueltas: 158, noResueltas: 31, pruebas: 16 },
-  { name: "Vitrina Barranquilla — Vía 40", ciudad: "Barranquilla", asesores: 3, interacciones: 182, conversion: 15.8, ventas: 29, score: 6.4, resueltas: 118, noResueltas: 14, pruebas: 24 },
-  { name: "Vitrina Bucaramanga — Cra. 27", ciudad: "Bucaramanga", asesores: 3, interacciones: 148, conversion: 12.8, ventas: 19, score: 5.4, resueltas: 92, noResueltas: 17, pruebas: 21 },
-  { name: "Vitrina Pereira — Av. 30 de Agosto", ciudad: "Pereira", asesores: 3, interacciones: 134, conversion: 11.9, ventas: 16, score: 5.1, resueltas: 78, noResueltas: 22, pruebas: 14 },
-  { name: "Vitrina Villavicencio — Anillo Vial", ciudad: "Villavicencio", asesores: 2, interacciones: 96, conversion: 18.7, ventas: 18, score: 6.9, resueltas: 62, noResueltas: 8, pruebas: 33 },
+  { name: "Vitrina Guayabal — Medellín", corto: "Guayabal", ciudad: "Medellín", asesores: 6, interacciones: 486, conversion: 21.4, ventas: 104, score: 7.8, resueltas: 341, noResueltas: 21, pruebas: 38 },
+  { name: "Vitrina Bello — Autopista Norte", corto: "Bello", ciudad: "Medellín", asesores: 4, interacciones: 312, conversion: 19.2, ventas: 60, score: 7.1, resueltas: 214, noResueltas: 18, pruebas: 41 },
+  { name: "Vitrina Envigado — Las Vegas", corto: "Envigado", ciudad: "Medellín", asesores: 3, interacciones: 208, conversion: 17.8, ventas: 37, score: 6.8, resueltas: 142, noResueltas: 12, pruebas: 29 },
+  { name: "Vitrina Bogotá — Av. 68", corto: "Av. 68", ciudad: "Bogotá", asesores: 5, interacciones: 398, conversion: 16.4, ventas: 65, score: 6.2, resueltas: 251, noResueltas: 34, pruebas: 22 },
+  { name: "Vitrina Bogotá — Kennedy", corto: "Kennedy", ciudad: "Bogotá", asesores: 4, interacciones: 286, conversion: 14.1, ventas: 40, score: 5.9, resueltas: 176, noResueltas: 28, pruebas: 18 },
+  { name: "Vitrina Cali — Pasoancho", corto: "Pasoancho", ciudad: "Cali", asesores: 4, interacciones: 264, conversion: 13.2, ventas: 35, score: 5.6, resueltas: 158, noResueltas: 31, pruebas: 16 },
+  { name: "Vitrina Barranquilla — Vía 40", corto: "Vía 40", ciudad: "Barranquilla", asesores: 3, interacciones: 182, conversion: 15.8, ventas: 29, score: 6.4, resueltas: 118, noResueltas: 14, pruebas: 24 },
+  { name: "Vitrina Bucaramanga — Cra. 27", corto: "Cra. 27", ciudad: "Bucaramanga", asesores: 3, interacciones: 148, conversion: 12.8, ventas: 19, score: 5.4, resueltas: 92, noResueltas: 17, pruebas: 21 },
+  { name: "Vitrina Pereira — Av. 30 de Agosto", corto: "Av. 30 de Agosto", ciudad: "Pereira", asesores: 3, interacciones: 134, conversion: 11.9, ventas: 16, score: 5.1, resueltas: 78, noResueltas: 22, pruebas: 14 },
+  { name: "Vitrina Villavicencio — Anillo Vial", corto: "Anillo Vial", ciudad: "Villavicencio", asesores: 2, interacciones: 96, conversion: 18.7, ventas: 18, score: 6.9, resueltas: 62, noResueltas: 8, pruebas: 33 },
 ];
 
 function Sedes({ onGoInteractions }) {
@@ -3281,10 +3430,10 @@ function Sedes({ onGoInteractions }) {
         <TeamKpi label="Índice de la red" value="6,3" icon="medal" tint="var(--amber-bg)" iconColor="var(--amber)" />
       </KpiRow>
 
-      <HBarList span={6} title="Volumen de conversaciones por sede" items={SEDES_DATA.map(s => ({ name: s.ciudad + " · " + s.name.split("— ")[0].replace("Vitrina ", ""), n: s.interacciones }))}
+      <HBarList span={6} title="Volumen de conversaciones por sede" items={SEDES_DATA.map(s => ({ name: s.ciudad + " · " + s.corto, n: s.interacciones, q: s.name }))}
         max={maxInt} onDrill={onGoInteractions} />
       <HBarList span={6} title="Invitación a prueba de ruta por sede" sub="% de visitas con prueba agendada"
-        items={SEDES_DATA.map(s => ({ name: s.name.replace("Vitrina ", "").split(" —")[0], n: s.pruebas, color: s.pruebas >= 30 ? "var(--green)" : s.pruebas >= 20 ? "var(--amber)" : "var(--accent)" }))}
+        items={SEDES_DATA.map(s => ({ name: s.ciudad + " · " + s.corto, n: s.pruebas, q: s.name, color: s.pruebas >= 30 ? "var(--green)" : s.pruebas >= 20 ? "var(--amber)" : "var(--accent)" }))}
         max={45} unit="%" onDrill={onGoInteractions} />
 
       <section className="card span-12">
