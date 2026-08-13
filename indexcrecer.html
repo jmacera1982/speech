@@ -3,8 +3,8 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Speech Analytics — Seguros Crecer</title>
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 131 133'%3E%3Crect width='131' height='133' rx='18' fill='%237B2FE8'/%3E%3Ccircle cx='111' cy='112' r='32' fill='%23fff'/%3E%3Ccircle cx='111' cy='112' r='27.5' fill='%235E18C7'/%3E%3C/svg%3E">
+<title>Speech Analytics — Compañía de Seguros</title>
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='8' fill='%237B2FE8'/%3E%3Cg fill='%23fff'%3E%3Crect x='7' y='13' width='3' height='6' rx='1.5'/%3E%3Crect x='12.5' y='9' width='3' height='14' rx='1.5'/%3E%3Crect x='18' y='5' width='3' height='22' rx='1.5'/%3E%3Crect x='23.5' y='11' width='3' height='10' rx='1.5'/%3E%3C/g%3E%3C/svg%3E">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -1025,17 +1025,17 @@ table.export-preview th{background:#F0F0F3;font-weight:600;color:var(--ink-2);}
 
 <script type="text/babel" data-presets="react">
 /* ══════════════════════════════════════════════════════════════════════
-   SPEECH ANALYTICS — SEGUROS CRECER
+   SPEECH ANALYTICS — COMPAÑÍA DE SEGUROS
    Prototipo de tablero de analítica de conversaciones para una compañía
    de seguros dominicana: sucursales, centro de contacto, WhatsApp e
    intermediarios.
 
    Mismo formato y mismos colores de "Speech Analytics Promerica.html"
    (speech-app/app.css): se conservan los tokens, la tipografía y los
-   componentes. Lo que cambia es el negocio: el vocabulario de
-   seguroscrecer.com — ramos para ti y para tu empresa, prima, deducible,
+   componentes. Lo que cambia es el negocio: el vocabulario del ramo
+   asegurador — ramos para ti y para tu empresa, prima, deducible,
    coberturas, reclamaciones auto, red de talleres afiliados, cristales,
-   Rent-a-Car, pago en línea y app Crecer — y la operación de República
+   Rent-a-Car, pago en línea y app móvil — y la operación de República
    Dominicana (DIGESETT, marbete, Ley 4117, montos en RD$).
    ══════════════════════════════════════════════════════════════════════ */
 
@@ -1189,7 +1189,7 @@ const TEMAS = [
       "Nadie me dijo que yo tenía derecho a un carro mientras reparan el mío.",
       "Lo del cristal fue rapidísimo, eso sí lo tengo que reconocer.",
     ] },
-  { name: "Pago en línea y app Crecer", vol: 176, q: "Pago de prima y cuotas", nuevo: true, sent: "positiva",
+  { name: "Pago en línea y app móvil", vol: 176, q: "Pago de prima y cuotas", nuevo: true, sent: "positiva",
     headline: "Tema nuevo del período: entra por comodidad, se traba en el primer registro",
     sintesis: "Aparece por primera vez con volumen propio y con el mejor sentimiento del tablero. El cliente quiere pagar y consultar su póliza sin llamar; las dudas se repiten y son fáciles de estandarizar: cómo registrarse, por qué no aparece la póliza y cómo obtener el recibo.",
     recos: [
@@ -1252,17 +1252,18 @@ function Ph({ name, fill, bold, style, className }) {
   return <i className={base + name + (className ? " " + className : "")} style={style}></i>;
 }
 
-/* Marca Crecer en versión monocromática, dentro de la paleta del sistema:
-   se conserva el trazo del logo (cuadrado redondeado con el círculo
-   desprendido en la esquina) sin sumar colores nuevos. */
-function CrecerMark({ size = 26, mono }) {
+/* Marca genérica del tablero: una onda de voz monocromática dentro de la
+   paleta del sistema, sin identidad de marca de ninguna compañía. */
+function BrandMark({ size = 26, mono }) {
   const base = mono ? "#fff" : "var(--purple)";
-  const gap = mono ? "var(--purple)" : "#fff";
   return (
-    <svg width={size} height={size} viewBox="0 0 131 133" aria-hidden="true">
-      <path d="M17.8 0h95.2C122.8 0 130.8 8 130.8 17.8v97C130.8 124.7 122.8 132.6 113 132.6H17.8C8 132.6 0 124.7 0 114.8v-97C0 8 8 0 17.8 0z" fill={base}></path>
-      <circle cx="111.1" cy="112" r="32.4" fill={gap}></circle>
-      <circle cx="111.1" cy="112" r="27.5" fill={base}></circle>
+    <svg width={size} height={size} viewBox="0 0 32 32" aria-hidden="true">
+      <g fill={base}>
+        <rect x="4" y="13" width="3.4" height="6" rx="1.7"></rect>
+        <rect x="10.3" y="9" width="3.4" height="14" rx="1.7"></rect>
+        <rect x="16.6" y="5" width="3.4" height="22" rx="1.7"></rect>
+        <rect x="22.9" y="11.5" width="3.4" height="9" rx="1.7"></rect>
+      </g>
     </svg>
   );
 }
@@ -1468,7 +1469,7 @@ const EMPTY_FILTERS = { periodo: null, sedes: [], canales: [], asesores: [], mod
 function Sidebar() {
   return (
     <nav className="sidebar" aria-label="Navegación principal">
-      <div className="logo" title="Seguros Crecer"><CrecerMark size={20} mono /></div>
+      <div className="logo" title="Speech Analytics"><BrandMark size={20} mono /></div>
       <button className="nav-item" title="Inicio" aria-label="Inicio"><Ph name="house" /></button>
       <button className="nav-item" title="Oficinas" aria-label="Oficinas"><Ph name="buildings" /></button>
       <button className="nav-item active" title="Speech Analytics" aria-label="Speech Analytics" aria-current="page"><Ph name="waveform" fill /></button>
@@ -2511,8 +2512,8 @@ function Ventas({ onDrill, onOpenModel }) {
     { name: "Libertad de elegir el taller", n: 224 },
     { name: "Rent-a-Car mientras reparan el vehículo", n: 196 },
     { name: "Rapidez en el pago de la reclamación", n: 162 },
-    { name: "Pago en línea y app Crecer", n: 124 },
-    { name: "Solvencia y respaldo de las empresas Crecer", n: 86 },
+    { name: "Pago en línea y app móvil", n: 124 },
+    { name: "Solvencia y respaldo de la compañía", n: 86 },
   ];
   return (
     <div className="grid">
@@ -2975,7 +2976,7 @@ const HL_TYPES = {
 
 const CASO_VENTA = {
   transcript: [
-    { who: "exec", t: "0:04", parts: [{ x: "Buenos días, bienvenida a Seguros Crecer, mi nombre es Yohanna. ¿En qué le puedo servir hoy?" }] },
+    { who: "exec", t: "0:04", parts: [{ x: "Buenos días, bienvenida al centro de atención, mi nombre es Yohanna. ¿En qué le puedo servir hoy?" }] },
     { who: "client", t: "0:12", parts: [{ x: "Buenos días. Acabo de comprar un carro y el banco me está pidiendo una " }, { x: "póliza full", hl: "kw" }, { x: " para poder desembolsar." }] },
     { who: "exec", t: "0:32", parts: [{ x: "Con mucho gusto. Para cotizarle bien: ¿qué vehículo es, de qué año y quién lo va a conducir principalmente?" }] },
     { who: "client", t: "0:44", parts: [{ x: "Es una Toyota RAV4 del 2022. La manejo yo y a veces mi esposo, para ir al trabajo aquí en la capital." }] },
@@ -3011,7 +3012,7 @@ const CASO_VENTA = {
   oportunidades: [
     "El deducible aparece en 4:05, después del monto de la prima, y ahí nace la única objeción de la conversación: es el patrón que se repite en 148 cotizaciones del período.",
     "La clienta acaba de comprar un vehículo y tiene préstamo bancario: no se le ofreció ni hogar ni vida, la venta cruzada natural.",
-    "No se mencionó el pago en línea ni la app Crecer, que es lo que sostiene la persistencia de la prima.",
+    "No se mencionó el pago en línea ni la app móvil, que es lo que sostiene la persistencia de la prima.",
     "No se invitó a la encuesta de satisfacción al cierre.",
   ],
   metricas: [
@@ -3043,7 +3044,7 @@ const CASO_VENTA = {
 
 const CASO_RECLAMO = {
   transcript: [
-    { who: "exec", t: "0:03", parts: [{ x: "Seguros Crecer, buenos días, le habla Juan Carlos. ¿Me facilita su número de póliza o su cédula?" }] },
+    { who: "exec", t: "0:03", parts: [{ x: "Buenos días, le habla Juan Carlos del centro de atención. ¿Me facilita su número de póliza o su cédula?" }] },
     { who: "client", t: "0:11", parts: [{ x: "Buenos días. Tuve un accidente ayer en la Charles de Gaulle y quiero abrir la " }, { x: "reclamación", hl: "kw" }, { x: "." }] },
     { who: "exec", t: "0:26", parts: [{ x: "Lamento lo ocurrido. ¿Hubo personas lesionadas y el otro vehículo estaba asegurado?" }] },
     { who: "client", t: "0:38", parts: [{ x: "No, gracias a Dios nadie salió herido. El otro carro no tiene seguro y yo tengo full cobertura con ustedes." }] },
@@ -3112,7 +3113,7 @@ const CASO_RECLAMO = {
 
 const CASO_SEGUIMIENTO = {
   transcript: [
-    { who: "exec", t: "0:04", parts: [{ x: "Buenos días don Jorge, le habla Massiel de Seguros Crecer. Le devuelvo el mensaje por el estatus de su reclamación." }] },
+    { who: "exec", t: "0:04", parts: [{ x: "Buenos días don Jorge, le habla Massiel del área de reclamaciones. Le devuelvo el mensaje por el estatus de su reclamación." }] },
     { who: "client", t: "0:14", parts: [{ x: "Buenas. Mire, " }, { x: "ya van tres semanas y cuando reporté me dijeron que en diez días me pagaban", hl: "obj" }, { x: "." }] },
     { who: "exec", t: "0:30", parts: [{ x: "Sí señor, déjeme verificar en el sistema… El ajuste ya está aprobado, pero el desembolso todavía no tiene fecha asignada." }] },
     { who: "client", t: "0:48", parts: [{ x: "¿Cómo que no tiene fecha? " }, { x: "Yo entregué todos los documentos hace tres semanas", hl: "obj" }, { x: "." }] },
@@ -3924,7 +3925,7 @@ function ExportPreviewModal({ tab, format, onClose }) {
           </span>
           <div>
             <div style={{ fontSize: 15, fontWeight: 600 }}>Vista previa de exportación — {tab}</div>
-            <div style={{ fontSize: 12.5, color: "var(--ink-3)" }}>{fmtLabel} · {sheets.length} {sheets.length === 1 ? "hoja" : "hojas"} · Seguros Crecer · red de oficinas</div>
+            <div style={{ fontSize: 12.5, color: "var(--ink-3)" }}>{fmtLabel} · {sheets.length} {sheets.length === 1 ? "hoja" : "hojas"} · Compañía de Seguros · red de oficinas</div>
           </div>
           <div style={{ marginLeft: "auto", display: "flex", gap: 8 }}>
             <button className="btn-primary" style={{ display: "inline-flex", alignItems: "center", gap: 6 }} onClick={onClose}>
@@ -3990,7 +3991,7 @@ const ACCIONES_INFORME = [
   { t: "Ofrecer Rent-a-Car al abrir el expediente, no cuando el cliente lo reclama",
     d: "88 expedientes elegibles no recibieron la oferta. Es el beneficio mejor valorado del período y el que menos se menciona.",
     dueno: "Servicio al cliente", impacto: "Medio" },
-  { t: "Guion de tres pasos para el primer registro en la app Crecer",
+  { t: "Guion de tres pasos para el primer registro en la app móvil",
     d: "Tema nuevo con 176 menciones y preguntas repetidas: cómo registrarse, por qué no aparece la póliza y cómo obtener el recibo.",
     dueno: "Canales digitales", impacto: "Medio" },
 ];
@@ -4012,10 +4013,10 @@ function InformeModal({ onClose }) {
       <div className="report-modal" role="dialog" aria-modal="true" aria-label="Informe del período" onClick={e => e.stopPropagation()}
         style={{ width: "88%", height: "92%", maxWidth: 1080, minWidth: 320, background: "#fff", borderRadius: 12, boxShadow: "0 24px 64px rgba(7,29,58,0.35)", overflow: "hidden", display: "flex", flexDirection: "column" }}>
         <div className="report-toolbar" style={{ display: "flex", alignItems: "center", gap: 10, padding: "12px 20px", borderBottom: "1px solid var(--border)", flexShrink: 0, flexWrap: "wrap" }}>
-          <CrecerMark size={30} />
+          <BrandMark size={30} />
           <div>
             <div style={{ fontSize: 15, fontWeight: 600 }}>Informe del período</div>
-            <div style={{ fontSize: 12, color: "var(--ink-3)" }}>Seguros Crecer · red de oficinas · {PERIODO.rango}</div>
+            <div style={{ fontSize: 12, color: "var(--ink-3)" }}>Compañía de Seguros · red de oficinas · {PERIODO.rango}</div>
           </div>
           <div style={{ marginLeft: "auto", display: "flex", gap: 8 }}>
             {!loading ? (
@@ -4052,10 +4053,10 @@ function InformeModal({ onClose }) {
               {/* La cabecera va dentro de la hoja para que el PDF quede identificado */}
               <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 18, flexWrap: "wrap" }}>
                 <span style={{ width: 36, height: 36, borderRadius: 8, background: "#fff", display: "flex", alignItems: "center", justifyContent: "center", flexShrink: 0 }}>
-                  <CrecerMark size={24} />
+                  <BrandMark size={24} />
                 </span>
                 <div>
-                  <div style={{ fontSize: 15, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase" }}>Seguros Crecer</div>
+                  <div style={{ fontSize: 15, fontWeight: 600, letterSpacing: "0.06em", textTransform: "uppercase" }}>Compañía de Seguros</div>
                   <div className="rh-kicker">Speech Analytics · sucursales, centro de contacto e intermediarios</div>
                 </div>
                 <span style={{ marginLeft: "auto", fontSize: 12, opacity: 0.85 }}>{PERIODO.rango}</span>
@@ -4225,7 +4226,7 @@ function App() {
             <div className="page-sub">Sucursales, centro de contacto e intermediarios · {PERIODO.label} ({PERIODO.rango})</div>
           </div>
           <span className="tenant-chip" style={{ marginLeft: 8 }}>
-            <span className="tc-dot"><CrecerMark size={13} /></span>Seguros Crecer
+            <span className="tc-dot"><BrandMark size={13} /></span>Compañía de Seguros
           </span>
           <div style={{ display: "flex", gap: 8, marginLeft: "auto", alignItems: "center", flexWrap: "wrap" }}>
             <button className="chip" onClick={() => setDemoOpen(!demoOpen)} aria-pressed={demoOpen}>
