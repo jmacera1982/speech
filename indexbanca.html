@@ -1274,32 +1274,6 @@ Object.assign(window, { Ph, BrandMark, Sparkline, Trend, SentPill, MetricCard, I
 /* ── Pantalla 1 — Tablero principal (tab Resumen) ── */
 const { useState: useStateD } = React;
 
-function Donut() {
-  const C = 2 * Math.PI * 60; // 376.99
-  const segs = [
-    { p: 55, color: "#1A7F5A" },
-    { p: 25, color: "#9CA3AF" },
-    { p: 20, color: "#991B1B" },
-  ];
-  let off = 0;
-  return (
-    <svg width="150" height="150" viewBox="0 0 150 150" aria-hidden="true">
-      <circle cx="75" cy="75" r="60" fill="none" stroke="#F0F0F3" strokeWidth="16"></circle>
-      {segs.map((s, i) => {
-        const dash = (s.p / 100) * C;
-        const el = (
-          <circle key={i} cx="75" cy="75" r="60" fill="none" stroke={s.color} strokeWidth="16"
-            strokeDasharray={`${dash} ${C}`} strokeDashoffset={-off} transform="rotate(-90 75 75)"></circle>
-        );
-        off += dash;
-        return el;
-      })}
-      <text x="75" y="73" textAnchor="middle" style={{ fontSize: 26, fontWeight: 600, letterSpacing: "-0.5px", fill: "var(--ink)", fontFamily: "Inter" }}>55%</text>
-      <text x="75" y="92" textAnchor="middle" style={{ fontSize: 11, fill: "var(--ink-3)", fontFamily: "Inter" }}>positivo</text>
-    </svg>
-  );
-}
-
 function ComplianceCard({ locked, onDrill }) {
   const rows = [
     { name: "Validación de identidad no detectada", n: "4 casos", sev: "crit", sevLabel: "Crítica", trend: "up" },
@@ -1354,14 +1328,14 @@ const TEMAS = [
     quotes: ["¿Me podía haber traído todo de una vez si alguien me decía qué papeles pedían…", "La tasa me conviene, pero llevo dos semanas esperando la pre-aprobación."] },
   { name: "Reclamo de cargos", vol: 358, delta: 9, sent: "negativa",
     headline: "Principal motor de escalaciones del período",
-    sintesis: "Los reclamos por cargos no reconocidos suben por segunda semana consecutiva y concentran la mayoría de las escalaciones a defensoría. Los clientes reiteran que ya reclamaron antes por el mismo motivo sin resolución visible.",
+    sintesis: "Los reclamos por cargos no reconocidos suben por segunda semana consecutiva y concentran la mayoría de las escalaciones a atención al cliente. Los clientes reiteran que ya reclamaron antes por el mismo motivo sin resolución visible.",
     recos: [
       { text: "Priorizar seguimiento de reclamos reiterados", ev: "52 interacciones con reclamo previo" },
     ],
     quotes: ["Esto ya me pasó antes y nadie me solucionó nada.", "Si no me devuelven el cargo esta semana, me cambio de banco."] },
   { name: "App móvil", vol: 291, nuevo: true, sent: "negativa",
-    headline: "Operaciones que fallan en línea llegan a sucursal",
-    sintesis: "Tema nuevo en el período: los clientes llegan a la sucursal después de no poder completar operaciones en la app, principalmente actualización de clave y límites de transferencia. La visita se percibe como un trámite forzado.",
+    headline: "Operaciones que fallan en línea llegan a la agencia",
+    sintesis: "Tema nuevo en el período: los clientes llegan a la agencia después de no poder completar operaciones en la app, principalmente actualización de clave y límites de transferencia. La visita se percibe como un trámite forzado.",
     recos: [
       { text: "Reportar a equipo digital los 2 flujos que más fallan", ev: "clave 118, límites 74 interacciones" },
     ],
@@ -1373,7 +1347,7 @@ const TEMAS = [
     quotes: ["Salí con la cuenta lista y la tarjeta pedida en la misma visita."] },
   { name: "Solicitud de tarjeta digital", vol: 208, delta: 18, sent: "mixta",
     headline: "Alta demanda, activación confusa",
-    sintesis: "La demanda crece fuerte tras la campaña vigente, pero la activación en dos pasos (sucursal + app) genera confusión: parte de los clientes vuelve a consultar cómo terminar el proceso que creía completo.",
+    sintesis: "La demanda crece fuerte tras la campaña vigente, pero la activación en dos pasos (agencia + app) genera confusión: parte de los clientes vuelve a consultar cómo terminar el proceso que creía completo.",
     recos: [
       { text: "Entregar instructivo de activación al cierre de la visita", ev: "31 reconsultas en el período" },
     ],
@@ -1383,14 +1357,6 @@ const TEMAS = [
     sintesis: "El sentimiento sigue positivo y las consultas son de calidad, pero 7 de las 23 oportunidades comerciales no capturadas del período corresponden a este tema: el cliente pregunta y el ejecutivo no deriva ni agenda.",
     recos: null,
     quotes: ["¿Me conviene juntar mis ahorros en una cuenta de inversión?"] },
-];
-
-const KEYWORDS_NUBE = [
-  ["crédito hipotecario", 412], ["reclamo de cargos", 358], ["app móvil", 291],
-  ["apertura de cuenta", 244], ["tarjeta digital", 208], ["inversiones", 186],
-  ["tasa de interés", 158], ["cargo duplicado", 134], ["clave bloqueada", 121],
-  ["transferencias", 110], ["fondos mutuos", 96], ["dividendo", 84],
-  ["seguro de vida", 71], ["reprogramación", 63], ["portabilidad", 48],
 ];
 
 function DeltaBadge({ t }) {
@@ -1403,81 +1369,6 @@ function DeltaBadge({ t }) {
   );
 }
 
-function NubePalabras() {
-  const max = KEYWORDS_NUBE[0][1];
-  return (
-    <div className="nube">
-      {KEYWORDS_NUBE.map(([w, n]) => (
-        <span key={w} className="nube-word" title={n + " menciones"}
-          style={{ fontSize: 12 + (n / max) * 14, opacity: 0.55 + (n / max) * 0.45 }}>{w}</span>
-      ))}
-    </div>
-  );
-}
-
-function InsightCard({ t, onDrillTopic, full }) {
-  const [open, setOpen] = useStateD(!!full);
-  return (
-    <article className="insight-card">
-      <div className="ic-top">
-        <span className="ic-title">{t.name}</span>
-        <SentPill kind={SENT_KIND[t.sent]} label={SENT_LABEL[t.sent]} />
-      </div>
-      <div className="ic-meta">
-        <span>{t.vol} interacciones</span>
-        <DeltaBadge t={t} />
-      </div>
-      <div className="ic-headline">{t.headline}</div>
-      <p className={"ic-prosa" + (open ? " open" : "")}>{t.sintesis}</p>
-      {!full ? (
-        <button className="ic-more" onClick={() => setOpen(!open)} aria-expanded={open}>{open ? "ver menos" : "ver más"}</button>
-      ) : null}
-      {full && t.recos ? (
-        <div className="ic-recos">
-          <div className="ic-recos-title"><Ph name="lightbulb" fill />Próximos pasos</div>
-          {t.recos.map(r => (
-            <div className="ic-reco" key={r.text}>
-              {r.text} <span className="ic-ev">({r.ev})</span>
-            </div>
-          ))}
-        </div>
-      ) : null}
-      <button className="ic-drill" onClick={() => onDrillTopic(t)}>Ver interacciones →</button>
-    </article>
-  );
-}
-
-function InsightsTemas({ nubeHabilitada, onDrillTopic, full }) {
-  const [modo, setModo] = useStateD("temas");
-  const temas = [...TEMAS].sort((a, b) => b.vol - a.vol);
-  return (
-    <section className="card span-12" data-screen-label="Insights por temas">
-      <div className="insights-head">
-        <span className="card-title" style={{ display: "inline-flex", alignItems: "center", gap: 7 }}>
-          <Ph name="sparkle" fill style={{ color: "var(--purple)" }} />Insights por temas
-          <span style={{ fontSize: 12, fontWeight: 400, color: "var(--ink-3)" }}>· período analizado: {PERIODO_INFORME}</span>
-        </span>
-        <div style={{ display: "flex", gap: 8, alignItems: "center", flexWrap: "wrap" }}>
-          {nubeHabilitada ? (
-            <div className="seg" role="tablist" aria-label="Modo de vista">
-              <button className={"seg-btn" + (modo === "temas" ? " on" : "")} onClick={() => setModo("temas")}>Temas</button>
-              <button className={"seg-btn" + (modo === "nube" ? " on" : "")} onClick={() => setModo("nube")}>Nube</button>
-            </div>
-          ) : null}
-        </div>
-      </div>
-      {modo === "nube" && nubeHabilitada ? (
-        <div style={{ minHeight: 220, display: "flex" }}><NubePalabras /></div>
-      ) : (
-        <div className="insights-grid">
-          {temas.map(t => <InsightCard key={t.name} t={t} onDrillTopic={onDrillTopic} full={full} />)}
-        </div>
-      )}
-    </section>
-  );
-}
-
-/* ── Teaser de temas (puente al tab Temas) ── */
 /* ── Temas del período: donut top 5 + otros ── */
 const TEMA_COLORS = ["var(--purple)", "#0072B2", "#56B4E9", "#E69F00", "#CC79A7", "#9CA3AF"]; // paleta Okabe–Ito (apta daltonismo)
 function TemasTeaser({ onGoTemas, onDrillTopic }) {
@@ -1540,9 +1431,9 @@ function TemasTeaser({ onGoTemas, onDrillTopic }) {
 /* ── Drill-down de tema (se muestra en drawer) ── */
 function TopicDetail({ topic, onClose, onOpenDetail }) {
   const asociadas = [
-    { id: "#4521", fecha: "15 jun, 11:42", exec: "María González", ini: "MG", sent: "neu" },
-    { id: "#4515", fecha: "15 jun, 10:48", exec: "Lucía Vergara", ini: "LV", sent: "neg" },
-    { id: "#4499", fecha: "15 jun, 09:02", exec: "Ana Riquelme", ini: "AR", sent: "pos" },
+    { id: "#4521", fecha: "15 jul, 11:42", exec: "María González", ini: "MG", sent: "neu" },
+    { id: "#4515", fecha: "15 jul, 10:48", exec: "Carlos Fuentes", ini: "CF", sent: "neg" },
+    { id: "#4499", fecha: "15 jul, 09:02", exec: "Ana Riquelme", ini: "AR", sent: "pos" },
   ];
   return (
     <React.Fragment>
@@ -1561,6 +1452,19 @@ function TopicDetail({ topic, onClose, onOpenDetail }) {
         <p style={{ fontWeight: 600 }}>{topic.headline}</p>
         <p style={{ marginTop: 6 }}>{topic.sintesis}</p>
       </section>
+      {topic.recos ? (
+        <section className="card" style={{ marginBottom: 16 }}>
+          <div className="card-label"><Ph name="lightbulb" fill />Próximos pasos</div>
+          <div className="comp-list" style={{ margin: "0 -12px" }}>
+            {topic.recos.map(r => (
+              <div className="comp-row" key={r.text} style={{ cursor: "default" }}>
+                <span className="comp-name">{r.text}</span>
+                <span className="comp-count">{r.ev}</span>
+              </div>
+            ))}
+          </div>
+        </section>
+      ) : null}
       <section className="card" style={{ marginBottom: 16 }}>
         <div className="card-label">Frases textuales de ejemplo</div>
         <div style={{ display: "flex", flexDirection: "column", gap: 10, marginTop: 10 }}>
@@ -1598,7 +1502,7 @@ const HM_DIAS = ["Lun", "Mar", "Mié", "Jue", "Vie", "Sáb"];
 const HM_HORAS = [9, 10, 11, 12, 13, 14, 15, 16, 17];
 
 function hmValue(suc, d, h) {
-  // mock determinista: pico media mañana y mediodía, sábado corto, variación por sucursal
+  // mock determinista: pico media mañana y mediodía, sábado corto, variación por agencia
   const base = Math.exp(-Math.pow(h - 11.2, 2) / 8) * 0.75 + Math.exp(-Math.pow(h - 13.5, 2) / 3) * 0.5;
   const dia = d === 5 ? (h > 13 ? 0 : 0.55) : 1 - Math.abs(d - 1.5) * 0.07;
   const seed = Math.abs(Math.sin((suc + 1) * 3.7 + d * 1.3 + h * 0.9)) * 0.22;
@@ -2127,7 +2031,6 @@ function InformeModal({ onClose }) {
 
 window.Dashboard = Dashboard;
 window.TopicDetail = TopicDetail;
-window.InsightsTemas = InsightsTemas;
 window.InformeModal = InformeModal;
 
 /* Banner de configuración pendiente (3 pasos) */
@@ -2413,7 +2316,7 @@ const TRANSCRIPT = [
   { who: "client", t: "0:14", parts: [{ x: "Hola, llamo porque me llegó un " }, { x: "cargo que no reconozco", hl: "kw" }, { x: " en mi tarjeta de crédito." }] },
   { who: "exec", t: "0:48", parts: [{ x: "Entiendo. Para poder revisar su cuenta necesito validar su identidad. ¿Me indica su número de documento y los últimos cuatro dígitos de su tarjeta?" }] },
   { who: "client", t: "1:10", parts: [{ x: "Sí, es 14.302.558 y la tarjeta termina en 7742." }] },
-  { who: "exec", t: "2:10", parts: [{ x: "Perfecto, confirmo entonces: un cargo no reconocido por $48.990 del 12 de junio. ¿Es correcto?" }] },
+  { who: "exec", t: "2:10", parts: [{ x: "Perfecto, confirmo entonces: un cargo no reconocido por $48.990 del 12 de julio. ¿Es correcto?" }] },
   { who: "client", t: "2:24", parts: [{ x: "Exacto. La verdad " }, { x: "esto ya me pasó antes y nadie me solucionó nada", hl: "obj" }, { x: ". Estoy evaluando cambiarme de banco." }] },
   { who: "exec", t: "2:41", parts: [{ x: "Lamento esa experiencia. Voy a dejar el reclamo ingresado ahora mismo y " }, { x: "le voy a enviar el comprobante por correo antes de las 18:00", hl: "commit" }, { x: "." }] },
   { who: "client", t: "3:15", parts: [{ x: "Está bien. ¿Y cuánto demora la devolución?" }] },
@@ -2601,7 +2504,7 @@ function Detail({ onBack, locked, drawer }) {
 
       <div className="detail-header">
         <h1>Interacción #4521</h1>
-        <span className="meta-chip"><Ph name="calendar-blank" style={{ fontSize: 13 }} />15 jun 2026, 11:42</span>
+        <span className="meta-chip"><Ph name="calendar-blank" style={{ fontSize: 13 }} />15 jul 2026, 11:42</span>
         <span className="meta-chip"><Ph name="clock" style={{ fontSize: 13 }} />8m 12s</span>
         <span className="meta-chip"><Ph name="buildings" style={{ fontSize: 13 }} />Agencia Centro</span>
         <span className="meta-chip"><Ph name="cash-register" style={{ fontSize: 13 }} />Caja 3</span>
@@ -2694,6 +2597,24 @@ function Detail({ onBack, locked, drawer }) {
               </div>
             </section>
 
+            <section className="card" id="card-protocolo">
+              <div className="card-head" style={{ marginBottom: 4 }}>
+                <span className="card-label">Cumplimiento de protocolo</span>
+                <span style={{ fontSize: 12, color: "var(--ink-3)" }}>{PROTOCOL.filter(p => p.ok).length} de {PROTOCOL.length}</span>
+              </div>
+              <div style={{ margin: "6px -8px 0" }}>
+                {PROTOCOL.map(p => (
+                  <button key={p.label} className={"check-row" + (p.ok ? "" : " fail")}
+                    onClick={() => seekTo(p.ts)} disabled={!p.ts}
+                    title={p.ts ? "Ir al minuto " + p.ts : "No detectado en la conversación"}>
+                    <span className={"check-ic " + (p.ok ? "ok" : "no")}><Ph name={p.ok ? "check" : "x"} /></span>
+                    <span className="check-label">{p.label}</span>
+                    <span className="check-ts">{p.ts || "—"}</span>
+                  </button>
+                ))}
+              </div>
+            </section>
+
             <section className="card" id="card-ratio">
               <div className="card-label">Ratio de escucha</div>
               <div style={{ display: "flex", alignItems: "center", gap: 16, marginTop: 12 }}>
@@ -2776,7 +2697,6 @@ const { useState: useStateP, useRef: useRefP } = React;
 
 const OKABE_P = ["var(--purple)", "#0072B2", "#56B4E9", "#E69F00", "#CC79A7", "#1A7F5A", "#9CA3AF", "#991B1B"];
 const ROLES = ["Multifuncional", "Servicio al cliente", "Cajero", "Ventas"];
-const SUCS_P = SUCURSALES;
 
 const fmtNum = n => n.toLocaleString("es-CL");
 const fmtP = v => v.toFixed(1).replace(".", ",");
@@ -3052,6 +2972,8 @@ function Profile({ onOpenDetail, datosInsuficientes, onGoInteractions }) {
             </label>
             <div style={{ display: "flex", gap: 8, justifyContent: "flex-end", flexWrap: "wrap" }}>
               <button className="btn-primary" style={{ height: 38 }} onClick={() => setPage(1)}>Aplicar filtros</button>
+              <ExportBtn label="Ranking CSV" onClick={exportCSV} />
+              <ExportBtn label="No resueltas CSV" onClick={exportNoRes} />
             </div>
           </div>
           <div className="card-sub" style={{ marginTop: 12, display: "flex", alignItems: "center", gap: 6 }}>
@@ -3191,8 +3113,15 @@ function Agencias() {
         <section className="card span-12">
           <div style={{ display: "grid", gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))", gap: 14, alignItems: "end" }}>
             <SelectCtrl label="Ordenar por" value={orden} onChange={v => { setOrden(v); setSortKey(SORTS[v]); setSortDir(-1); setPage(1); }} options={Object.keys(SORTS)} />
+            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+              <ExportBtn label="Ranking CSV" onClick={exportCSV} />
+            </div>
           </div>
         </section>
+
+        <ChartCard title="Conversión por agencia" sub="10 agencias con mayor conversión del período" colorMode="multi"
+          items={[...AGENCIAS_DATA].sort((a, b) => b.conversion - a.conversion).slice(0, 10)
+            .map(a => ({ name: a.name, value: a.conversion, label: fmtP(a.conversion) + "%" }))} />
 
         <section className="card span-12" style={{ padding: "8px 16px 16px" }} data-screen-label="Tabla ranking agencias">
           <div style={{ overflowX: "auto" }}>
