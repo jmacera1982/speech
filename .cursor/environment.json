@@ -1,0 +1,13 @@
+{
+  "name": "Speech Analytics Dashboards",
+  "terminals": [
+    {
+      "name": "static-server",
+      "command": "cd /workspace && python3 -m http.server 8000",
+      "description": "Serves the Speech Analytics static dashboards at http://localhost:8000. Open the root *.html files (e.g. indexfarmacia.html) or /speech-app/ for the React bundle. All libraries are vendored or loaded from public CDNs; no build step is required."
+    }
+  ],
+  "ports": [
+    { "name": "static-server", "port": 8000 }
+  ]
+}
