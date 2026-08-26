@@ -1,12 +1,6 @@
 {
   "name": "Speech Analytics Dashboards",
-  "terminals": [
-    {
-      "name": "static-server",
-      "command": "cd /workspace && python3 -m http.server 8000",
-      "description": "Serves the Speech Analytics static dashboards at http://localhost:8000. Open the root *.html files (e.g. indexfarmacia.html) or /speech-app/ for the React bundle. All libraries are vendored or loaded from public CDNs; no build step is required."
-    }
-  ],
+  "start": "cd /workspace; if ! curl -sf -o /dev/null http://localhost:8000/; then nohup python3 -m http.server 8000 >/tmp/static-server.log 2>&1 & fi; for i in $(seq 1 15); do curl -sf -o /dev/null http://localhost:8000/ && break; sleep 1; done; curl -sf -o /dev/null http://localhost:8000/ && echo 'static server ready on http://localhost:8000' || echo 'ERROR: static server failed to start'",
   "ports": [
     { "name": "static-server", "port": 8000 }
   ]
