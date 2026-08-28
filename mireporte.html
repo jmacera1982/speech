@@ -1068,6 +1068,7 @@ const PRAC_RITMO = { tema: "Ritmo operativo sin apurar al cliente",
 const EJECUTIVOS = [
   { name: "María González", ini: "MG", rol: ROLES.caja, suc: "Agencia Centro",
     atenciones: 210, conversion: 47.7, score: 6.4, resueltas: 96, noResueltas: 5, ventas: 28,
+    escuchaActiva: 58, interrupciones: 2, tiempoHabla: 52, sondeoProm: 1.1, csat: 4.0,
     mejorar: [
       { tema: "Confirmación explícita de la operación", impacto: "Alto",
         detalle: "En parte de tus atenciones cerrás sin repetir en voz alta el monto o el resultado de la operación, y el cliente se retira sin la confirmación clara.",
@@ -1082,6 +1083,7 @@ const EJECUTIVOS = [
     ] },
   { name: "Carlos Fuentes", ini: "CF", rol: ROLES.multi, suc: "Agencia Centro",
     atenciones: 592, conversion: 43.58, score: 5.1, resueltas: 90, noResueltas: 13, ventas: 31,
+    escuchaActiva: 41, interrupciones: 4, tiempoHabla: 61, sondeoProm: 0.8, csat: 3.6,
     mejorar: [
       { tema: "Sondeo de necesidades", impacto: "Alto", detalle: "Pasa rápido a resolver el trámite sin indagar si el cliente tiene otra necesidad relacionada.",
         accion: "Antes de cerrar, hacé una pregunta abierta sobre qué más lo trajo a la agencia esta vez." },
@@ -1094,6 +1096,7 @@ const EJECUTIVOS = [
     ] },
   { name: "Ana Riquelme", ini: "AR", rol: ROLES.ventas, suc: "Agencia Sur",
     atenciones: 210, conversion: 55.2, score: 7.8, resueltas: 94, noResueltas: 4, ventas: 58,
+    escuchaActiva: 71, interrupciones: 1, tiempoHabla: 47, sondeoProm: 2.1, csat: 4.5,
     mejorar: [
       { tema: "Registro del seguimiento prometido", impacto: "Medio", detalle: "En algunas atenciones promete un llamado de seguimiento pero no queda agendado en el sistema.",
         accion: "Agendá el seguimiento en el mismo momento en que se lo prometés al cliente." },
@@ -1101,6 +1104,7 @@ const EJECUTIVOS = [
     fortalezas: [ PRAC_CIERRE, { tema: "Manejo de objeciones con datos concretos", detalle: "Responde objeciones de tasa o costo con comparaciones concretas en vez de solo repetir el beneficio del producto." } ] },
   { name: "Lucía Vergara", ini: "LV", rol: ROLES.caja, suc: "Agencia Norte",
     atenciones: 276, conversion: 38.4, score: 4.6, resueltas: 84, noResueltas: 9, ventas: 18,
+    escuchaActiva: 39, interrupciones: 5, tiempoHabla: 63, sondeoProm: 0.7, csat: 3.4,
     mejorar: [
       { tema: "Confirmación de la operación", impacto: "Alto", detalle: "Similar al patrón más común del período: cierra sin confirmar en voz alta el resultado de la operación.",
         accion: "Sumá una frase de cierre fija: “Entonces quedó [operación] por [monto], ¿todo correcto?”." },
@@ -1110,6 +1114,7 @@ const EJECUTIVOS = [
     fortalezas: [ { tema: "Atención cordial", detalle: "Saluda y se despide con calidez incluso en operaciones simples." }, PRAC_RITMO ] },
   { name: "Pedro Salas", ini: "PS", rol: ROLES.serv, suc: "Agencia Centro",
     atenciones: 134, conversion: 12.69, score: 3.2, resueltas: 78, noResueltas: 0, ventas: 6,
+    escuchaActiva: 34, interrupciones: 3, tiempoHabla: 58, sondeoProm: 0.5, csat: 3.1,
     mejorar: [
       { tema: "Cierre poco enfático", impacto: "Alto", detalle: "Las atenciones terminan de forma abrupta, sin resumir lo conversado ni ofrecer un producto relacionado.",
         accion: "Cerrá resumiendo en una frase lo que se resolvió y ofrecé, aunque sea una vez, un producto relacionado." },
@@ -1119,6 +1124,7 @@ const EJECUTIVOS = [
     fortalezas: [ { tema: "Paciencia en educación financiera", detalle: "Explica términos y condiciones con calma a clientes que no están familiarizados con productos bancarios." }, { tema: "Información detallada de productos", detalle: "Da información completa y precisa cuando el cliente pregunta por características de un producto." } ] },
   { name: "Rodrigo Cáceres", ini: "RC", rol: ROLES.multi, suc: "Agencia Poniente",
     atenciones: 168, conversion: 29.8, score: 4.0, resueltas: 71, noResueltas: 7, ventas: 12,
+    escuchaActiva: 37, interrupciones: 6, tiempoHabla: 66, sondeoProm: 0.6, csat: 3.2,
     mejorar: [
       { tema: "Tiempos de atención elevados", impacto: "Alto", detalle: "Las atenciones se extienden más que el resto del equipo para trámites similares, generando fila de espera.",
         accion: "Identificá los pasos que más se repiten en cada trámite y preparalos antes de que llegue el cliente." },
@@ -1128,6 +1134,7 @@ const EJECUTIVOS = [
     fortalezas: [ { tema: "Trato amable", detalle: "Mantiene buen trato incluso con clientes impacientes por la demora." } ] },
   { name: "Daniela Ponce", ini: "DP", rol: ROLES.ventas, suc: "Agencia Oriente",
     atenciones: 245, conversion: 51.0, score: 6.9, resueltas: 93, noResueltas: 6, ventas: 44,
+    escuchaActiva: 66, interrupciones: 1, tiempoHabla: 49, sondeoProm: 1.8, csat: 4.3,
     mejorar: [
       { tema: "Registro de objeciones frecuentes", impacto: "Medio", detalle: "No siempre queda registrada la objeción del cliente cuando no se concreta una venta, lo que dificulta el seguimiento.",
         accion: "Anotá en el sistema el motivo puntual por el que el cliente no aceptó la oferta." },
@@ -1135,6 +1142,7 @@ const EJECUTIVOS = [
     fortalezas: [ PRAC_ESCUCHA, PRAC_ALTERNATIVA ] },
   { name: "Jorge Salinas", ini: "JS", rol: ROLES.caja, suc: "Agencia Sur",
     atenciones: 188, conversion: 40.1, score: 5.5, resueltas: 88, noResueltas: 6, ventas: 15,
+    escuchaActiva: 55, interrupciones: 2, tiempoHabla: 54, sondeoProm: 1.2, csat: 3.9,
     mejorar: [
       { tema: "Confirmación de identidad", impacto: "Alto", detalle: "En algunas operaciones sensibles no queda registrada la validación de identidad según el protocolo.",
         accion: "Validá y dejá registrada la identidad del cliente antes de procesar cualquier operación sensible, sin excepción." },
@@ -1142,6 +1150,7 @@ const EJECUTIVOS = [
     fortalezas: [ PRAC_ESCUCHA, PRAC_CIERRE ] },
   { name: "Wendy Alvarado", ini: "WA", rol: ROLES.serv, suc: "Agencia Norte",
     atenciones: 156, conversion: 34.5, score: 5.0, resueltas: 82, noResueltas: 8, ventas: 10,
+    escuchaActiva: 44, interrupciones: 3, tiempoHabla: 57, sondeoProm: 0.9, csat: 3.7,
     mejorar: [
       { tema: "Seguimiento de trámites derivados", impacto: "Medio", detalle: "Cuando deriva un trámite a otra área, no siempre le avisa al cliente cómo y cuándo va a tener novedades.",
         accion: "Al derivar un trámite, decile al cliente el canal y el plazo estimado en que va a tener respuesta." },
@@ -1149,26 +1158,80 @@ const EJECUTIVOS = [
     fortalezas: [ PRAC_AGENDA, PRAC_TONO ] },
 ];
 
+/* ── Temas del período (compartidos por todo el equipo): se usan para
+     clasificar las conversaciones de cada ejecutivo y mostrar cuáles
+     tocó, con qué frecuencia y con qué tono ── */
+const TEMAS_PERIODO = [
+  { name: "Crédito hipotecario", sent: "mixta",
+    sintesis: "Los clientes preguntan por requisitos y plazos de aprobación; sin un checklist claro, muchas veces se necesita una segunda visita." },
+  { name: "Reclamo de cargos", sent: "negativa",
+    sintesis: "Es el motivo más sensible del período: varios clientes ya habían reclamado antes por el mismo cargo." },
+  { name: "App móvil", sent: "negativa",
+    sintesis: "Clientes que no pudieron resolver una operación en la app (clave, límites) terminan viniendo igual a la agencia." },
+  { name: "Apertura de cuenta", sent: "positiva",
+    sintesis: "Buen cierre en primera visita; es una buena instancia para ofrecer productos complementarios." },
+  { name: "Solicitud de tarjeta digital", sent: "mixta",
+    sintesis: "Alta demanda por la campaña vigente, pero la activación en dos pasos genera reconsultas." },
+  { name: "Consulta de inversión", sent: "positiva",
+    sintesis: "Interés sostenido y de calidad; conviene derivar con cita agendada para no perder la oportunidad." },
+];
+const SENT_LABEL = { pos: "Positivo", neu: "Neutro", neg: "Negativo" };
+
+/* ── Conversaciones de ejemplo por ejecutivo: se generan de forma
+     determinística a partir de sus propias oportunidades de mejora, para
+     que las "sugerencias por conversación" queden conectadas con el
+     resto del informe (no son datos reales, es contenido de demo) ── */
+function genConversaciones(exec, idx) {
+  const n = 8;
+  return Array.from({ length: n }, (_, i) => {
+    const tema = TEMAS_PERIODO[(idx * 3 + i * 5) % TEMAS_PERIODO.length];
+    const sentBase = tema.sent === "negativa" ? "neg" : tema.sent === "positiva" ? "pos" : "neu";
+    const flagged = i % 3 === 0;
+    const mejora = exec.mejorar[i % exec.mejorar.length];
+    const sent = flagged ? "neg" : sentBase;
+    const resultado = flagged && i % 2 === 0 ? "No resuelto" : "Resuelto";
+    const punt = flagged ? 3 + (i % 3) : 6 + (i % 4);
+    const day = 2 + ((idx * 3 + i * 5) % 27);
+    const hh = 8 + ((i * 2 + idx) % 10);
+    const mm = (i * 17 + idx * 7) % 60;
+    const durMin = 3 + ((idx * 7 + i * 5) % 9);
+    const durSeg = (idx * 13 + i * 11) % 60;
+    return {
+      id: "#" + (5200 - idx * 11 - i),
+      fecha: String(day).padStart(2, "0") + "/07, " + String(hh).padStart(2, "0") + ":" + String(mm).padStart(2, "0"),
+      tema: tema.name, canal: i % 4 === 0 ? "Teléfono" : "CAJA",
+      dur: durMin + ":" + String(durSeg).padStart(2, "0"),
+      sent, resultado, punt,
+      sugerenciaTema: flagged ? mejora.tema : null,
+      sugerencia: flagged ? mejora.accion : null,
+    };
+  });
+}
+
 const fmtP = v => v.toFixed(1).replace(".", ",");
 const fmtNum = n => n.toLocaleString("es-CL");
 
 function avg(list, key) { return list.reduce((s, e) => s + e[key], 0) / list.length; }
 
-function Trend({ dir, value }) {
-  const cls = dir === "up" ? "up" : dir === "down" ? "down" : "flat";
+function Trend({ dir, tone, value }) {
+  const t = tone || dir;
+  const cls = t === "up" ? "up" : t === "down" ? "down" : "flat";
   const icon = dir === "up" ? "arrow-up" : dir === "down" ? "arrow-down" : "minus";
   return <span className={"trend " + cls}><i className={"ph-bold ph-" + icon}></i>{value}</span>;
 }
 
 /* compara el valor propio contra el promedio del equipo; `invert` para
-   métricas donde "menos" es mejor (ej. no resueltas) */
+   métricas donde "menos" es mejor (ej. no resueltas, interrupciones).
+   El ícono sigue el signo real de la diferencia; el color (tone)
+   refleja si esa diferencia es buena o mala para esta métrica. */
 function CompareTrend({ value, teamAvg, unit, invert }) {
   const diff = value - teamAvg;
   const good = invert ? diff < 0 : diff > 0;
   const flat = Math.abs(diff) < (invert ? 0.5 : 0.6);
-  const dir = flat ? "flat" : good ? "up" : "down";
+  const dir = flat ? "flat" : diff > 0 ? "up" : "down";
+  const tone = flat ? "flat" : good ? "up" : "down";
   const label = flat ? "en línea con el equipo" : (diff > 0 ? "+" : "") + fmtP(diff) + (unit || "");
-  return <Trend dir={dir} value={label} />;
+  return <Trend dir={dir} tone={tone} value={label} />;
 }
 
 function KpiCard({ label, value, unit, sub, trend }) {
@@ -1228,15 +1291,100 @@ function PracticeItem({ p }) {
   );
 }
 
+function SentPill({ kind }) {
+  return <span className={"pill sm " + kind}><span className="dot"></span>{SENT_LABEL[kind]}</span>;
+}
+
+/* ── Barra de tiempo de habla ejecutivo / cliente ── */
+function TalkRatio({ pctEjecutivo, teamAvg }) {
+  const pctCliente = 100 - pctEjecutivo;
+  return (
+    <div>
+      <div className="ratio-bar">
+        <div className="ratio-seg exec" style={{ width: pctEjecutivo + "%" }}>{pctEjecutivo}% vos</div>
+        <div className="ratio-seg cli" style={{ width: pctCliente + "%" }}>{pctCliente}% cliente</div>
+        <div className="ratio-marker" style={{ left: "50%" }}></div>
+      </div>
+      <div className="ratio-marker-label">Línea punteada: referencia recomendada (~50% cada uno) · promedio del equipo: {fmtP(teamAvg)}% vos</div>
+    </div>
+  );
+}
+
+function ListenStat({ label, value, unit, teamAvg, invert }) {
+  return (
+    <div className="span-4">
+      <section className="card">
+        <div className="card-label">{label}</div>
+        <div className="metric-value-row">
+          <span className="metric-value" style={{ fontSize: 26 }}>{value}{unit ? <span className="metric-unit">{unit}</span> : null}</span>
+        </div>
+        <div className="card-sub"><CompareTrend value={value} teamAvg={teamAvg} unit={unit} invert={invert} /> vs. equipo</div>
+      </section>
+    </div>
+  );
+}
+
+function TopicItem({ t }) {
+  return (
+    <div className="report-item">
+      <div className="ri-top">
+        <span className="ri-name">{t.name}</span>
+        <span className="pill sm neu">{t.count} {t.count === 1 ? "conversación tuya" : "conversaciones tuyas"}</span>
+        <SentPill kind={t.dominant} />
+      </div>
+      <p className="ri-detalle" style={{ marginBottom: 0 }}>{t.sintesis}</p>
+    </div>
+  );
+}
+
+function ConversationRow({ c, isOpen, onToggle }) {
+  return (
+    <React.Fragment>
+      <tr onClick={onToggle} style={{ cursor: "pointer" }}>
+        <td style={{ color: "var(--ink-2)", whiteSpace: "nowrap" }}>{c.fecha}</td>
+        <td><span className="chip-gray">{c.tema}</span></td>
+        <td style={{ color: "var(--ink-2)" }}>{c.canal}</td>
+        <td style={{ fontVariantNumeric: "tabular-nums", color: "var(--ink-2)" }}>{c.dur}</td>
+        <td><SentPill kind={c.sent} /></td>
+        <td><span className={"pill sm " + (c.resultado === "Resuelto" ? "pos" : "neg")}><span className="dot"></span>{c.resultado}</span></td>
+        <td>
+          <span style={{ fontSize: 12, fontWeight: 600, color: c.punt >= 7 ? "var(--green)" : c.punt >= 5 ? "var(--amber)" : "var(--red)", background: c.punt >= 7 ? "var(--green-bg)" : c.punt >= 5 ? "var(--amber-bg)" : "var(--red-bg)", borderRadius: 6, padding: "3px 8px", fontVariantNumeric: "tabular-nums" }}>{c.punt}/10</span>
+        </td>
+        <td>{c.sugerencia ? <span className="pill sm warn"><Ph name="lightbulb" fill />sugerencia</span> : <span style={{ color: "var(--ink-3)", fontSize: 12 }}>—</span>}</td>
+        <td><i className={"ph ph-caret-" + (isOpen ? "up" : "down")} style={{ color: "var(--ink-3)" }}></i></td>
+      </tr>
+      {isOpen ? (
+        <tr>
+          <td colSpan={9} style={{ background: "var(--bg)" }}>
+            <div style={{ padding: "6px 4px 14px" }}>
+              {c.sugerencia ? (
+                <div className="suggestion-box"><Ph name="lightbulb" fill /><span><b>Sugerencia para esta conversación ({c.sugerenciaTema.toLowerCase()}): </b>{c.sugerencia}</span></div>
+              ) : (
+                <div className="practice-example"><Ph name="check-circle" fill /><span>Sin observaciones puntuales: esta atención no presentó alertas de coaching.</span></div>
+              )}
+            </div>
+          </td>
+        </tr>
+      ) : null}
+    </React.Fragment>
+  );
+}
+
 function MiReporte() {
   const [selfIdx, setSelfIdx] = useState(0);
   const self = EJECUTIVOS[selfIdx];
   const others = useMemo(() => EJECUTIVOS.filter((_, i) => i !== selfIdx), [selfIdx]);
+  const [openConv, setOpenConv] = useState(null);
 
   const teamAvgConv = useMemo(() => avg(EJECUTIVOS, "conversion"), []);
   const teamAvgScore = useMemo(() => avg(EJECUTIVOS, "score"), []);
   const teamAvgAtenciones = useMemo(() => avg(EJECUTIVOS, "atenciones"), []);
   const teamAvgResPct = useMemo(() => avg(EJECUTIVOS.map(e => ({ v: e.resueltas })), "v"), []);
+  const teamAvgEscucha = useMemo(() => avg(EJECUTIVOS, "escuchaActiva"), []);
+  const teamAvgInterrupciones = useMemo(() => avg(EJECUTIVOS, "interrupciones"), []);
+  const teamAvgSondeo = useMemo(() => avg(EJECUTIVOS, "sondeoProm"), []);
+  const teamAvgTiempoHabla = useMemo(() => avg(EJECUTIVOS, "tiempoHabla"), []);
+  const teamAvgCsat = useMemo(() => avg(EJECUTIVOS, "csat"), []);
 
   const rank = useMemo(() => {
     const sorted = [...EJECUTIVOS].sort((a, b) => b.score - a.score);
@@ -1252,6 +1400,20 @@ function MiReporte() {
     }));
     return [...map.values()].sort((a, b) => b.count - a.count).slice(0, 4);
   }, [others]);
+
+  const conversaciones = useMemo(() => genConversaciones(self, selfIdx), [self, selfIdx]);
+
+  const topicos = useMemo(() => {
+    return TEMAS_PERIODO.map(t => {
+      const propias = conversaciones.filter(c => c.tema === t.name);
+      const counts = { pos: 0, neu: 0, neg: 0 };
+      propias.forEach(c => counts[c.sent]++);
+      const dominant = propias.length
+        ? Object.keys(counts).sort((a, b) => counts[b] - counts[a])[0]
+        : (t.sent === "negativa" ? "neg" : t.sent === "positiva" ? "pos" : "neu");
+      return { name: t.name, sintesis: t.sintesis, count: propias.length, dominant };
+    }).filter(t => t.count > 0);
+  }, [conversaciones]);
 
   const topFortalezaPropia = self.fortalezas[0];
   const topMejoraPropia = self.mejorar[0];
@@ -1294,9 +1456,10 @@ function MiReporte() {
             <div className="rh-kicker">Informe individual · confidencial</div>
             <h2>{topFortalezaPropia ? "Tu fortaleza está en " + topFortalezaPropia.tema.toLowerCase() + "; la oportunidad más rápida es " + topMejoraPropia.tema.toLowerCase() : "Tu reporte del período"}</h2>
             <p>
-              Se analizaron {fmtNum(self.atenciones)} atenciones tuyas de {self.suc} en los {PERIODO_INFORME}.
-              Este informe se enfoca en tus propias oportunidades de mejora y suma, al final, prácticas que le funcionan
-              a otros ejecutivos del equipo — sin decir quiénes son — para que puedas probarlas vos también.
+              Se analizaron {fmtNum(self.atenciones)} atenciones tuyas de {self.suc} en los {PERIODO_INFORME}, incluyendo
+              indicadores de escucha, CSAT estimado, los temas que más aparecieron en tus conversaciones y una sugerencia
+              puntual por cada atención que lo requirió. Al final sumamos prácticas que le funcionan a otros ejecutivos
+              del equipo — sin decir quiénes son — para que puedas probarlas vos también.
             </p>
             <div className="exec-hero-id">
               <span className="avatar lg">{self.ini}</span>
@@ -1314,6 +1477,22 @@ function MiReporte() {
               <div className="report-kpi"><div className="rk-v">{fmtP(self.score)}/10</div><div className="rk-l">score de atención</div></div>
               <div className="report-kpi"><div className="rk-v">{self.resueltas}%</div><div className="rk-l">atenciones resueltas</div></div>
               <div className="report-kpi"><div className="rk-v">{self.noResueltas}</div><div className="rk-l">no resueltas</div></div>
+              <div className="report-kpi"><div className="rk-v">{fmtP(self.csat)}/5</div><div className="rk-l">CSAT estimado</div></div>
+            </div>
+
+            <div>
+              <div className="report-h3"><Ph name="ear" fill />Indicadores de escucha</div>
+              <div style={{ marginTop: 12 }}>
+                <TalkRatio pctEjecutivo={self.tiempoHabla} teamAvg={teamAvgTiempoHabla} />
+              </div>
+              <div className="grid" style={{ marginTop: 14 }}>
+                <ListenStat label="Escucha activa" value={self.escuchaActiva} unit="%" teamAvg={teamAvgEscucha} />
+                <ListenStat label="Interrupciones sin dejar terminar" value={self.interrupciones} teamAvg={teamAvgInterrupciones} invert />
+                <ListenStat label="Preguntas de sondeo (prom./atención)" value={self.sondeoProm} teamAvg={teamAvgSondeo} />
+              </div>
+              <div className="card-sub" style={{ marginTop: 12 }}>
+                Detectados automáticamente a partir del audio de tus atenciones interpretables del período. El CSAT es una estimación a partir del tono y el contenido de la conversación, no reemplaza la encuesta de servicio.
+              </div>
             </div>
 
             <div>
@@ -1329,6 +1508,38 @@ function MiReporte() {
               <div className="rank-note">
                 <Ph name="medal" fill />
                 Estás en el puesto {rank.pos} de {rank.total} por score de atención. Esta posición es solo para vos: no identifica a los demás ejecutivos del ranking.
+              </div>
+            </div>
+
+            <div>
+              <div className="report-h3"><Ph name="chats-circle" fill />Temas del período en tus conversaciones</div>
+              <div className="report-list" style={{ marginTop: 12 }}>
+                {topicos.map(t => <TopicItem t={t} key={t.name} />)}
+              </div>
+            </div>
+
+            <div>
+              <div className="report-h3"><Ph name="chat-circle-text" fill />Tus conversaciones</div>
+              <div className="anon-note" style={{ marginTop: 8 }}>
+                <Ph name="info" />
+                Muestra de {conversaciones.length} atenciones tuyas del período. Hacé clic en una fila para ver la sugerencia puntual de esa conversación.
+              </div>
+              <div style={{ overflowX: "auto" }}>
+                <table className="data">
+                  <thead>
+                    <tr>
+                      {["Fecha", "Tema", "Canal", "Duración", "Sentimiento", "Resultado", "Puntuación", "Coaching", ""].map(h => (
+                        <th key={h}>{h}</th>
+                      ))}
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {conversaciones.map(c => (
+                      <ConversationRow c={c} key={c.id} isOpen={openConv === c.id}
+                        onToggle={() => setOpenConv(openConv === c.id ? null : c.id)} />
+                    ))}
+                  </tbody>
+                </table>
               </div>
             </div>
 
