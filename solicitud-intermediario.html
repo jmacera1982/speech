@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Seguros Bantrab — Solicitud de Intermediario</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg%20width%3D%2225%22%20height%3D%2224%22%20viewBox%3D%220%200%2025%2024%22%20fill%3D%22none%22%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%3E%3Cpath%20d%3D%22M11.9199%2013.2748V23.7014C11.9199%2023.9681%2011.5999%2024.0997%2011.4114%2023.9112L7.71661%2020.2164C6.95915%2019.459%206.95915%2018.2356%207.71661%2017.4782L11.9199%2013.2748Z%22%20fill%3D%22%2300ADAB%22%2F%3E%3Cpath%20d%3D%22M12.9227%2012.8945L20.2946%2020.2663C20.483%2020.4548%2020.3479%2020.7748%2020.0848%2020.7748H14.6581C13.6979%2020.7748%2012.9227%2019.9961%2012.9227%2019.0395V12.8945Z%22%20fill%3D%22%23DD1767%22%2F%3E%3Cpath%20d%3D%22M13.3211%2012.0019H23.7476C24.0144%2012.0019%2024.1459%2012.3219%2023.9575%2012.5104L20.1666%2016.3012C19.4625%2017.0053%2018.321%2017.0053%2017.6204%2016.3012L13.3211%2012.0019Z%22%20fill%3D%22%23DD1767%22%2F%3E%3Cpath%20d%3D%22M11.0807%2012.8945L3.70883%2020.2663C3.52035%2020.4548%203.2003%2020.3197%203.2003%2020.0565V14.6299C3.2003%2013.6733%203.97553%2012.8945%204.93569%2012.8945H11.0807Z%22%20fill%3D%22%2300ADAB%22%2F%3E%3Cpath%20d%3D%22M12.1333%2010.7288L12.0657%200.302216C12.0622%200.035506%2012.3822%20-0.0996324%2012.5707%200.0852862L16.3188%203.74098C17.0799%204.48421%2017.0976%205.70397%2016.3544%206.46498L12.1973%2010.7288H12.1333Z%22%20fill%3D%22%23FEE000%22%2F%3E%3Cpath%20d%3D%22M11.1234%2011.1093L3.7515%203.73745C3.56302%203.54897%203.69816%203.22891%203.96131%203.22891H9.40574C10.3552%203.22891%2011.1234%203.99704%2011.1234%204.94653V11.1093Z%22%20fill%3D%22%23AFB6BD%22%2F%3E%3Cpath%20d%3D%22M10.7251%2012.0018H0.298505C0.0317955%2012.0018%20-0.0997799%2011.6817%200.0886948%2011.4933L3.86175%207.72022C4.57297%207.00899%205.72871%207.00899%206.43994%207.72022L10.7251%2012.0018Z%22%20fill%3D%22%23AFB6BD%22%2F%3E%3Cpath%20d%3D%22M12.9014%2011.1094L20.3373%203.73754C20.5257%203.54906%2020.8458%203.68419%2020.8458%203.94735V9.32777C20.8458%2010.3128%2020.0492%2011.1094%2019.0642%2011.1094H12.9654H12.9014Z%22%20fill%3D%22%23FEE000%22%2F%3E%3C%2Fsvg%3E" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --primary:#1fba99;
+    --primary-dark:#179b80;
+    --primary-soft:#e4f7f3;
+    --ink:#1b2430;
+    --ink-2:#5b6472;
+    --gray-bg:#f7f7f7;
+    --input-bg:#f9f8f9;
+    --border:#e2e5e9;
+    --footer-bg:#dde1e4;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Poppins',system-ui,-apple-system,"Segoe UI",Arial,sans-serif;
+    color:var(--ink);
+    background:#fff;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{text-decoration:none;}
+
+  /* ===== Header ===== */
+  header.site-header{
+    display:flex;align-items:center;justify-content:space-between;
+    padding:14px 32px;border-bottom:1px solid var(--border);
+    flex-wrap:wrap;gap:12px;
+  }
+  .brand{display:flex;align-items:center;gap:10px;}
+  .brand svg{width:34px;height:33px;flex-shrink:0;}
+  .brand .brand-text{line-height:1;font-weight:800;letter-spacing:0.5px;}
+  .brand .brand-text .l1{display:block;font-size:11px;color:var(--ink-2);font-weight:700;letter-spacing:1px;}
+  .brand .brand-text .l2{display:block;font-size:19px;color:var(--ink);font-weight:800;letter-spacing:0.5px;}
+
+  nav.main-nav{display:flex;align-items:center;gap:28px;flex-wrap:wrap;}
+  nav.main-nav a{font-size:14.5px;font-weight:600;color:var(--ink);}
+  nav.main-nav a.active{color:var(--primary);}
+  nav.main-nav a:hover{color:var(--primary);}
+
+  .header-actions{display:flex;align-items:center;gap:18px;}
+  .header-phone{display:flex;align-items:center;gap:8px;font-weight:700;font-size:14.5px;color:var(--ink);}
+  .header-phone .bi{color:#fff;background:var(--primary);border-radius:50%;padding:7px;font-size:13px;}
+  .header-icon-btn{font-size:19px;color:var(--ink);background:none;border:none;cursor:pointer;}
+
+  /* ===== Hero ===== */
+  .hero{
+    position:relative;overflow:hidden;min-height:260px;
+    background:
+      radial-gradient(circle at 85% 20%, rgba(255,255,255,0.14) 0, transparent 45%),
+      linear-gradient(115deg,#0d3b57 0%, #0f5f72 38%, #13897f 68%, #1fba99 100%);
+    display:flex;align-items:flex-end;
+  }
+  .hero::before{
+    content:'';position:absolute;inset:0;
+    background-image:
+      radial-gradient(circle, rgba(255,255,255,0.08) 1.5px, transparent 1.5px);
+    background-size:26px 26px;
+    opacity:0.5;
+  }
+  .hero-illustration{
+    position:absolute;right:4%;bottom:0;height:92%;max-height:280px;
+    opacity:0.9;filter:drop-shadow(0 10px 24px rgba(0,0,0,0.25));
+  }
+  .hero-content{
+    position:relative;z-index:2;padding:40px 32px 36px;max-width:980px;margin:0 auto;width:100%;
+  }
+  .hero-badge{
+    display:inline-block;background:rgba(31,186,153,0.92);color:#fff;
+    padding:18px 26px;border-radius:10px;font-weight:700;font-size:1.6rem;
+    max-width:620px;line-height:1.25;backdrop-filter:blur(2px);
+  }
+
+  /* ===== Form section ===== */
+  .form-section{max-width:980px;margin:0 auto;padding:48px 24px 60px;}
+  .form-section h2{text-align:center;font-weight:700;font-size:1.9rem;margin-bottom:34px;}
+
+  .biz-form .form-label{font-size:13px;font-weight:600;color:var(--ink-2);margin-bottom:6px;display:block;}
+  .biz-form .form-control,
+  .biz-form .form-select{
+    background:var(--input-bg);border:1px solid var(--border);border-radius:8px;
+    padding:12px 14px;font-size:14.5px;color:var(--ink);width:100%;
+  }
+  .biz-form .form-control:focus,
+  .biz-form .form-select:focus{
+    outline:none;border-color:var(--primary);box-shadow:0 0 0 3px rgba(31,186,153,0.15);
+  }
+  .biz-form .form-control:disabled,
+  .biz-form .form-select:disabled{background:#eef0f1;color:#9aa1a8;}
+
+  .form-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px 32px;align-items:start;}
+  @media (max-width:760px){.form-grid{grid-template-columns:1fr;}}
+  .field-block{display:flex;flex-direction:column;}
+
+  .fake-recaptcha{
+    display:flex;align-items:center;gap:10px;border:1px solid #d3d3d3;background:#f9f9f9;
+    border-radius:4px;padding:12px 16px;max-width:300px;cursor:pointer;user-select:none;
+  }
+  .fake-recaptcha .box{
+    width:26px;height:26px;border:2px solid #c1c1c1;border-radius:3px;background:#fff;
+    display:flex;align-items:center;justify-content:center;flex-shrink:0;
+  }
+  .fake-recaptcha.checked .box{background:#1fba99;border-color:#1fba99;}
+  .fake-recaptcha.checked .box::after{content:'✓';color:#fff;font-weight:700;font-size:15px;}
+  .fake-recaptcha .label{font-size:12.5px;color:#333;line-height:1.2;flex:1;}
+  .fake-recaptcha .r-logo{font-size:10px;color:#999;text-align:center;line-height:1.1;}
+
+  .consent-row{display:flex;align-items:flex-start;gap:10px;font-size:13px;color:var(--ink-2);}
+  .consent-row input{margin-top:3px;width:16px;height:16px;accent-color:var(--primary);flex-shrink:0;}
+
+  .btn-enviar{
+    background:var(--primary);border:none;color:#fff;font-weight:700;font-size:15px;
+    padding:12px 38px;border-radius:8px;transition:all .2s ease;
+  }
+  .btn-enviar:hover{background:var(--primary-dark);transform:translateY(-1px);}
+  .btn-enviar:disabled{background:#b9c0c4;cursor:not-allowed;transform:none;}
+
+  .form-alert{border-radius:8px;padding:12px 16px;margin-bottom:20px;font-size:14px;display:none;}
+  .form-alert.show{display:block;}
+  .form-alert.danger{background:#fdecec;color:#b42318;border:1px solid #f3c6c2;}
+
+  /* ===== Turn / videollamada result ===== */
+  .turn-section{display:none;max-width:760px;margin:0 auto;}
+  .turn-section.active{display:block;}
+  .success-badge{
+    background:#10b981;color:#fff;padding:8px 20px;border-radius:50px;
+    display:inline-flex;align-items:center;gap:8px;font-weight:700;margin-bottom:10px;font-size:14px;
+  }
+  .turn-info-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:22px;}
+  @media (max-width:600px){.turn-info-grid{grid-template-columns:1fr;}}
+  .turn-info-grid .wide{grid-column:1 / -1;}
+  .info-item{
+    display:flex;justify-content:space-between;align-items:center;gap:10px;
+    padding:14px 16px;border:1px solid var(--primary-soft);border-radius:10px;
+    background:linear-gradient(135deg,#f4fdfb,var(--primary-soft));
+  }
+  .info-label{font-weight:600;color:var(--ink-2);font-size:13.5px;}
+  .info-value{font-weight:700;color:var(--primary-dark);font-size:14px;}
+  .status-warn{color:#b8860b !important;}
+  .status-ok{color:#0d9488 !important;}
+  .status-done{color:#2563eb !important;}
+  .status-err{color:#dc2626 !important;}
+
+  .btn-video{
+    background:var(--primary);border:none;color:#fff;font-weight:700;font-size:15px;
+    padding:12px 34px;border-radius:8px;display:inline-flex;align-items:center;gap:8px;
+  }
+  .btn-video:disabled{background:#b9c0c4;cursor:not-allowed;}
+
+  .video-modal{
+    display:none;position:fixed;inset:0;background:rgba(10,20,25,0.85);z-index:2000;
+    align-items:center;justify-content:center;
+  }
+  .video-modal.active{display:flex;}
+  .video-container{
+    background:#fff;border-radius:16px;padding:1.25rem;max-width:92vw;max-height:92vh;
+    width:90vw;height:82vh;display:flex;flex-direction:column;
+  }
+  .video-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:0.9rem;}
+  .video-header h6{margin:0;font-weight:700;color:var(--ink);}
+  .video-iframe{flex:1;border:none;border-radius:10px;width:100%;height:100%;}
+  .btn-close-video{background:none;border:none;font-size:1.4rem;color:var(--ink);cursor:pointer;padding:4px 8px;border-radius:6px;}
+  .btn-close-video:hover{background:var(--gray-bg);}
+
+  /* ===== Footer ===== */
+  footer.site-footer{
+    background:var(--footer-bg);padding:34px 24px;margin-top:20px;
+  }
+  .footer-inner{max-width:1080px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:16px;}
+  .footer-brand{display:flex;align-items:center;gap:10px;}
+  .footer-brand svg{width:30px;height:29px;}
+  .footer-brand .ftxt{font-weight:800;font-size:15px;line-height:1.1;}
+  .footer-brand .ftxt small{display:block;font-weight:700;font-size:12.5px;color:var(--ink-2);}
+  .footer-phone{font-size:13.5px;color:var(--ink-2);margin-top:4px;font-weight:600;}
+  .footer-social{display:flex;gap:14px;}
+  .footer-social a{
+    width:34px;height:34px;border-radius:50%;background:#fff;color:var(--primary-dark);
+    display:flex;align-items:center;justify-content:center;font-size:15px;
+  }
+  .footer-copy{width:100%;text-align:center;font-size:12.5px;color:var(--ink-2);margin-top:18px;}
+</style>
+</head>
+<body>
+
+<!-- ===== Header ===== -->
+<header class="site-header">
+  <div class="brand">
+    <svg viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.9199 13.2748V23.7014C11.9199 23.9681 11.5999 24.0997 11.4114 23.9112L7.71661 20.2164C6.95915 19.459 6.95915 18.2356 7.71661 17.4782L11.9199 13.2748Z" fill="#00ADAB"/><path d="M12.9227 12.8945L20.2946 20.2663C20.483 20.4548 20.3479 20.7748 20.0848 20.7748H14.6581C13.6979 20.7748 12.9227 19.9961 12.9227 19.0395V12.8945Z" fill="#DD1767"/><path d="M13.3211 12.0019H23.7476C24.0144 12.0019 24.1459 12.3219 23.9575 12.5104L20.1666 16.3012C19.4625 17.0053 18.321 17.0053 17.6204 16.3012L13.3211 12.0019Z" fill="#DD1767"/><path d="M11.0807 12.8945L3.70883 20.2663C3.52035 20.4548 3.2003 20.3197 3.2003 20.0565V14.6299C3.2003 13.6733 3.97553 12.8945 4.93569 12.8945H11.0807Z" fill="#00ADAB"/><path d="M12.1333 10.7288L12.0657 0.302216C12.0622 0.035506 12.3822 -0.0996324 12.5707 0.0852862L16.3188 3.74098C17.0799 4.48421 17.0976 5.70397 16.3544 6.46498L12.1973 10.7288H12.1333Z" fill="#FEE000"/><path d="M11.1234 11.1093L3.7515 3.73745C3.56302 3.54897 3.69816 3.22891 3.96131 3.22891H9.40574C10.3552 3.22891 11.1234 3.99704 11.1234 4.94653V11.1093Z" fill="#AFB6BD"/><path d="M10.7251 12.0018H0.298505C0.0317955 12.0018 -0.0997799 11.6817 0.0886948 11.4933L3.86175 7.72022C4.57297 7.00899 5.72871 7.00899 6.43994 7.72022L10.7251 12.0018Z" fill="#AFB6BD"/><path d="M12.9014 11.1094L20.3373 3.73754C20.5257 3.54906 20.8458 3.68419 20.8458 3.94735V9.32777C20.8458 10.3128 20.0492 11.1094 19.0642 11.1094H12.9654H12.9014Z" fill="#FEE000"/></svg>
+    <span class="brand-text">
+      <span class="l1">SEGUROS</span>
+      <span class="l2">BANTRAB</span>
+    </span>
+  </div>
+  <nav class="main-nav">
+    <a href="#" class="active">Inicio</a>
+    <a href="#">Ser intermediario</a>
+    <a href="#">Formularios</a>
+    <a href="#">Gobierno Corporativo</a>
+  </nav>
+  <div class="header-actions">
+    <div class="header-phone"><i class="bi bi-telephone-fill"></i> 24102660</div>
+    <button class="header-icon-btn"><i class="bi bi-person-circle"></i></button>
+    <button class="header-icon-btn"><i class="bi bi-list"></i></button>
+  </div>
+</header>
+
+<!-- ===== Hero ===== -->
+<section class="hero">
+  <svg class="hero-illustration" viewBox="0 0 220 260" xmlns="http://www.w3.org/2000/svg">
+    <ellipse cx="110" cy="250" rx="90" ry="10" fill="#000" opacity="0.12"/>
+    <rect x="55" y="70" width="110" height="160" rx="18" fill="#0b2e3f"/>
+    <circle cx="110" cy="58" r="34" fill="#f1c7a3"/>
+    <path d="M78 46c4-18 50-18 54 0 2 10-4 16-4 16s-6-10-22-10-22 10-22 10-8-6-6-16z" fill="#2b2320"/>
+    <rect x="90" y="86" width="40" height="18" rx="9" fill="#f1c7a3"/>
+    <rect x="70" y="100" width="80" height="90" rx="14" fill="#105c78"/>
+    <rect x="86" y="112" width="48" height="10" rx="5" fill="#ffffff" opacity="0.85"/>
+    <circle cx="150" cy="70" r="7" fill="#ffffff" opacity="0.9"/>
+    <path d="M150 70v16" stroke="#fff" stroke-width="3" stroke-linecap="round"/>
+    <circle cx="163" cy="92" r="10" fill="#1fba99"/>
+    <path d="M158 92h10M163 87v10" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+  </svg>
+  <div class="hero-content">
+    <div class="hero-badge">¿Quieres ser intermediario de seguros?</div>
+  </div>
+</section>
+
+<!-- ===== Form ===== -->
+<section class="form-section">
+  <h2>Aplica aquí</h2>
+
+  <div id="formAlert" class="form-alert danger"></div>
+
+  <form id="intermediarioForm" class="biz-form" autocomplete="off">
+    <div class="form-grid">
+      <div class="field-block">
+        <label class="form-label">Nombre</label>
+        <input type="text" class="form-control" name="nombre" placeholder="Escribe tu nombre" required>
+      </div>
+      <div class="field-block">
+        <label class="form-label">Teléfono</label>
+        <input type="tel" class="form-control" name="telefono" placeholder="Escribe tu número de teléfono" required>
+      </div>
+
+      <div class="field-block">
+        <label class="form-label">Correo electrónico</label>
+        <input type="email" class="form-control" name="email" placeholder="Escribe tu correo electrónico" required>
+      </div>
+      <div class="field-block">
+        <label class="form-label">Dirección</label>
+        <input type="text" class="form-control" name="direccion" placeholder="Escribe tu dirección" required>
+      </div>
+
+      <div class="field-block">
+        <label class="form-label">Número de credencial</label>
+        <input type="text" class="form-control" name="credencial" placeholder="Escribe tu número de credencial vigente" required>
+      </div>
+      <div class="field-block">
+        <div id="fakeRecaptcha" class="fake-recaptcha" role="checkbox" aria-checked="false" tabindex="0">
+          <div class="box"></div>
+          <div class="label">I'm not a robot</div>
+          <div class="r-logo"><i class="bi bi-shield-check" style="font-size:16px;color:#999;"></i><br>reCAPTCHA</div>
+        </div>
+      </div>
+
+      <div class="field-block">
+        <label class="form-label">Tipo de asesor</label>
+        <select class="form-select" name="tipoAsesor" required>
+          <option value="" selected disabled>Seleccionar un tipo</option>
+          <option>Agente Independiente</option>
+          <option>Corredor</option>
+        </select>
+      </div>
+      <div class="field-block">
+        <label class="consent-row">
+          <input type="checkbox" name="consentimiento" required>
+          <span>Para continuar con el proceso, contáctame por vía telefónica.</span>
+        </label>
+      </div>
+
+      <div class="field-block">
+        <label class="form-label">Tipo de persona</label>
+        <select class="form-select" name="tipoPersona" required>
+          <option value="" selected disabled>Seleccionar tipo</option>
+          <option>Individual</option>
+          <option>Jurídica</option>
+        </select>
+      </div>
+      <div class="field-block">
+        <button type="button" id="btnEnviar" class="btn-enviar">Enviar</button>
+      </div>
+    </div>
+  </form>
+
+  <!-- ===== Resultado: turno / videollamada ===== -->
+  <div id="turnSection" class="turn-section">
+    <div class="text-center">
+      <div class="success-badge"><i class="bi bi-check2-circle"></i> Solicitud Enviada Exitosamente</div>
+      <div style="color:#0d9488;font-weight:600;">Tu solicitud fue registrada y ya tienes un turno de atención con un asesor por videollamada.</div>
+    </div>
+
+    <div class="turn-info-grid">
+      <div class="info-item wide">
+        <div class="info-label">Código de la Atención:</div>
+        <div class="info-value" id="turnCodeDisplay">—</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Número de Atención:</div>
+        <div class="info-value" id="turnNumber">—</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Estado de la Atención:</div>
+        <div class="info-value status-warn" id="turnStatus">Consultando...</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Tiempo de Espera Actual:</div>
+        <div class="info-value" id="currentWaitingTime">N/A</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Tiempo Promedio de Espera:</div>
+        <div class="info-value" id="avgWaitingTime">N/A</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Cola/Servicio:</div>
+        <div class="info-value" id="queueName">—</div>
+      </div>
+      <div class="info-item">
+        <div class="info-label">Sala de Espera:</div>
+        <div class="info-value" id="waitingRoomName">—</div>
+      </div>
+    </div>
+
+    <div class="text-center mt-4">
+      <button id="btnAbrirVideo" class="btn-video" disabled>
+        <i class="bi bi-camera-video"></i> Conectarme a videollamada
+      </button>
+      <div style="font-size:13px;color:var(--ink-2);margin-top:10px;">El botón se habilitará cuando el asesor te llame.</div>
+    </div>
+  </div>
+</section>
+
+<!-- ===== Modal de videollamada ===== -->
+<div class="video-modal" id="videoModal">
+  <div class="video-container">
+    <div class="video-header">
+      <h6><i class="bi bi-camera-video me-2"></i>Videollamada con tu asesor</h6>
+      <button class="btn-close-video" id="btnCloseVideo"><i class="bi bi-x-lg"></i></button>
+    </div>
+    <iframe id="videoFrame" class="video-iframe" src="about:blank"
+      allow="camera; microphone; autoplay; fullscreen; clipboard-write; display-capture"
+      referrerpolicy="no-referrer" allowfullscreen></iframe>
+  </div>
+</div>
+
+<!-- ===== Footer ===== -->
+<footer class="site-footer">
+  <div class="footer-inner">
+    <div>
+      <div class="footer-brand">
+        <svg viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M11.9199 13.2748V23.7014C11.9199 23.9681 11.5999 24.0997 11.4114 23.9112L7.71661 20.2164C6.95915 19.459 6.95915 18.2356 7.71661 17.4782L11.9199 13.2748Z" fill="#00ADAB"/><path d="M12.9227 12.8945L20.2946 20.2663C20.483 20.4548 20.3479 20.7748 20.0848 20.7748H14.6581C13.6979 20.7748 12.9227 19.9961 12.9227 19.0395V12.8945Z" fill="#DD1767"/><path d="M13.3211 12.0019H23.7476C24.0144 12.0019 24.1459 12.3219 23.9575 12.5104L20.1666 16.3012C19.4625 17.0053 18.321 17.0053 17.6204 16.3012L13.3211 12.0019Z" fill="#DD1767"/><path d="M11.0807 12.8945L3.70883 20.2663C3.52035 20.4548 3.2003 20.3197 3.2003 20.0565V14.6299C3.2003 13.6733 3.97553 12.8945 4.93569 12.8945H11.0807Z" fill="#00ADAB"/><path d="M12.1333 10.7288L12.0657 0.302216C12.0622 0.035506 12.3822 -0.0996324 12.5707 0.0852862L16.3188 3.74098C17.0799 4.48421 17.0976 5.70397 16.3544 6.46498L12.1973 10.7288H12.1333Z" fill="#FEE000"/><path d="M11.1234 11.1093L3.7515 3.73745C3.56302 3.54897 3.69816 3.22891 3.96131 3.22891H9.40574C10.3552 3.22891 11.1234 3.99704 11.1234 4.94653V11.1093Z" fill="#AFB6BD"/><path d="M10.7251 12.0018H0.298505C0.0317955 12.0018 -0.0997799 11.6817 0.0886948 11.4933L3.86175 7.72022C4.57297 7.00899 5.72871 7.00899 6.43994 7.72022L10.7251 12.0018Z" fill="#AFB6BD"/><path d="M12.9014 11.1094L20.3373 3.73754C20.5257 3.54906 20.8458 3.68419 20.8458 3.94735V9.32777C20.8458 10.3128 20.0492 11.1094 19.0642 11.1094H12.9654H12.9014Z" fill="#FEE000"/></svg>
+        <span class="ftxt">SEGUROS BANTRAB</span>
+      </div>
+      <div class="footer-phone">PBX 24102660</div>
+    </div>
+    <div class="footer-social">
+      <a href="#"><i class="bi bi-facebook"></i></a>
+      <a href="#"><i class="bi bi-instagram"></i></a>
+      <a href="#"><i class="bi bi-linkedin"></i></a>
+    </div>
+  </div>
+  <div class="footer-copy" id="footerCopy"></div>
+</footer>
+
+<script>
+  document.getElementById('footerCopy').textContent =
+    `© ${new Date().getFullYear()} Bantrab | Todos los derechos reservados`;
+</script>
+
+<script>
+  /* ==========================================================
+     Backend de demo (Fila Virtual / DebMedia): al "Enviar" la
+     solicitud de intermediario, en vez de mandar un correo se
+     genera un turno real de atención y se habilita la
+     videollamada con un asesor, igual que en
+     iniciar-videollamada.html.
+  ========================================================== */
+  const FV_TOKEN  = 'XlOIHNe0yDnF6htBZWhdv3uFHxQKanqdVNQZC17w';
+  const FV_QUEUE  = 16223;
+  const FV_BRANCH = 10750;
+  const FV_BASE   = 'https://filavirtual2.debmedia.com/api/v1';
+
+  let pollingInterval = null;
+  window.currentVideoCallUrl = 'about:blank';
+
+  const $ = (id) => document.getElementById(id);
+  const formEl = document.getElementById('intermediarioForm');
+  const formAlert = $('formAlert');
+  const btnEnviar = $('btnEnviar');
+  const fakeRecaptcha = $('fakeRecaptcha');
+
+  function setAlert(msg) {
+    formAlert.textContent = msg;
+    formAlert.classList.add('show');
+  }
+  function clearAlert() {
+    formAlert.classList.remove('show');
+    formAlert.textContent = '';
+  }
+
+  // reCAPTCHA cosmético: requiere clic para "validar" el formulario,
+  // sin llamar a ningún servicio externo de verificación real.
+  function toggleRecaptcha() {
+    const checked = fakeRecaptcha.classList.toggle('checked');
+    fakeRecaptcha.setAttribute('aria-checked', String(checked));
+  }
+  fakeRecaptcha.addEventListener('click', toggleRecaptcha);
+  fakeRecaptcha.addEventListener('keydown', (e) => {
+    if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); toggleRecaptcha(); }
+  });
+
+  btnEnviar.addEventListener('click', async () => {
+    clearAlert();
+
+    if (!formEl.reportValidity()) return;
+
+    const data = Object.fromEntries(new FormData(formEl).entries());
+    if (!fakeRecaptcha.classList.contains('checked')) {
+      setAlert('Confirma que no eres un robot antes de continuar.');
+      return;
+    }
+
+    const nombreParts = data.nombre.trim().split(/\s+/);
+    const firstName = nombreParts[0] || data.nombre;
+    const lastName = nombreParts.slice(1).join(' ') || 'Intermediario';
+
+    btnEnviar.disabled = true;
+    btnEnviar.innerHTML = '<span class="spinner-border spinner-border-sm me-2"></span>Enviando...';
+
+    try {
+      const url = `${FV_BASE}/queue/${FV_QUEUE}/branch/${FV_BRANCH}/enqueue`;
+      const res = await fetch(url, {
+        method: 'POST',
+        headers: {
+          'x-api-token': FV_TOKEN,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          firstName,
+          lastName,
+          dni: data.credencial,
+          email: data.email,
+          phone: data.telefono
+        })
+      });
+
+      const out = await res.json().catch(() => ({}));
+      if (!res.ok) {
+        throw new Error(out?.message || `Error en servidor (${res.status})`);
+      }
+
+      const turnCode = out.code || '—';
+      localStorage.setItem('turnCode', turnCode);
+
+      const turnNumber = out.jsonDetails?.turn || out.jsonDetails?.actualTurn || '—';
+      const avgWait = out.jsonDetails?.averageWaitingTime ?? out.jsonDetails?.serviceTime ?? 'N/A';
+      const queueName = out.jsonDetails?.queue?.name || '—';
+      const wrName = out.jsonDetails?.waitingRoom?.name || '—';
+      const videoCallUrl = out.jsonDetails?.videoCallUrl || 'about:blank';
+      window.currentVideoCallUrl = videoCallUrl;
+
+      $('turnCodeDisplay').textContent = turnCode;
+      $('turnNumber').textContent = turnNumber;
+      $('avgWaitingTime').textContent = isFinite(avgWait) ? `${Math.floor(parseFloat(avgWait))} min` : 'N/A';
+      $('queueName').textContent = queueName;
+      $('waitingRoomName').textContent = wrName;
+      $('turnStatus').textContent = 'Consultando...';
+      $('turnStatus').className = 'info-value status-warn';
+      $('currentWaitingTime').textContent = 'N/A';
+      $('btnAbrirVideo').disabled = true;
+
+      document.getElementById('intermediarioForm').style.display = 'none';
+      document.getElementById('turnSection').classList.add('active');
+
+      startPolling(turnCode);
+    } catch (err) {
+      setAlert(err.message);
+      btnEnviar.disabled = false;
+      btnEnviar.innerHTML = 'Enviar';
+    }
+  });
+
+  function startPolling(turnCode) {
+    stopPolling();
+    const url = `${FV_BASE}/turn/code/${encodeURIComponent(turnCode)}`;
+    const mapStatus = (s) => {
+      if (s === 'ANNOUNCED') return { text: 'Lo estamos llamando', cls: 'status-ok' };
+      if (s === 'WAITING_TO_BE_CALLED') return { text: 'En breve lo llamaremos', cls: 'status-warn' };
+      if (s === 'FINALIZED') return { text: 'Atención finalizada', cls: 'status-done' };
+      return { text: s || 'Desconocido', cls: 'status-warn' };
+    };
+
+    const tick = async () => {
+      try {
+        const res = await fetch(url, {
+          headers: { 'x-api-token': FV_TOKEN, 'Content-Type': 'text/plain' }
+        });
+        if (!res.ok) throw new Error(`Estado no disponible (${res.status})`);
+
+        const data = await res.json();
+        const m = mapStatus(data.status);
+        $('turnStatus').textContent = m.text;
+        $('turnStatus').className = `info-value ${m.cls}`;
+
+        const avg = data.averageWaitingTime ?? data.serviceTime;
+        if (avg !== undefined && avg !== null && !isNaN(avg)) {
+          $('currentWaitingTime').textContent = `${Math.floor(parseFloat(avg))} min`;
+        }
+
+        if (data.status === 'ANNOUNCED') {
+          $('btnAbrirVideo').disabled = false;
+        }
+      } catch (e) {
+        $('turnStatus').textContent = 'Error al consultar';
+        $('turnStatus').className = 'info-value status-err';
+      }
+    };
+
+    tick();
+    pollingInterval = setInterval(tick, 5000);
+  }
+
+  function stopPolling() {
+    if (pollingInterval) { clearInterval(pollingInterval); pollingInterval = null; }
+  }
+
+  $('btnAbrirVideo').addEventListener('click', () => {
+    const videoUrl = window.currentVideoCallUrl || 'about:blank';
+    const urlWithParam = videoUrl.includes('?')
+      ? `${videoUrl}&videocallUser=mobile`
+      : `${videoUrl}?videocallUser=mobile`;
+    $('videoFrame').src = urlWithParam;
+    $('videoModal').classList.add('active');
+    document.body.style.overflow = 'hidden';
+  });
+
+  $('btnCloseVideo').addEventListener('click', () => {
+    $('videoModal').classList.remove('active');
+    document.body.style.overflow = '';
+  });
+  $('videoModal').addEventListener('click', (e) => {
+    if (e.target === $('videoModal')) {
+      $('videoModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && $('videoModal').classList.contains('active')) {
+      $('videoModal').classList.remove('active');
+      document.body.style.overflow = '';
+    }
+  });
+</script>
+</body>
+</html>
